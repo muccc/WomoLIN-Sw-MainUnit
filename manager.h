@@ -12,7 +12,7 @@
 #include "driver/birelay.h"
 #include "driver/controlbus.h"
 
-namespace pcsim
+namespace mainunit
 {
 
    class CManager 

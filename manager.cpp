@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-namespace pcsim
+namespace mainunit
 {
 
    CManager::CManager( ) 

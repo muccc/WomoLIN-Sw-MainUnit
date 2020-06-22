@@ -6,7 +6,7 @@
 
 #include "siguni/interface/iunit.h"
 
-namespace pcsim::driver
+namespace mainunit::driver
 {
 
 	class IOutputBiRelayK1 : public siguni::interface::IUnitOutput 

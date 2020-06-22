@@ -9,7 +9,7 @@
 #include "icontrolbus.h"
 #include "ibirelay.h"
 
-namespace pcsim::driver
+namespace mainunit::driver
 {
 	class IHal
 	{

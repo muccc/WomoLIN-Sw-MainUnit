@@ -8,7 +8,7 @@ extern "C" void __sync_synchronize() {}
 
 int main() {
 
-   auto manager = pcsim::CManager();
+   auto manager = mainunit::CManager();
 
    manager.DoWork();
 

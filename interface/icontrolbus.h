@@ -6,7 +6,7 @@
 
 #include "siguni/interface/icontrolbus.h"
 
-namespace pcsim::driver
+namespace mainunit::driver
 {
 
 	class IControlbus : public siguni::interface::IControlbus
