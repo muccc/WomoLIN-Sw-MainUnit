@@ -1,4 +1,5 @@
-cmake_minimum_required (VERSION 3.16)
+#cmake_minimum_required (VERSION 3.16)
+cmake_minimum_required(VERSION 3.15.3)
 
 #TODO
 #SET(CMAKE_C_COMPILER "/usr/bin/gcc-9" )
@@ -17,16 +18,68 @@ set(COMPILER_PATH /home/tseeck/Develop/stm/tools/gcc-arm-none-eabi-9-2019-q4-maj
 SET(PROJECT_NAME "mainunit")
 project(${PROJECT_NAME})
 
+set(EXECUTABLE ${PROJECT_NAME}.elf)
+
 include_directories( ./ )
 include_directories( ./../ )
 
 add_subdirectory(siguni)
 add_subdirectory(driver)
 
-add_executable(${PROJECT_NAME}
+add_executable(${EXECUTABLE}
    main
    manager
 )
 
-target_link_libraries (${PROJECT_NAME} siguni drivermainunit)
+target_link_libraries (${EXECUTABLE} siguni drivermainunit cmsis hal)
 
+target_compile_definitions(${EXECUTABLE} PRIVATE
+	-DSTM32L476xx
+	-DUSE_HAL_DRIVER
+)
+
+target_include_directories(${EXECUTABLE} PRIVATE
+	driver/cmsis/inc
+	driver/hal/inc
+)
+
+target_compile_options(${EXECUTABLE} PRIVATE
+	-mcpu=cortex-m4
+	-mthumb
+	-mfpu=fpv4-sp-d16
+	-mfloat-abi=hard
+	
+	-fdata-sections
+	-ffunction-sections
+	
+	-Wall
+	
+	$<$<CONFIG:Debug>:-Og -gdwarf-2>
+)
+
+target_link_options(${EXECUTABLE} PRIVATE
+	-T${CMAKE_SOURCE_DIR}/driver/cmsis/STM32L476RGTx_FLASH.ld
+	
+	-mcpu=cortex-m4
+    -mthumb
+    -mfpu=fpv4-sp-d16
+    -mfloat-abi=hard
+    -specs=nano.specs
+    --specs=rdimon.specs
+    -lc
+    -lm
+    -lnosys
+    -Wl,-Map=${PROJECT_NAME}.map,--cref
+    -Wl,--gc-sections
+)
+
+add_custom_command(TARGET ${EXECUTABLE}
+	POST_BUILD
+	COMMAND ${COMPILER_PATH}/arm-none-eabi-size ${EXECUTABLE}
+)
+
+add_custom_command(TARGET ${EXECUTABLE}
+	POST_BUILD
+	COMMAND ${COMPILER_PATH}/arm-none-eabi-objcopy -O ihex ${EXECUTABLE} ${PROJECT_NAME}.hex
+	COMMAND ${COMPILER_PATH}/arm-none-eabi-objcopy  -O binary -S ${EXECUTABLE} ${PROJECT_NAME}.bin
+)
