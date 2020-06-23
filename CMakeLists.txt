@@ -1,12 +1,4 @@
-#cmake_minimum_required (VERSION 3.16)
-cmake_minimum_required(VERSION 3.15.3)
-
-#TODO
-#SET(CMAKE_C_COMPILER "/usr/bin/gcc-9" )
-#SET(CMAKE_CXX_COMPILER "/usr/bin/g++-9" )
-
-#SET(CMAKE_CXX_STANDARD 20)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wpedantic -Werror=pedantic -Wextra")
+cmake_minimum_required (VERSION 3.16)
 
 enable_language(CXX C ASM)
 set(CMAKE_C_STANDARD 99)
@@ -14,6 +6,10 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD 20)
 set(COMPILER_PATH /home/tseeck/Develop/stm/tools/gcc-arm-none-eabi-9-2019-q4-major/bin)
+
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wpedantic -Werror=pedantic -Wextra")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSTM32L476xx -DUSE_HAL_DRIVER -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -fdata-sections -ffunction-sections")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DSTM32L476xx -DUSE_HAL_DRIVER -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -fdata-sections -ffunction-sections")
 
 SET(PROJECT_NAME "mainunit")
 project(${PROJECT_NAME})
