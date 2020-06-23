@@ -8,10 +8,10 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wpedantic -Werror=pedantic -Wextr
 SET(LIB_NAME "drivermainunit")
 project(${LIB_NAME})
 
-add_library(${LIB_NAME}
-	hal
-	controlbus
-	birelay
-	version
+add_library(${LIB_NAME} 
+			hal.cpp
+			controlbus.cpp
+			birelay.cpp
+			version.cpp
 )
 
