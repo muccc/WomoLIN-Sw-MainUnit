@@ -25,29 +25,28 @@ namespace mainunit
 
       private:
 
-
          // units
         
-         siguni::CUnitInput         inputHwBoardVersion { GetHandleInputHwBoardVersion() } ; 
-         siguni::CUnitInput         inputDriverVersion { GetHandleInputDriverVersion() } ; 
+         siguni::CUnitInput         UnitInputGetHwBoardVersion { GetHandleUnitInputGetHwBoardVersion() } ; 
+         siguni::CUnitInput         UnitInputGetDriverVersion { GetHandleUnitInputGetDriverVersion() } ; 
  
-         siguni::CUnitOutput        outputK1 { GetHandleOutputBiRelayK1() } ; 
-         siguni::CUnitOutput        outputK2 { GetHandleOutputBiRelayK2() } ; 
+         siguni::CUnitOutput        UnitOutputSetResetK1 { GetHandleUnitOutputSetResetK1() } ; 
+         siguni::CUnitOutput        UnitOutputSetResetK2 { GetHandleUnitOutputSetResetK2() } ; 
 
-         siguni::CUnitInput         inputK1 { GetHandleInputBiRelayK1() } ; 
-         siguni::CUnitInput         inputK2 { GetHandleInputBiRelayK2() } ; 
+         siguni::CUnitInput         UnitInputGetK1 { GetHandleUnitInputGetK1() } ; 
+         siguni::CUnitInput         UnitInputGetK2 { GetHandleUnitInputGetK2() } ; 
+
 
          // signals
 
-         siguni::CSignalGetVersion  sigHwBoardVersion { siguni::CSignalGetVersion() };
-         siguni::CSignalGetVersion  sigDriverVersion { siguni::CSignalGetVersion() };
+         siguni::CSignalGetVersion  GetHwBoardVersion { siguni::CSignalGetVersion() };
+         siguni::CSignalGetVersion  GetDriverVersion { siguni::CSignalGetVersion() };
 
-         siguni::CSignalSetReset    sigOutputK1 { siguni::CSignalSetReset() };
-         siguni::CSignalSetReset    sigOutputK2 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    SetResetK1 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    SetResetK2 { siguni::CSignalSetReset() };
 
-         siguni::CSignalSetReset    sigInputK1 { siguni::CSignalSetReset() };
-         siguni::CSignalSetReset    sigInputK2 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    GetK1 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    GetK2 { siguni::CSignalSetReset() };
 
    };
-
 }

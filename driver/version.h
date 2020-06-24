@@ -9,20 +9,20 @@
 namespace mainunit::driver
 {
 
-	class CInputHwBoardVersion : public siguni::interface::IInputHwBoardVersion
+	class CUnitInputGetHwBoardVersion : public siguni::interface::IUnitInputGetHwBoardVersion
    {
 	  public:
-       CInputHwBoardVersion() = default;
-		 ~CInputHwBoardVersion() = default;
+       CUnitInputGetHwBoardVersion() = default;
+		 ~CUnitInputGetHwBoardVersion() = default;
 
 		 void Get( std::string & attGetInput ) override final;
    };
 
-	class CInputDriverVersion : public siguni::interface::IInputDriverVersion
+	class CUnitInputGetDriverVersion : public siguni::interface::IUnitInputGetDriverVersion
    {
 	  public:
-       CInputDriverVersion() = default;
-		 ~CInputDriverVersion() = default;
+       CUnitInputGetDriverVersion() = default;
+		 ~CUnitInputGetDriverVersion() = default;
 
 		 void Get( std::string & attGetInput ) override final;
    };

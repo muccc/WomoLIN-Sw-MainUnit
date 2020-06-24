@@ -5,6 +5,5 @@
 #pragma once
 
 #include "interface/ihal.h"
-#include "interface/icontrolbus.h"
 #include "interface/ibirelay.h"
 

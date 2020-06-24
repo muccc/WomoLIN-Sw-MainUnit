@@ -14,22 +14,22 @@ namespace mainunit
       , siguni::CManagerBase( GetHandleControlbus() )
    {
 
-      signalVector["sigHwBoardVersion"] = &sigHwBoardVersion;
-      signalVector["sigDriverVersion"] = &sigDriverVersion;
+      signalVector["GetHwBoardVersion"] = &GetHwBoardVersion;
+      signalVector["GetDriverVersion"] = &GetDriverVersion;
 
-      signalVector["sigOutputK1"] = &sigOutputK1;
-      signalVector["sigOutputK2"] = &sigOutputK2;
-      signalVector["sigInputK1"] = &sigInputK1;
-      signalVector["sigInputK2"] = &sigInputK2;
+      signalVector["SetResetK1"] = &SetResetK1;
+      signalVector["SetResetK2"] = &SetResetK2;
+      signalVector["GetK1"] = &GetK1;
+      signalVector["GetK2"] = &GetK2;
 
-      sigHwBoardVersion.AddUnit( &inputHwBoardVersion );
-      sigDriverVersion.AddUnit( &inputDriverVersion );
+      GetHwBoardVersion.AddUnit( &UnitInputGetHwBoardVersion );
+      GetDriverVersion.AddUnit( &UnitInputGetDriverVersion );
 
-      sigOutputK1.AddUnit( &outputK1 );
-      sigOutputK2.AddUnit( &outputK2 );
+      SetResetK1.AddUnit( &UnitOutputSetResetK1 );
+      SetResetK2.AddUnit( &UnitOutputSetResetK2 );
 
-      sigInputK1.AddUnit( &inputK1 );
-      sigInputK2.AddUnit( &inputK2 );
+      GetK1.AddUnit( &UnitInputGetK1 );
+      GetK2.AddUnit( &UnitInputGetK2 );
 
 
    }

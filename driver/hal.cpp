@@ -10,54 +10,51 @@ namespace mainunit::driver
 {
 
    CHal::CHal()
-      : controlbus()
-      , inputHwBoardVersion()
-      , inputDriverVersion()
-      , outputBiRelayK1()
-      , outputBiRelayK2()
-      , inputBiRelayK1()
-      , inputBiRelayK2()
+      : Controlbus()
+      , UnitInputGetHwBoardVersion()
+      , UnitInputGetDriverVersion()
+      , UnitOutputSetResetK1()
+      , UnitOutputSetResetK2()
+      , UnitInputGetK1()
+      , UnitInputGetK2()
    {
    }
 
-   IControlbus & CHal::GetHandleControlbus()
+   siguni::interface::IControlbus & CHal::GetHandleControlbus()
    {
-      return controlbus;
+      return Controlbus;
    }
 
 
-	siguni::interface::IInputHwBoardVersion & CHal::GetHandleInputHwBoardVersion()
+	siguni::interface::IUnitInputGetHwBoardVersion & CHal::GetHandleUnitInputGetHwBoardVersion()
    {
-      return inputHwBoardVersion;
+      return UnitInputGetHwBoardVersion;
    }
 
-	siguni::interface::IInputDriverVersion & CHal::GetHandleInputDriverVersion()
+	siguni::interface::IUnitInputGetDriverVersion & CHal::GetHandleUnitInputGetDriverVersion()
    {
-      return inputDriverVersion;
+      return UnitInputGetDriverVersion;
    }
 
-	IOutputBiRelayK1 & CHal::GetHandleOutputBiRelayK1() 
+	IUnitOutputSetResetK1 & CHal::GetHandleUnitOutputSetResetK1() 
    {
-      return outputBiRelayK1;
+      return UnitOutputSetResetK1;
    }
 
-	IOutputBiRelayK2 & CHal::GetHandleOutputBiRelayK2() 
+	IUnitOutputSetResetK2 & CHal::GetHandleUnitOutputSetResetK2() 
    {
-      return outputBiRelayK2;
+      return UnitOutputSetResetK2;
    }
 
-	IInputBiRelayK1 & CHal::GetHandleInputBiRelayK1() 
+	IUnitInputGetK1 & CHal::GetHandleUnitInputGetK1() 
    {
-      return inputBiRelayK1;
+      return UnitInputGetK1;
    }
 
-	IInputBiRelayK2 & CHal::GetHandleInputBiRelayK2() 
+	IUnitInputGetK2 & CHal::GetHandleUnitInputGetK2() 
    {
-      return inputBiRelayK2;
+      return UnitInputGetK2;
    }
-
-
-
 
 
 }

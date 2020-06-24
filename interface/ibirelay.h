@@ -9,39 +9,37 @@
 namespace mainunit::driver
 {
 
-	class IOutputBiRelayK1 : public siguni::interface::IUnitOutput 
+	class IUnitOutputSetResetK1 : public siguni::interface::IUnitOutput 
 	{
 	  public:
-		 virtual ~IOutputBiRelayK1() = default;
+		 virtual ~IUnitOutputSetResetK1() = default;
 
 		 void Set( std::string & attSetOutput ) override = 0;
 	};
 
-	class IOutputBiRelayK2 : public siguni::interface::IUnitOutput 
+	class IUnitOutputSetResetK2 : public siguni::interface::IUnitOutput 
 	{
 	  public:
-		 virtual ~IOutputBiRelayK2() = default;
+		 virtual ~IUnitOutputSetResetK2() = default;
 
 		 void Set( std::string & attSetOutput ) override = 0;
 	};
 
-	class IInputBiRelayK1 : public siguni::interface::IUnitInput
+	class IUnitInputGetK1 : public siguni::interface::IUnitInput
 	{
 	  public:
-		 virtual ~IInputBiRelayK1() = default;
+		 virtual ~IUnitInputGetK1() = default;
 
 		 void Get( std::string & attGetInput ) override = 0;
 	};
 
-	class IInputBiRelayK2 : public siguni::interface::IUnitInput
+	class IUnitInputGetK2 : public siguni::interface::IUnitInput
 	{
 	  public:
-		 virtual ~IInputBiRelayK2() = default;
+		 virtual ~IUnitInputGetK2() = default;
 
 		 void Get( std::string & attGetInput ) override = 0;
 	};
-
-
 
 }
 

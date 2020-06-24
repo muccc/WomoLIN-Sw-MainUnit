@@ -6,7 +6,6 @@
 
 #include "siguni/interface/ihw.h"
 
-#include "icontrolbus.h"
 #include "ibirelay.h"
 
 namespace mainunit::driver
@@ -16,16 +15,16 @@ namespace mainunit::driver
 	public:
       virtual ~IHal() = default;
 
-	   virtual IControlbus &         GetHandleControlbus() = 0;
+	   virtual siguni::interface::IControlbus &         GetHandleControlbus() = 0;
 
-	   virtual siguni::interface::IInputHwBoardVersion &     GetHandleInputHwBoardVersion() = 0;
-	   virtual siguni::interface::IInputDriverVersion &      GetHandleInputDriverVersion() = 0;
+	   virtual siguni::interface::IUnitInputGetHwBoardVersion &     GetHandleUnitInputGetHwBoardVersion() = 0;
+	   virtual siguni::interface::IUnitInputGetDriverVersion &      GetHandleUnitInputGetDriverVersion() = 0;
 
-	   virtual IOutputBiRelayK1 &    GetHandleOutputBiRelayK1() = 0;
-	   virtual IOutputBiRelayK2 &    GetHandleOutputBiRelayK2() = 0;
+	   virtual IUnitOutputSetResetK1 &    GetHandleUnitOutputSetResetK1() = 0;
+	   virtual IUnitOutputSetResetK2 &    GetHandleUnitOutputSetResetK2() = 0;
 
-	   virtual IInputBiRelayK1 &     GetHandleInputBiRelayK1() = 0;
-	   virtual IInputBiRelayK2 &     GetHandleInputBiRelayK2() = 0;
+	   virtual IUnitInputGetK1 &     GetHandleUnitInputGetK1() = 0;
+	   virtual IUnitInputGetK2 &     GetHandleUnitInputGetK2() = 0;
 	};
 }
 

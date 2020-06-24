@@ -9,43 +9,40 @@
 namespace mainunit::driver
 {
 
-	class COutputBiRelayK1 : public IOutputBiRelayK1 
+	class CUnitOutputSetResetK1 : public IUnitOutputSetResetK1 
 	{
 	  public:
-       COutputBiRelayK1() = default;
-		 ~COutputBiRelayK1() = default;
+       CUnitOutputSetResetK1() = default;
+		 ~CUnitOutputSetResetK1() = default;
 
 		 void Set( std::string & attSetOutput ) override final;
 	};
 
-	class COutputBiRelayK2 : public IOutputBiRelayK2 
+	class CUnitOutputSetResetK2 : public IUnitOutputSetResetK2 
 	{
 	  public:
-       COutputBiRelayK2() = default;
-		 ~COutputBiRelayK2() = default;
+       CUnitOutputSetResetK2() = default;
+		 ~CUnitOutputSetResetK2() = default;
 
 		 void Set( std::string & attSetOutput ) override final;
 	};
 
-	class CInputBiRelayK1 : public IInputBiRelayK1 
+	class CUnitInputGetK1 : public IUnitInputGetK1 
 	{
 	  public:
-       CInputBiRelayK1() = default;
-		 ~CInputBiRelayK1() = default;
+       CUnitInputGetK1() = default;
+		 ~CUnitInputGetK1() = default;
 
 		 void Get( std::string & attGetInput ) override final;
 	};
 
-	class CInputBiRelayK2 : public IInputBiRelayK2 
+	class CUnitInputGetK2 : public IUnitInputGetK2 
 	{
 	  public:
-       CInputBiRelayK2() = default;
-		 ~CInputBiRelayK2() = default;
+       CUnitInputGetK2() = default;
+		 ~CUnitInputGetK2() = default;
 
 		 void Get( std::string & attGetInput ) override final;
 	};
-
-
-
 }
 

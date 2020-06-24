@@ -8,16 +8,16 @@
 
 namespace mainunit::driver
 {
-	class CControlbus : public IControlbus
+	class CControlbus : public siguni::interface::IControlbus
 	{
-	  public:
-       CControlbus(); 
-		 ~CControlbus() = default;
+		public:
+			CControlbus(); 
+			~CControlbus() = default;
 
-		 int WriteData( const std::string & attMessage ) override final;
-		 int ReadData( std::string & attMessage ) override final;
+			int WriteData( const std::string & attMessage ) override final;
+			int ReadData( std::string & attMessage ) override final;
 
-     private:
+		private:
 
 	};
 }

@@ -9,17 +9,17 @@
 namespace mainunit::driver
 {
 
-	void CInputHwBoardVersion::Get( std::string & attGetInput )
-   {
+	void CUnitInputGetHwBoardVersion::Get( std::string & attGetInput )
+	{
       attGetInput = "9.99";
       std::cout << "Hw Board Version Input :" << attGetInput << std::endl;
-   }
+	}
 
-	void CInputDriverVersion::Get( std::string & attGetInput )
-   {
+	void CUnitInputGetDriverVersion::Get( std::string & attGetInput )
+	{
       attGetInput = "9.99";
       std::cout << "Driver Version Input :" << attGetInput << std::endl;
-   }
+	}
 
 }
 

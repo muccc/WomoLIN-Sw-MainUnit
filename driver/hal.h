@@ -19,28 +19,28 @@ namespace mainunit::driver
 	public:
        CHal();
 	    ~CHal() = default;
-	    IControlbus &          GetHandleControlbus() override final;
+	    siguni::interface::IControlbus &          GetHandleControlbus() override final;
 
-	    siguni::interface::IInputHwBoardVersion &     GetHandleInputHwBoardVersion() override final;
-	    siguni::interface::IInputDriverVersion &      GetHandleInputDriverVersion() override final;
+	    siguni::interface::IUnitInputGetHwBoardVersion &     GetHandleUnitInputGetHwBoardVersion() override final;
+	    siguni::interface::IUnitInputGetDriverVersion &      GetHandleUnitInputGetDriverVersion() override final;
 
-	    IOutputBiRelayK1 &     GetHandleOutputBiRelayK1() override final;
-	    IOutputBiRelayK2 &     GetHandleOutputBiRelayK2() override final;
+	    IUnitOutputSetResetK1 &    GetHandleUnitOutputSetResetK1() override final;
+	    IUnitOutputSetResetK2 &    GetHandleUnitOutputSetResetK2() override final;
 
-	    IInputBiRelayK1 &      GetHandleInputBiRelayK1() override final;
-	    IInputBiRelayK2 &      GetHandleInputBiRelayK2() override final;
+	    IUnitInputGetK1 &     GetHandleUnitInputGetK1() override final;
+	    IUnitInputGetK2 &     GetHandleUnitInputGetK2() override final;
 
    private:
-       CControlbus            controlbus; 
+       CControlbus                   Controlbus; 
 
-	    CInputHwBoardVersion   inputHwBoardVersion;
-	    CInputDriverVersion    inputDriverVersion;
+	    CUnitInputGetHwBoardVersion   UnitInputGetHwBoardVersion;
+	    CUnitInputGetDriverVersion    UnitInputGetDriverVersion;
 
-       COutputBiRelayK1       outputBiRelayK1; 
-       COutputBiRelayK2       outputBiRelayK2; 
+       CUnitOutputSetResetK1         UnitOutputSetResetK1; 
+       CUnitOutputSetResetK2         UnitOutputSetResetK2; 
 
-       CInputBiRelayK1        inputBiRelayK1; 
-       CInputBiRelayK2        inputBiRelayK2; 
+       CUnitInputGetK1               UnitInputGetK1; 
+       CUnitInputGetK2               UnitInputGetK2; 
 	};
 }
 
