@@ -9,7 +9,7 @@ set(COMPILER_PATH /home/tseeck/Develop/stm/tools/gcc-arm-none-eabi-9-2019-q4-maj
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wpedantic -Werror=pedantic -Wextra")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSTM32L476xx -DUSE_HAL_DRIVER -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -fdata-sections -ffunction-sections")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DSTM32L476xx -DUSE_HAL_DRIVER -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -fdata-sections -ffunction-sections")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DSTM32L476xx -DUSE_HAL_DRIVER -Wall -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -fdata-sections -ffunction-sections")
 
 SET(PROJECT_NAME "mainunit")
 project(${PROJECT_NAME})
@@ -18,6 +18,7 @@ set(EXECUTABLE ${PROJECT_NAME}.elf)
 
 include_directories( ./ )
 include_directories( ./../ )
+include_directories( ./driver )
 
 add_subdirectory(siguni)
 add_subdirectory(driver)
