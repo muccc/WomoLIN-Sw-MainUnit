@@ -43,7 +43,7 @@ namespace mainunit::driver
 
 		private:
 
-			CControlbus Controlbus;
+			CControlbus &Controlbus;
 
 			CUnitInputGetHwBoardVersion UnitInputGetHwBoardVersion;
 			CUnitInputGetDriverVersion 	UnitInputGetDriverVersion;

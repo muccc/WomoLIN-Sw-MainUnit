@@ -14,7 +14,7 @@
 
 namespace mainunit
 {
-
+#if 1
    class CManager 
       : public driver::CHal
       , public siguni::CManagerBase 
@@ -26,10 +26,10 @@ namespace mainunit
       private:
 
          // units
-        
+
          siguni::CUnitInput         UnitInputGetHwBoardVersion { GetHandleUnitInputGetHwBoardVersion() } ; 
          siguni::CUnitInput         UnitInputGetDriverVersion { GetHandleUnitInputGetDriverVersion() } ; 
- 
+
          siguni::CUnitOutput        UnitOutputSetResetK1 { GetHandleUnitOutputSetResetK1() } ; 
          siguni::CUnitOutput        UnitOutputSetResetK2 { GetHandleUnitOutputSetResetK2() } ; 
 
@@ -49,4 +49,19 @@ namespace mainunit
          siguni::CSignalSetReset    GetK2 { siguni::CSignalSetReset() };
 
    };
+ #else
+ class CManager 
+      : public driver::CHal
+      , public siguni::CManagerBase 
+   {
+      public:
+         CManager();
+         ~CManager() = default;
+
+      private:
+
+
+
+   };
+ #endif
 }

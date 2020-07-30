@@ -15,21 +15,23 @@ namespace mainunit::driver
       exit(1);
    }
 */
-   CControlbus::CControlbus()
-   {
-
-   }
+	CControlbus::CControlbus(const Uart &uart, const GPIO &gpio) : m_puart(const_cast<Uart&>(uart)), m_pstbctrl(const_cast<GPIO&>(gpio))
+	{
+		//m_pstbctrl.setHigh();
+		m_pstbctrl.setLow();
+	}
 
 	int CControlbus::WriteData( const std::string & attMessage ) 
-   { 
-	return 0;
-   }
+	{
+		m_puart.write(attMessage);
+		return attMessage.length();
+	}
 
 
 	int CControlbus::ReadData( std::string & attMessage )
-   {
-		return 0;
-   }
+	{
+		return m_puart.read(attMessage);
+	}
 
 }
 

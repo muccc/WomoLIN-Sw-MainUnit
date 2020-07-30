@@ -5,6 +5,7 @@
 #include "hal.h"
 #include "gpio.h"
 #include "spi.h"
+#include "circularbuffer.h"
 
 #include <iostream>
 
@@ -23,7 +24,11 @@
 #define hSTBCtrl_Pin 			GPIO_PIN_9
 #define hSTBCtrl_GPIO_Port 		GPIOA
 
-// Relay hardware configuration
+
+namespace mainunit::driver
+{
+	
+	// Relay hardware configuration
 GPIO k1status(hK1Status_Pin, hK1Status_GPIO_Port);
 GPIO k2status(hK2Status_Pin, hK2Status_GPIO_Port);
 GPIO k3status(hK3Status_Pin, hK3Status_GPIO_Port);
@@ -32,11 +37,16 @@ GPIO rel1reset(hRel1Reset_Pin, hRel1Reset_GPIO_Port);
 GPIO rel2reset(hRel2Reset_Pin, hRel2Reset_GPIO_Port);
 SPI spi3(&hspi3);
 
-namespace mainunit::driver
-{
+// Controlbus hardware configuration
+#if 1
+GPIO stbctrl(hSTBCtrl_Pin, hSTBCtrl_GPIO_Port);
+CircularBuffer<uint8_t> uart1buffer(128);
+Uart uart1(&huart1, &uart1buffer);
+CControlbus control(uart1, stbctrl);
+#endif
 
    CHal::CHal()
-      : Controlbus()
+      : Controlbus(control)
       , UnitInputGetHwBoardVersion()
       , UnitInputGetDriverVersion()
       , UnitOutputSetResetK1()
@@ -44,6 +54,7 @@ namespace mainunit::driver
       , UnitInputGetK1()
       , UnitInputGetK2()
    {
+	   //Controlbus = new CControlbus(&huart1, &uart1buffer);
 	   HAL_Init();
 	   MX_GPIO_Init();
 	   MX_USART1_UART_Init();
@@ -216,7 +227,7 @@ namespace mainunit::driver
 
    siguni::interface::IControlbus & CHal::GetHandleControlbus()
    {
-      return Controlbus;
+      return control;
    }
 
 

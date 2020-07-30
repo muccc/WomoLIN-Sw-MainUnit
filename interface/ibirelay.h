@@ -6,6 +6,8 @@
 
 #include "siguni/interface/iunit.h"
 
+using namespace siguni::interface;
+
 namespace mainunit::driver
 {
 
@@ -14,7 +16,7 @@ namespace mainunit::driver
 	  public:
 		 virtual ~IUnitOutputSetResetK1() = default;
 
-		 void Set( std::string & attSetOutput ) override = 0;
+		 void Set( std::string & attSetOutput, CAdditionals & attAdditionals ) override = 0;
 	};
 
 	class IUnitOutputSetResetK2 : public siguni::interface::IUnitOutput 
@@ -22,7 +24,7 @@ namespace mainunit::driver
 	  public:
 		 virtual ~IUnitOutputSetResetK2() = default;
 
-		 void Set( std::string & attSetOutput ) override = 0;
+		 void Set( std::string & attSetOutput, CAdditionals & attAdditionals ) override = 0;
 	};
 
 	class IUnitInputGetK1 : public siguni::interface::IUnitInput
@@ -30,7 +32,7 @@ namespace mainunit::driver
 	  public:
 		 virtual ~IUnitInputGetK1() = default;
 
-		 void Get( std::string & attGetInput ) override = 0;
+		 void Get( std::string & attGetOuput , CAdditionals & attAdditionals ) override = 0;
 	};
 
 	class IUnitInputGetK2 : public siguni::interface::IUnitInput
@@ -38,7 +40,7 @@ namespace mainunit::driver
 	  public:
 		 virtual ~IUnitInputGetK2() = default;
 
-		 void Get( std::string & attGetInput ) override = 0;
+		 void Get( std::string & attGetOuput , CAdditionals & attAdditionals ) override = 0;
 	};
 
 }

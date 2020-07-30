@@ -6,6 +6,8 @@
 
 #include "interface.h"
 
+using namespace siguni::interface;
+
 namespace mainunit::driver
 {
 
@@ -15,7 +17,7 @@ namespace mainunit::driver
        CUnitInputGetHwBoardVersion() = default;
 		 ~CUnitInputGetHwBoardVersion() = default;
 
-		 void Get( std::string & attGetInput ) override final;
+		 void Get( std::string & attGetInput, CAdditionals & attAdditionals ) override final;
    };
 
 	class CUnitInputGetDriverVersion : public siguni::interface::IUnitInputGetDriverVersion
@@ -24,7 +26,7 @@ namespace mainunit::driver
        CUnitInputGetDriverVersion() = default;
 		 ~CUnitInputGetDriverVersion() = default;
 
-		 void Get( std::string & attGetInput ) override final;
+		 void Get( std::string & attGetInput, CAdditionals & attAdditionals ) override final;
    };
 }
 

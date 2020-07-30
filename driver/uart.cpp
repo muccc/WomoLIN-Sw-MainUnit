@@ -26,7 +26,7 @@ uint32_t Uart::read(std::string &data)
 	return data.length();
 }
 
-void Uart::write(std::string &data)
+void Uart::write(const std::string &data)
 {
 	HAL_UART_Transmit(m_phuart, (uint8_t *) data.c_str(), data.length(), 10);
 	m_lastsendsize = data.length();

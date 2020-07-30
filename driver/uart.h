@@ -16,7 +16,7 @@ public:
 	Uart(UART_HandleTypeDef *huart, CircularBuffer<uint8_t> *buffer);
 
 	uint32_t read(std::string &data);
-	void write(std::string &data);
+	void write(const std::string &data);
 
 	Uart() = delete;
 	Uart(const Uart &) = delete;

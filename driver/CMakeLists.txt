@@ -16,5 +16,6 @@ add_library(${LIB_NAME}
 			gpio.cpp
 			spi.cpp
 			uart.cpp
+			circularbuffer.h
 )
 
