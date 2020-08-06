@@ -6,9 +6,6 @@
 
 extern "C" void __sync_synchronize() {}
 
-//UART_HandleTypeDef huart1;
-//CircularBuffer<uint8_t> uart1buffer(128);
-
 int main()
 {
 	auto manager = mainunit::CManager();
