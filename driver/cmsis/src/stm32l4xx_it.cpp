@@ -98,7 +98,8 @@ void InterruptHandler::SysTick_Handler(void)
 
 void InterruptHandler::USART1_IRQHandler(void)
 {
-
+	if(InterruptHandler::irqhandler[IRQ_UART1].cb != nullptr)
+		InterruptHandler::irqhandler[IRQ_UART1].cb(InterruptHandler::irqhandler[IRQ_UART1].param);
 }
 
 void InterruptHandler::USART2_IRQHandler(void)

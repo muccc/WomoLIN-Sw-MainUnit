@@ -5,7 +5,7 @@
 
 Uart::Uart(UART_HandleTypeDef *huart, CircularBuffer<uint8_t> *buffer) : m_phuart(huart), m_pbuffer(buffer), m_lastsendsize(0)
 {
-
+	InterruptHandler::registerCallback(IRQ_UART1, Uart::irquarthandler, this);
 }
 
 uint32_t Uart::read(std::string &data)
@@ -30,5 +30,18 @@ void Uart::write(const std::string &data)
 {
 	HAL_UART_Transmit(m_phuart, (uint8_t *) data.c_str(), data.length(), 10);
 	m_lastsendsize = data.length();
+}
+
+void Uart::irqhandler()
+{
+	uint8_t byte = m_phuart->Instance->RDR;
+	m_pbuffer->put(byte);
+	HAL_UART_IRQHandler(m_phuart);
+}
+
+void Uart::irquarthandler(void *param)
+{
+	Uart *puart = (Uart *)param;
+	puart->irqhandler();
 }
 

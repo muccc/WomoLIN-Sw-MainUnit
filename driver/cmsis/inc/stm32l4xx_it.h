@@ -47,6 +47,9 @@
 /* USER CODE END EM */
 
 #define IRQ_SYSTICK	0
+#define IRQ_UART1	1
+
+#define IRQ_MAX 	2
 
  typedef void (*irqcallback)(void*);
 
@@ -80,7 +83,7 @@ private:
 
 private:
 
- 	static irq_t irqhandler[2];
+ 	static irq_t irqhandler[IRQ_MAX];
 
 };
 

@@ -7,6 +7,7 @@
 
 #include "stm32l476xx.h"
 #include "stm32l4xx_hal.h"
+#include "stm32l4xx_it.h"
 
 #include "circularbuffer.h"
 
@@ -20,6 +21,10 @@ public:
 
 	Uart() = delete;
 	Uart(const Uart &) = delete;
+
+private:
+	static void irquarthandler(void *param);
+	void irqhandler();
 
 private:
 	UART_HandleTypeDef *m_phuart;

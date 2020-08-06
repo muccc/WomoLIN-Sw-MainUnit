@@ -6,9 +6,6 @@
 
 #include <iostream>
 
-//UART_HandleTypeDef huart1;
-SPI_HandleTypeDef hspi3;
-
 namespace mainunit
 {
    CManager::CManager( ) 

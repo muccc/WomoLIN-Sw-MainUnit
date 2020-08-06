@@ -14,9 +14,6 @@
 #include "controlbus.h"
 #include "birelay.h"
 
-extern UART_HandleTypeDef huart1;
-extern SPI_HandleTypeDef hspi3;
-
 namespace mainunit::driver
 {
 
