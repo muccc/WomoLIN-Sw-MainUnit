@@ -6,12 +6,11 @@
 
 #include <iostream>
 
-UART_HandleTypeDef huart1;
+//UART_HandleTypeDef huart1;
 SPI_HandleTypeDef hspi3;
 
 namespace mainunit
 {
-#if 1
    CManager::CManager( ) 
       : CHal() 
       , siguni::CManagerBase( GetHandleControlbus() )
@@ -36,12 +35,4 @@ namespace mainunit
 
 
    }
-#else
-CManager::CManager( ) 
-      : CHal() 
-      , siguni::CManagerBase( GetHandleControlbus() )
-   {
-
-   }
-#endif
 }

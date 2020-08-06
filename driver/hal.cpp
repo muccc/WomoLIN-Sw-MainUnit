@@ -27,7 +27,7 @@
 
 namespace mainunit::driver
 {
-	
+#if 0
 	// Relay hardware configuration
 GPIO k1status(hK1Status_Pin, hK1Status_GPIO_Port);
 GPIO k2status(hK2Status_Pin, hK2Status_GPIO_Port);
@@ -36,7 +36,7 @@ GPIO k4status(hK4Status_Pin, hK4Status_GPIO_Port);
 GPIO rel1reset(hRel1Reset_Pin, hRel1Reset_GPIO_Port);
 GPIO rel2reset(hRel2Reset_Pin, hRel2Reset_GPIO_Port);
 SPI spi3(&hspi3);
-
+#endif
 // Controlbus hardware configuration
 #if 1
 GPIO stbctrl(hSTBCtrl_Pin, hSTBCtrl_GPIO_Port);
@@ -44,7 +44,7 @@ CircularBuffer<uint8_t> uart1buffer(128);
 Uart uart1(&huart1, &uart1buffer);
 CControlbus control(uart1, stbctrl);
 #endif
-
+#if 1
    CHal::CHal()
       : Controlbus(control)
       , UnitInputGetHwBoardVersion()
@@ -53,11 +53,17 @@ CControlbus control(uart1, stbctrl);
       , UnitOutputSetResetK2()
       , UnitInputGetK1()
       , UnitInputGetK2()
+#endif
+   //CHal::CHal()
    {
-	   //Controlbus = new CControlbus(&huart1, &uart1buffer);
 	   HAL_Init();
+	   __HAL_RCC_SYSCFG_CLK_ENABLE();
+	    __HAL_RCC_PWR_CLK_ENABLE();
+	   SystemClock_Config();
 	   MX_GPIO_Init();
 	   MX_USART1_UART_Init();
+
+	   InterruptHandler::registerCallback(IRQ_SYSTICK, CHal::irqsyshandler, nullptr);
    }
 
    void CHal::SystemClock_Config()
@@ -225,9 +231,15 @@ CControlbus control(uart1, stbctrl);
 
 	}
 
+	void CHal::irqsyshandler(void *param)
+	{
+		HAL_IncTick();
+	}
+
+#if 1
    siguni::interface::IControlbus & CHal::GetHandleControlbus()
    {
-      return control;
+      return Controlbus;//control;
    }
 
 
@@ -260,7 +272,7 @@ CControlbus control(uart1, stbctrl);
    {
       return UnitInputGetK2;
    }
-
+#endif
 
 }
 

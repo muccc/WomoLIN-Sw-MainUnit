@@ -6,6 +6,7 @@
 
 //#include "stm32l476xx.h"
 #include "stm32l4xx_hal.h"
+#include "stm32l4xx_it.h"
 
 #include "interface.h"
 
@@ -40,6 +41,8 @@ namespace mainunit::driver
 			void MX_GPIO_Init();
 			void MX_USART1_UART_Init();
 			void MX_SPI3_Init(void);
+
+			static void irqsyshandler(void *param);
 
 		private:
 

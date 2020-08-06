@@ -46,7 +46,46 @@
 
 /* USER CODE END EM */
 
+#define IRQ_SYSTICK	0
+
+ typedef void (*irqcallback)(void*);
+
+typedef struct irq_s
+{
+	irqcallback cb;
+	void *param;
+} irq_t;
+
+
+class InterruptHandler
+{
+public:
+	 InterruptHandler();
+ 	 virtual ~InterruptHandler();
+
+ 	 static void registerCallback(unsigned int irqn, irqcallback cb, void *param);
+
+private:
+ 	static void NMI_Handler(void);
+ 	static void HardFault_Handler(void);
+ 	static void MemManage_Handler(void);
+ 	static void BusFault_Handler(void);
+ 	static void UsageFault_Handler(void);
+ 	static void SVC_Handler(void);
+ 	static void DebugMon_Handler(void);
+ 	static void PendSV_Handler(void);
+ 	static void SysTick_Handler(void);
+ 	static void USART1_IRQHandler(void);
+ 	static void USART2_IRQHandler(void);
+
+private:
+
+ 	static irq_t irqhandler[2];
+
+};
+
 /* Exported functions prototypes ---------------------------------------------*/
+#if 0
 void NMI_Handler(void);
 void HardFault_Handler(void);
 void MemManage_Handler(void);
@@ -58,6 +97,7 @@ void PendSV_Handler(void);
 void SysTick_Handler(void);
 void USART1_IRQHandler(void);
 void USART2_IRQHandler(void);
+#endif
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */

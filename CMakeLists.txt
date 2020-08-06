@@ -24,11 +24,13 @@ add_subdirectory(siguni)
 add_subdirectory(driver)
 
 add_executable(${EXECUTABLE}
-   main
-   manager
+   main.cpp
+   manager.cpp
+   #driver/stm32l4xx_hal_msp.cpp
+   #driver/stm32l4xx_it.cpp
 )
 
-target_link_libraries (${EXECUTABLE} siguni drivermainunit cmsis hal)
+target_link_libraries (${EXECUTABLE} siguni drivermainunit cmsis hal hw board)
 
 target_compile_definitions(${EXECUTABLE} PRIVATE
 	-DSTM32L476xx
@@ -38,6 +40,8 @@ target_compile_definitions(${EXECUTABLE} PRIVATE
 target_include_directories(${EXECUTABLE} PRIVATE
 	driver/cmsis/inc
 	driver/hal/inc
+	driver/hw
+	driver/board
 )
 
 target_compile_options(${EXECUTABLE} PRIVATE

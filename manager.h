@@ -7,14 +7,15 @@
 #include "siguni/managerbase.h"
 #include "siguni/signal.h"
 #include "siguni/unit.h"
+#include "siguni/hal.h"
+#include "siguni/protocol.h"
 
 #include "driver/hal.h"
-#include "driver/birelay.h"
-#include "driver/controlbus.h"
+#include "driver/board/birelay.h"
+#include "driver/board/controlbus.h"
 
 namespace mainunit
 {
-#if 1
    class CManager 
       : public driver::CHal
       , public siguni::CManagerBase 
@@ -49,19 +50,4 @@ namespace mainunit
          siguni::CSignalSetReset    GetK2 { siguni::CSignalSetReset() };
 
    };
- #else
- class CManager 
-      : public driver::CHal
-      , public siguni::CManagerBase 
-   {
-      public:
-         CManager();
-         ~CManager() = default;
-
-      private:
-
-
-
-   };
- #endif
 }

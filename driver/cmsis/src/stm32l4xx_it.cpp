@@ -17,12 +17,101 @@
   ******************************************************************************
   */
 /* USER CODE END Header */
+#if 1
+#include "stm32l4xx_it.h"
 
+irq_t InterruptHandler::irqhandler[2];
+
+InterruptHandler::InterruptHandler()
+{
+
+}
+
+InterruptHandler::~InterruptHandler()
+{
+
+}
+
+void InterruptHandler::registerCallback(unsigned int irqn, irqcallback cb, void *param)
+{
+	InterruptHandler::irqhandler[irqn].cb = cb;
+	InterruptHandler::irqhandler[irqn].param = param;
+}
+
+void InterruptHandler::NMI_Handler(void)
+{
+
+}
+
+void InterruptHandler::HardFault_Handler(void)
+{
+	while(1)
+	{
+
+	}
+}
+
+void InterruptHandler::MemManage_Handler(void)
+{
+	while(1)
+	{
+
+	}
+}
+
+void InterruptHandler::BusFault_Handler(void)
+{
+	while(1)
+	{
+
+	}
+}
+
+void InterruptHandler::UsageFault_Handler(void)
+{
+	while(1)
+	{
+
+	}
+}
+
+void InterruptHandler::SVC_Handler(void)
+{
+
+}
+
+void InterruptHandler::DebugMon_Handler(void)
+{
+
+}
+
+void InterruptHandler::PendSV_Handler(void)
+{
+
+}
+
+void InterruptHandler::SysTick_Handler(void)
+{
+	if(InterruptHandler::irqhandler[IRQ_SYSTICK].cb != nullptr)
+		InterruptHandler::irqhandler[IRQ_SYSTICK].cb(InterruptHandler::irqhandler[IRQ_SYSTICK].param);
+}
+
+void InterruptHandler::USART1_IRQHandler(void)
+{
+
+}
+
+void InterruptHandler::USART2_IRQHandler(void)
+{
+
+}
+
+#else
 /* Includes ------------------------------------------------------------------*/
 //#include "main.h"
 #include "stm32l4xx_hal.h"
 #include "stm32l4xx_it.h"
-#include "circularbuffer.hpp"
+#include "circularbuffer.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -59,7 +148,7 @@
 
 /* External variables --------------------------------------------------------*/
 extern UART_HandleTypeDef huart1;
-extern UART_HandleTypeDef huart2;
+//extern UART_HandleTypeDef huart2;
 extern CircularBuffer<uint8_t> uart1buffer;
 /* USER CODE BEGIN EV */
 
@@ -222,7 +311,7 @@ void USART2_IRQHandler(void)
   /* USER CODE BEGIN USART2_IRQn 0 */
 
   /* USER CODE END USART2_IRQn 0 */
-  HAL_UART_IRQHandler(&huart2);
+  //HAL_UART_IRQHandler(&huart2);
   /* USER CODE BEGIN USART2_IRQn 1 */
 
   /* USER CODE END USART2_IRQn 1 */
@@ -232,3 +321,4 @@ void USART2_IRQHandler(void)
 
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif
