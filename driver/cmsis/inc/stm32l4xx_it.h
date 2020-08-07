@@ -67,7 +67,7 @@ public:
  	 virtual ~InterruptHandler();
 
  	 static void registerCallback(unsigned int irqn, irqcallback cb, void *param);
-
+#if 0
 private:
  	static void NMI_Handler(void);
  	static void HardFault_Handler(void);
@@ -80,15 +80,15 @@ private:
  	static void SysTick_Handler(void);
  	static void USART1_IRQHandler(void);
  	static void USART2_IRQHandler(void);
-
-private:
+#endif
+public:
 
  	static irq_t irqhandler[IRQ_MAX];
 
 };
 
 /* Exported functions prototypes ---------------------------------------------*/
-#if 0
+#if 1
 void NMI_Handler(void);
 void HardFault_Handler(void);
 void MemManage_Handler(void);

@@ -26,8 +26,8 @@ add_subdirectory(driver)
 add_executable(${EXECUTABLE}
    main.cpp
    manager.cpp
-   #driver/stm32l4xx_hal_msp.cpp
-   #driver/stm32l4xx_it.cpp
+   driver/hw/stm32l4xx_hal_msp.cpp
+   driver/cmsis/src/stm32l4xx_it.cpp
 )
 
 target_link_libraries (${EXECUTABLE} siguni drivermainunit cmsis hal hw board)

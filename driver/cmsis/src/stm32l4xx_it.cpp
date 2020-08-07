@@ -17,7 +17,7 @@
   ******************************************************************************
   */
 /* USER CODE END Header */
-#if 1
+
 #include "stm32l4xx_it.h"
 
 irq_t InterruptHandler::irqhandler[2];
@@ -37,7 +37,7 @@ void InterruptHandler::registerCallback(unsigned int irqn, irqcallback cb, void 
 	InterruptHandler::irqhandler[irqn].cb = cb;
 	InterruptHandler::irqhandler[irqn].param = param;
 }
-
+#if 0
 void InterruptHandler::NMI_Handler(void)
 {
 
@@ -110,9 +110,9 @@ void InterruptHandler::USART2_IRQHandler(void)
 #else
 /* Includes ------------------------------------------------------------------*/
 //#include "main.h"
-#include "stm32l4xx_hal.h"
+//#include "stm32l4xx_hal.h"
 #include "stm32l4xx_it.h"
-#include "circularbuffer.h"
+//#include "circularbuffer.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -148,9 +148,9 @@ void InterruptHandler::USART2_IRQHandler(void)
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern UART_HandleTypeDef huart1;
+//extern UART_HandleTypeDef huart1;
 //extern UART_HandleTypeDef huart2;
-extern CircularBuffer<uint8_t> uart1buffer;
+//extern CircularBuffer<uint8_t> uart1buffer;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -278,7 +278,9 @@ void SysTick_Handler(void)
   /* USER CODE BEGIN SysTick_IRQn 0 */
 
   /* USER CODE END SysTick_IRQn 0 */
-  HAL_IncTick();
+  //HAL_IncTick();
+	if(InterruptHandler::irqhandler[IRQ_SYSTICK].cb != nullptr)
+		InterruptHandler::irqhandler[IRQ_SYSTICK].cb(InterruptHandler::irqhandler[IRQ_SYSTICK].param);
   /* USER CODE BEGIN SysTick_IRQn 1 */
 
   /* USER CODE END SysTick_IRQn 1 */
@@ -296,10 +298,10 @@ void SysTick_Handler(void)
 void USART1_IRQHandler(void)
 {
   /* USER CODE BEGIN USART1_IRQn 0 */
-	uint8_t byte = huart1.Instance->RDR;
-	uart1buffer.put(byte);
+	//uint8_t byte = huart1.Instance->RDR;
+	//uart1buffer.put(byte);
   /* USER CODE END USART1_IRQn 0 */
-  HAL_UART_IRQHandler(&huart1);
+  //HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
 
   /* USER CODE END USART1_IRQn 1 */
