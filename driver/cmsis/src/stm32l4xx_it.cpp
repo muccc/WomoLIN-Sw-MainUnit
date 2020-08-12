@@ -303,7 +303,8 @@ void USART1_IRQHandler(void)
   /* USER CODE END USART1_IRQn 0 */
   //HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
-
+	if(InterruptHandler::irqhandler[IRQ_UART1].cb != nullptr)
+		InterruptHandler::irqhandler[IRQ_UART1].cb(InterruptHandler::irqhandler[IRQ_UART1].param);
   /* USER CODE END USART1_IRQn 1 */
 }
 /**
