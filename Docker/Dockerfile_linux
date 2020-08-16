@@ -1,0 +1,35 @@
+FROM ubuntu:18.04
+MAINTAINER Norym
+
+ARG UID
+ARG GID
+
+RUN echo $UID
+RUN echo $GID
+
+ENV HOME /home/developer
+
+RUN apt-get update && apt-get install -y \ 
+	software-properties-common \
+	apt-utils \
+	git \
+	sudo \
+	vim \
+	netcat \
+	screen \
+	wget 
+
+# Replace 1001 with your user / group id
+RUN export uid=${UID} gid=${GID} && \
+    mkdir -p /home/developer && \
+    echo "developer:x:${uid}:${gid}:Developer,,,:/home/developer:/bin/bash" >> /etc/passwd && \
+    echo "developer:x:${uid}:" >> /etc/group && \
+    echo "developer ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/developer && \
+    chmod 0440 /etc/sudoers.d/developer && \
+    chown ${uid}:${gid} -R /home/developer
+
+USER developer
+WORKDIR /home/developer
+
+CMD /bin/bash
+
