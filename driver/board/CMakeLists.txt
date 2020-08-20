@@ -7,4 +7,5 @@ add_library(${LIB_NAME}
 	version.cpp
 	controlbus.cpp
 	birelay.cpp
+	relaydrv.cpp
 )

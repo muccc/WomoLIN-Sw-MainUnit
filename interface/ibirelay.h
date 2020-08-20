@@ -27,6 +27,22 @@ namespace mainunit::driver
 		 void Set( std::string & attSetOutput, CAdditionals & attAdditionals ) override = 0;
 	};
 
+	class IUnitOutputSetResetK3 : public siguni::interface::IUnitOutput
+	{
+	  public:
+		 virtual ~IUnitOutputSetResetK3() = default;
+
+		 void Set( std::string & attSetOutput, CAdditionals & attAdditionals ) override = 0;
+	};
+
+	class IUnitOutputSetResetK4 : public siguni::interface::IUnitOutput
+	{
+	  public:
+		 virtual ~IUnitOutputSetResetK4() = default;
+
+		 void Set( std::string & attSetOutput, CAdditionals & attAdditionals ) override = 0;
+	};
+
 	class IUnitInputGetK1 : public siguni::interface::IUnitInput
 	{
 	  public:
@@ -39,6 +55,22 @@ namespace mainunit::driver
 	{
 	  public:
 		 virtual ~IUnitInputGetK2() = default;
+
+		 void Get( std::string & attGetOuput , CAdditionals & attAdditionals ) override = 0;
+	};
+
+	class IUnitInputGetK3 : public siguni::interface::IUnitInput
+	{
+	  public:
+		 virtual ~IUnitInputGetK3() = default;
+
+		 void Get( std::string & attGetOuput , CAdditionals & attAdditionals ) override = 0;
+	};
+
+	class IUnitInputGetK4 : public siguni::interface::IUnitInput
+	{
+	  public:
+		 virtual ~IUnitInputGetK4() = default;
 
 		 void Get( std::string & attGetOuput , CAdditionals & attAdditionals ) override = 0;
 	};

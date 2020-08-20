@@ -30,31 +30,38 @@ namespace mainunit::driver
 	UART_HandleTypeDef huart1;
 	SPI_HandleTypeDef hspi3;
 
-#if 0
-	// Relay hardware configuration
-GPIO k1status(hK1Status_Pin, hK1Status_GPIO_Port);
-GPIO k2status(hK2Status_Pin, hK2Status_GPIO_Port);
-GPIO k3status(hK3Status_Pin, hK3Status_GPIO_Port);
-GPIO k4status(hK4Status_Pin, hK4Status_GPIO_Port);
-GPIO rel1reset(hRel1Reset_Pin, hRel1Reset_GPIO_Port);
-GPIO rel2reset(hRel2Reset_Pin, hRel2Reset_GPIO_Port);
-SPI spi3(&hspi3);
-#endif
-// Controlbus hardware configuration
 
-GPIO stbctrl(hSTBCtrl_Pin, hSTBCtrl_GPIO_Port);
-CircularBuffer<uint8_t> uart1buffer(128);
-Uart uart1(&huart1, &uart1buffer);
-CControlbus control(uart1, stbctrl);
+		// Relay hardware configuration
+	GPIO k1status(hK1Status_Pin, hK1Status_GPIO_Port);
+	GPIO k2status(hK2Status_Pin, hK2Status_GPIO_Port);
+	GPIO k3status(hK3Status_Pin, hK3Status_GPIO_Port);
+	GPIO k4status(hK4Status_Pin, hK4Status_GPIO_Port);
+	GPIO rel1reset(hRel1Reset_Pin, hRel1Reset_GPIO_Port);
+	GPIO rel2reset(hRel2Reset_Pin, hRel2Reset_GPIO_Port);
+	SPI spi3(&hspi3);
+	RelayDrv relay(spi3);
+
+
+	// Controlbus hardware configuration
+
+	GPIO stbctrl(hSTBCtrl_Pin, hSTBCtrl_GPIO_Port);
+	CircularBuffer<uint8_t> uart1buffer(128);
+	Uart uart1(&huart1, &uart1buffer);
+	CControlbus control(uart1, stbctrl);
 
    CHal::CHal()
-      : Controlbus(control)
-      , UnitInputGetHwBoardVersion()
-      , UnitInputGetDriverVersion()
-      , UnitOutputSetResetK1()
-      , UnitOutputSetResetK2()
-      , UnitInputGetK1()
-      , UnitInputGetK2()
+   	   : Controlbus(control)
+   	   , UnitInputGetHwBoardVersion()
+   	   , UnitInputGetDriverVersion()
+   	   , Relay(relay)
+   	   , UnitOutputSetResetK1(Relay)
+   	   , UnitOutputSetResetK2(Relay)
+   	   , UnitOutputSetResetK3(Relay)
+   	   , UnitOutputSetResetK4(Relay)
+   	   , UnitInputGetK1(k1status)
+   	   , UnitInputGetK2(k2status)
+   	   , UnitInputGetK3(k3status)
+   	   , UnitInputGetK4(k4status)
    {
 	   HAL_Init();
 	   __HAL_RCC_SYSCFG_CLK_ENABLE();
@@ -62,6 +69,7 @@ CControlbus control(uart1, stbctrl);
 	   SystemClock_Config();
 	   MX_GPIO_Init();
 	   MX_USART1_UART_Init();
+	   MX_SPI3_Init();
 
 	   InterruptHandler::registerCallback(IRQ_SYSTICK, CHal::irqsyshandler, nullptr);
    }
@@ -254,24 +262,44 @@ CControlbus control(uart1, stbctrl);
    }
 
 	IUnitOutputSetResetK1 & CHal::GetHandleUnitOutputSetResetK1() 
-   {
-      return UnitOutputSetResetK1;
-   }
+	{
+		return UnitOutputSetResetK1;
+	}
 
 	IUnitOutputSetResetK2 & CHal::GetHandleUnitOutputSetResetK2() 
-   {
-      return UnitOutputSetResetK2;
-   }
+	{
+		return UnitOutputSetResetK2;
+	}
+
+	IUnitOutputSetResetK3 & CHal::GetHandleUnitOutputSetResetK3()
+	{
+		return UnitOutputSetResetK3;
+	}
+
+	IUnitOutputSetResetK4 & CHal::GetHandleUnitOutputSetResetK4()
+	{
+		return UnitOutputSetResetK4;
+	}
 
 	IUnitInputGetK1 & CHal::GetHandleUnitInputGetK1() 
-   {
-      return UnitInputGetK1;
-   }
+	{
+		return UnitInputGetK1;
+	}
 
-	IUnitInputGetK2 & CHal::GetHandleUnitInputGetK2() 
-   {
-      return UnitInputGetK2;
-   }
+	IUnitInputGetK2 & CHal::GetHandleUnitInputGetK2()
+	{
+		return UnitInputGetK2;
+	}
+
+	IUnitInputGetK3 & CHal::GetHandleUnitInputGetK3()
+	{
+		return UnitInputGetK3;
+	}
+
+	IUnitInputGetK4 & CHal::GetHandleUnitInputGetK4()
+	{
+		return UnitInputGetK4;
+	}
 #endif
 
 }

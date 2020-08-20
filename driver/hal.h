@@ -12,6 +12,7 @@
 
 #include "version.h"
 #include "controlbus.h"
+#include "relaydrv.h"
 #include "birelay.h"
 
 namespace mainunit::driver
@@ -29,9 +30,13 @@ namespace mainunit::driver
 
 			IUnitOutputSetResetK1 &GetHandleUnitOutputSetResetK1() override final;
 			IUnitOutputSetResetK2 &GetHandleUnitOutputSetResetK2() override final;
+			IUnitOutputSetResetK3 &GetHandleUnitOutputSetResetK3() override final;
+			IUnitOutputSetResetK4 &GetHandleUnitOutputSetResetK4() override final;
 
 			IUnitInputGetK1 &GetHandleUnitInputGetK1() override final;
 			IUnitInputGetK2 &GetHandleUnitInputGetK2() override final;
+			IUnitInputGetK3 &GetHandleUnitInputGetK3() override final;
+			IUnitInputGetK4 &GetHandleUnitInputGetK4() override final;
 
 		private:
 			void SystemClock_Config();
@@ -48,11 +53,17 @@ namespace mainunit::driver
 			CUnitInputGetHwBoardVersion UnitInputGetHwBoardVersion;
 			CUnitInputGetDriverVersion 	UnitInputGetDriverVersion;
 
+			RelayDrv &Relay;
+
 			CUnitOutputSetResetK1	UnitOutputSetResetK1;
 			CUnitOutputSetResetK2	UnitOutputSetResetK2;
+			CUnitOutputSetResetK3	UnitOutputSetResetK3;
+			CUnitOutputSetResetK4	UnitOutputSetResetK4;
 
 			CUnitInputGetK1	UnitInputGetK1;
 			CUnitInputGetK2	UnitInputGetK2;
+			CUnitInputGetK3	UnitInputGetK3;
+			CUnitInputGetK4	UnitInputGetK4;
 	};
 }
 

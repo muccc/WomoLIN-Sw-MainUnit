@@ -22,9 +22,13 @@ namespace mainunit::driver
 
 	   virtual IUnitOutputSetResetK1 &    GetHandleUnitOutputSetResetK1() = 0;
 	   virtual IUnitOutputSetResetK2 &    GetHandleUnitOutputSetResetK2() = 0;
+	   virtual IUnitOutputSetResetK3 &    GetHandleUnitOutputSetResetK3() = 0;
+	   virtual IUnitOutputSetResetK4 &    GetHandleUnitOutputSetResetK4() = 0;
 
 	   virtual IUnitInputGetK1 &     GetHandleUnitInputGetK1() = 0;
 	   virtual IUnitInputGetK2 &     GetHandleUnitInputGetK2() = 0;
+	   virtual IUnitInputGetK3 &     GetHandleUnitInputGetK3() = 0;
+	   virtual IUnitInputGetK4 &     GetHandleUnitInputGetK4() = 0;
 	};
 }
 
