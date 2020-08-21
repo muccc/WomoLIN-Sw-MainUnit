@@ -37,10 +37,10 @@ namespace mainunit
          siguni::CUnitOutput        UnitOutputSetResetK4 { GetHandleUnitOutputSetResetK4() } ;
 
 
-         siguni::CUnitInput         UnitInputGetK1 { GetHandleUnitInputGetK1() } ; 
-         siguni::CUnitInput         UnitInputGetK2 { GetHandleUnitInputGetK2() } ; 
-         siguni::CUnitInput         UnitInputGetK3 { GetHandleUnitInputGetK3() } ;
-         siguni::CUnitInput         UnitInputGetK4 { GetHandleUnitInputGetK4() } ;
+         siguni::CUnitInput         UnitInputGetBirelayK1 { GetHandleUnitInputGetBirelayK1() } ;
+         siguni::CUnitInput         UnitInputGetBirelayK2 { GetHandleUnitInputGetBirelayK2() } ;
+         siguni::CUnitInput         UnitInputGetBirelayK3 { GetHandleUnitInputGetBirelayK3() } ;
+         siguni::CUnitInput         UnitInputGetBirelayK4 { GetHandleUnitInputGetBirelayK4() } ;
 
 
          // signals
@@ -54,10 +54,10 @@ namespace mainunit
          siguni::CSignalSetReset    SetResetK4 { siguni::CSignalSetReset() };
          siguni::CSignalSetReset    SetResetK14 { siguni::CSignalSetReset() };
 
-         siguni::CSignalSetReset    GetK1 { siguni::CSignalSetReset() };
-         siguni::CSignalSetReset    GetK2 { siguni::CSignalSetReset() };
-         siguni::CSignalSetReset    GetK3 { siguni::CSignalSetReset() };
-         siguni::CSignalSetReset    GetK4 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    GetBirelayK1 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    GetBirelayK2 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    GetBirelayK3 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    GetBirelayK4 { siguni::CSignalSetReset() };
 
    };
 }

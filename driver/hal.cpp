@@ -58,10 +58,10 @@ namespace mainunit::driver
    	   , UnitOutputSetResetK2(Relay)
    	   , UnitOutputSetResetK3(Relay)
    	   , UnitOutputSetResetK4(Relay)
-   	   , UnitInputGetK1(k1status)
-   	   , UnitInputGetK2(k2status)
-   	   , UnitInputGetK3(k3status)
-   	   , UnitInputGetK4(k4status)
+       , UnitInputGetBirelayK1(k1status)
+       , UnitInputGetBirelayK2(k2status)
+       , UnitInputGetBirelayK3(k3status)
+       , UnitInputGetBirelayK4(k4status)
    {
 	   HAL_Init();
 	   __HAL_RCC_SYSCFG_CLK_ENABLE();
@@ -159,7 +159,7 @@ namespace mainunit::driver
    	  HAL_GPIO_WritePin(hRel1Reset_GPIO_Port, hRel1Reset_Pin, GPIO_PIN_SET);
 
    	  /*Configure GPIO pin Output Level */
-   	  HAL_GPIO_WritePin(hSTBCtrl_GPIO_Port, hSTBCtrl_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(hSTBCtrl_GPIO_Port, hSTBCtrl_Pin, GPIO_PIN_RESET);
 
    	  /*Configure GPIO pin Output Level */
    	  HAL_GPIO_WritePin(hRel2Reset_GPIO_Port, hRel2Reset_Pin, GPIO_PIN_RESET);
@@ -281,24 +281,24 @@ namespace mainunit::driver
 		return UnitOutputSetResetK4;
 	}
 
-	IUnitInputGetK1 & CHal::GetHandleUnitInputGetK1() 
+    IUnitInputGetBirelayK1 & CHal::GetHandleUnitInputGetBirelayK1()
 	{
-		return UnitInputGetK1;
+        return UnitInputGetBirelayK1;
 	}
 
-	IUnitInputGetK2 & CHal::GetHandleUnitInputGetK2()
+    IUnitInputGetBirelayK2 & CHal::GetHandleUnitInputGetBirelayK2()
 	{
-		return UnitInputGetK2;
+        return UnitInputGetBirelayK2;
 	}
 
-	IUnitInputGetK3 & CHal::GetHandleUnitInputGetK3()
+    IUnitInputGetBirelayK3 & CHal::GetHandleUnitInputGetBirelayK3()
 	{
-		return UnitInputGetK3;
+        return UnitInputGetBirelayK3;
 	}
 
-	IUnitInputGetK4 & CHal::GetHandleUnitInputGetK4()
+    IUnitInputGetBirelayK4 & CHal::GetHandleUnitInputGetBirelayK4()
 	{
-		return UnitInputGetK4;
+        return UnitInputGetBirelayK4;
 	}
 #endif
 

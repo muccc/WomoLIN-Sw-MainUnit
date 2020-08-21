@@ -60,9 +60,9 @@ namespace mainunit::driver
 		m_relay.set(chn);
 	}
 
-	CUnitInputGetK1::CUnitInputGetK1(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}
+    CUnitInputGetBirelayK1::CUnitInputGetBirelayK1(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}
 
-	void CUnitInputGetK1::Get( std::string & attGetInput , CAdditionals & attAdditionals )
+    void CUnitInputGetBirelayK1::Get( std::string & attGetInput , CAdditionals & attAdditionals )
 	{
 		bool status = !m_status.getState();
 
@@ -71,9 +71,9 @@ namespace mainunit::driver
 			attGetInput = "RESET";
 	}
 
-	CUnitInputGetK2::CUnitInputGetK2(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}
+    CUnitInputGetBirelayK2::CUnitInputGetBirelayK2(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}
 
-	void CUnitInputGetK2::Get( std::string & attGetInput , CAdditionals & attAdditionals )
+    void CUnitInputGetBirelayK2::Get( std::string & attGetInput , CAdditionals & attAdditionals )
 	{
 		bool status = !m_status.getState();
 
@@ -82,9 +82,9 @@ namespace mainunit::driver
 			attGetInput = "RESET";
 	}
 
-	CUnitInputGetK3::CUnitInputGetK3(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}
+    CUnitInputGetBirelayK3::CUnitInputGetBirelayK3(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}
 
-	void CUnitInputGetK3::Get( std::string & attGetInput , CAdditionals & attAdditionals )
+    void CUnitInputGetBirelayK3::Get( std::string & attGetInput , CAdditionals & attAdditionals )
 	{
 		bool status = !m_status.getState();
 
@@ -93,9 +93,9 @@ namespace mainunit::driver
 			attGetInput = "RESET";
 	}
 
-	CUnitInputGetK4::CUnitInputGetK4(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}
+    CUnitInputGetBirelayK4::CUnitInputGetBirelayK4(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}
 
-	void CUnitInputGetK4::Get( std::string & attGetInput , CAdditionals & attAdditionals )
+    void CUnitInputGetBirelayK4::Get( std::string & attGetInput , CAdditionals & attAdditionals )
 	{
 		bool status = !m_status.getState();
 

@@ -61,22 +61,22 @@ namespace mainunit::driver
 	   RelayDrv &m_relay;
 	};
 
-	class CUnitInputGetK1 : public IUnitInputGetK1 
+    class CUnitInputGetBirelayK1 : public IUnitInputGetBirelayK1
 	{
 	public:
-		CUnitInputGetK1(const GPIO &status);
-		~CUnitInputGetK1() = default;
+        CUnitInputGetBirelayK1(const GPIO &status);
+        ~CUnitInputGetBirelayK1() = default;
 
 		void Get( std::string & attGetInput , CAdditionals & attAdditionals ) override final;
 	private:
 		GPIO &m_status;
 	};
 
-	class CUnitInputGetK2 : public IUnitInputGetK2 
+    class CUnitInputGetBirelayK2 : public IUnitInputGetBirelayK2
 	{
 	public:
-		CUnitInputGetK2(const GPIO &status);
-		~CUnitInputGetK2() = default;
+        CUnitInputGetBirelayK2(const GPIO &status);
+        ~CUnitInputGetBirelayK2() = default;
 
 		void Get( std::string & attGetInput , CAdditionals & attAdditionals ) override final;
 
@@ -84,22 +84,22 @@ namespace mainunit::driver
 		GPIO &m_status;
 	};
 
-	class CUnitInputGetK3 : public IUnitInputGetK3
+    class CUnitInputGetBirelayK3 : public IUnitInputGetBirelayK3
 	{
 	public:
-		CUnitInputGetK3(const GPIO &status);
-		~CUnitInputGetK3() = default;
+        CUnitInputGetBirelayK3(const GPIO &status);
+        ~CUnitInputGetBirelayK3() = default;
 
 		void Get( std::string & attGetInput , CAdditionals & attAdditionals ) override final;
 	private:
 		GPIO &m_status;
 	};
 
-	class CUnitInputGetK4 : public IUnitInputGetK4
+    class CUnitInputGetBirelayK4 : public IUnitInputGetBirelayK4
 	{
 	public:
-		CUnitInputGetK4(const GPIO &status);
-		~CUnitInputGetK4() = default;
+        CUnitInputGetBirelayK4(const GPIO &status);
+        ~CUnitInputGetBirelayK4() = default;
 
 		void Get( std::string & attGetInput , CAdditionals & attAdditionals ) override final;
 	private:

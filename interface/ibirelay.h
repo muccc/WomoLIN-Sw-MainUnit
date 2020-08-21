@@ -43,34 +43,34 @@ namespace mainunit::driver
 		 void Set( std::string & attSetOutput, CAdditionals & attAdditionals ) override = 0;
 	};
 
-	class IUnitInputGetK1 : public siguni::interface::IUnitInput
+	class IUnitInputGetBirelayK1 : public siguni::interface::IUnitInput
 	{
 	  public:
-		 virtual ~IUnitInputGetK1() = default;
+		 virtual ~IUnitInputGetBirelayK1() = default;
 
 		 void Get( std::string & attGetOuput , CAdditionals & attAdditionals ) override = 0;
 	};
 
-	class IUnitInputGetK2 : public siguni::interface::IUnitInput
+	class IUnitInputGetBirelayK2 : public siguni::interface::IUnitInput
 	{
 	  public:
-		 virtual ~IUnitInputGetK2() = default;
+		 virtual ~IUnitInputGetBirelayK2() = default;
 
 		 void Get( std::string & attGetOuput , CAdditionals & attAdditionals ) override = 0;
 	};
 
-	class IUnitInputGetK3 : public siguni::interface::IUnitInput
+	class IUnitInputGetBirelayK3 : public siguni::interface::IUnitInput
 	{
 	  public:
-		 virtual ~IUnitInputGetK3() = default;
+		 virtual ~IUnitInputGetBirelayK3() = default;
 
 		 void Get( std::string & attGetOuput , CAdditionals & attAdditionals ) override = 0;
 	};
 
-	class IUnitInputGetK4 : public siguni::interface::IUnitInput
+	class IUnitInputGetBirelayK4 : public siguni::interface::IUnitInput
 	{
 	  public:
-		 virtual ~IUnitInputGetK4() = default;
+		 virtual ~IUnitInputGetBirelayK4() = default;
 
 		 void Get( std::string & attGetOuput , CAdditionals & attAdditionals ) override = 0;
 	};
