@@ -49,7 +49,7 @@ namespace mainunit
 
       // signal vector bme680 
       signalVector["GetBme680Pressure"] = &GetBme680Pressure;
-      signalVector["GetBme680Temerature"] = &GetBme680Temperature;
+      signalVector["GetBme680Temperature"] = &GetBme680Temperature;
       signalVector["GetBme680Humidity"] = &GetBme680Humidity;
 
 
