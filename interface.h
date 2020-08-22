@@ -6,4 +6,5 @@
 
 #include "interface/ihal.h"
 #include "interface/ibirelay.h"
+#include "interface/iextrelay.h"
 

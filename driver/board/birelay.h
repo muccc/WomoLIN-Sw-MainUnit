@@ -13,11 +13,11 @@ using namespace siguni::interface;
 namespace mainunit::driver
 {
 
-	class CUnitOutputSetResetK1 : public IUnitOutputSetResetK1 
+    class CUnitOutputSetResetBirelayK1 : public IUnitOutputSetResetBirelayK1
 	{
 	public:
-       CUnitOutputSetResetK1(const RelayDrv &relay);
-       ~CUnitOutputSetResetK1() = default;
+       CUnitOutputSetResetBirelayK1(const RelayDrv &relay);
+       ~CUnitOutputSetResetBirelayK1() = default;
 
        void Set(std::string & attSetOutput, CAdditionals & attAdditionals ) override final;
 
@@ -25,11 +25,11 @@ namespace mainunit::driver
        RelayDrv &m_relay;
 	};
 
-	class CUnitOutputSetResetK2 : public IUnitOutputSetResetK2 
+    class CUnitOutputSetResetBirelayK2 : public IUnitOutputSetResetBirelayK2
 	{
 	public:
-		CUnitOutputSetResetK2(const RelayDrv &relay);
-		~CUnitOutputSetResetK2() = default;
+        CUnitOutputSetResetBirelayK2(const RelayDrv &relay);
+        ~CUnitOutputSetResetBirelayK2() = default;
 
 		void Set( std::string & attSetOutput, CAdditionals & attAdditionals ) override final;
 
@@ -37,11 +37,11 @@ namespace mainunit::driver
 	       RelayDrv &m_relay;
 	};
 
-	class CUnitOutputSetResetK3 : public IUnitOutputSetResetK3
+    class CUnitOutputSetResetBirelayK3 : public IUnitOutputSetResetBirelayK3
 	{
 	public:
-	   CUnitOutputSetResetK3(const RelayDrv &relay);
-	   ~CUnitOutputSetResetK3() = default;
+       CUnitOutputSetResetBirelayK3(const RelayDrv &relay);
+       ~CUnitOutputSetResetBirelayK3() = default;
 
 	   void Set(std::string & attSetOutput, CAdditionals & attAdditionals ) override final;
 
@@ -49,11 +49,11 @@ namespace mainunit::driver
 	   RelayDrv &m_relay;
 	};
 
-	class CUnitOutputSetResetK4 : public IUnitOutputSetResetK4
+    class CUnitOutputSetResetBirelayK4 : public IUnitOutputSetResetBirelayK4
 	{
 	public:
-	   CUnitOutputSetResetK4(const RelayDrv &relay);
-	   ~CUnitOutputSetResetK4() = default;
+       CUnitOutputSetResetBirelayK4(const RelayDrv &relay);
+       ~CUnitOutputSetResetBirelayK4() = default;
 
 	   void Set(std::string & attSetOutput, CAdditionals & attAdditionals ) override final;
 

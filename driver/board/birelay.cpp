@@ -8,9 +8,9 @@
 
 namespace mainunit::driver
 {
-	CUnitOutputSetResetK1::CUnitOutputSetResetK1(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
+    CUnitOutputSetResetBirelayK1::CUnitOutputSetResetBirelayK1(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
 
-	void CUnitOutputSetResetK1::Set( std::string & attSetOutput, CAdditionals & attAdditionals )
+    void CUnitOutputSetResetBirelayK1::Set( std::string & attSetOutput, CAdditionals & /*attAdditionals*/ )
 	{
 		OutputNr chn = OutputNr::OUTPUT1;
 
@@ -21,9 +21,9 @@ namespace mainunit::driver
 		m_relay.set(chn);
 	}
  
-	CUnitOutputSetResetK2::CUnitOutputSetResetK2(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
+    CUnitOutputSetResetBirelayK2::CUnitOutputSetResetBirelayK2(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
 
-	void CUnitOutputSetResetK2::Set( std::string & attSetOutput, CAdditionals & attAdditionals )
+    void CUnitOutputSetResetBirelayK2::Set( std::string & attSetOutput, CAdditionals & /*attAdditionals*/ )
 	{
 		OutputNr chn = OutputNr::OUTPUT3;
 
@@ -34,9 +34,9 @@ namespace mainunit::driver
 		m_relay.set(chn);
 	}
 
-	CUnitOutputSetResetK3::CUnitOutputSetResetK3(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
+    CUnitOutputSetResetBirelayK3::CUnitOutputSetResetBirelayK3(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
 
-	void CUnitOutputSetResetK3::Set( std::string & attSetOutput, CAdditionals & attAdditionals )
+    void CUnitOutputSetResetBirelayK3::Set( std::string & attSetOutput, CAdditionals & /*attAdditionals*/ )
 	{
 		OutputNr chn = OutputNr::OUTPUT5;
 
@@ -47,9 +47,9 @@ namespace mainunit::driver
 		m_relay.set(chn);
 	}
 
-	CUnitOutputSetResetK4::CUnitOutputSetResetK4(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
+    CUnitOutputSetResetBirelayK4::CUnitOutputSetResetBirelayK4(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
 
-	void CUnitOutputSetResetK4::Set( std::string & attSetOutput, CAdditionals & attAdditionals )
+    void CUnitOutputSetResetBirelayK4::Set( std::string & attSetOutput, CAdditionals & /*attAdditionals*/ )
 	{
 		OutputNr chn = OutputNr::OUTPUT7;
 
@@ -62,7 +62,7 @@ namespace mainunit::driver
 
     CUnitInputGetBirelayK1::CUnitInputGetBirelayK1(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}
 
-    void CUnitInputGetBirelayK1::Get( std::string & attGetInput , CAdditionals & attAdditionals )
+    void CUnitInputGetBirelayK1::Get( std::string & attGetInput , CAdditionals & /*attAdditionals*/ )
 	{
 		bool status = !m_status.getState();
 
@@ -73,7 +73,7 @@ namespace mainunit::driver
 
     CUnitInputGetBirelayK2::CUnitInputGetBirelayK2(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}
 
-    void CUnitInputGetBirelayK2::Get( std::string & attGetInput , CAdditionals & attAdditionals )
+    void CUnitInputGetBirelayK2::Get( std::string & attGetInput , CAdditionals & /*attAdditionals*/ )
 	{
 		bool status = !m_status.getState();
 
@@ -84,7 +84,7 @@ namespace mainunit::driver
 
     CUnitInputGetBirelayK3::CUnitInputGetBirelayK3(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}
 
-    void CUnitInputGetBirelayK3::Get( std::string & attGetInput , CAdditionals & attAdditionals )
+    void CUnitInputGetBirelayK3::Get( std::string & attGetInput , CAdditionals & /*attAdditionals*/ )
 	{
 		bool status = !m_status.getState();
 
@@ -95,7 +95,7 @@ namespace mainunit::driver
 
     CUnitInputGetBirelayK4::CUnitInputGetBirelayK4(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}
 
-    void CUnitInputGetBirelayK4::Get( std::string & attGetInput , CAdditionals & attAdditionals )
+    void CUnitInputGetBirelayK4::Get( std::string & attGetInput , CAdditionals & /*attAdditionals*/ )
 	{
 		bool status = !m_status.getState();
 

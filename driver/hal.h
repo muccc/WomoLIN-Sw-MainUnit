@@ -14,56 +14,93 @@
 #include "controlbus.h"
 #include "relaydrv.h"
 #include "birelay.h"
+#include "extrelay.h"
 
 namespace mainunit::driver
 {
 
 	class CHal : public IHal
 	{
-		public:
-			CHal();
-			~CHal() = default;
-			siguni::interface::IControlbus &GetHandleControlbus() override final;
+    public:
+        CHal();
+        ~CHal() = default;
+        siguni::interface::IControlbus &GetHandleControlbus() override final;
 
-			siguni::interface::IUnitInputGetHwBoardVersion &GetHandleUnitInputGetHwBoardVersion() override final;
-			siguni::interface::IUnitInputGetDriverVersion &GetHandleUnitInputGetDriverVersion() override final;
+        siguni::interface::IUnitInputGetHwBoardVersion &GetHandleUnitInputGetHwBoardVersion() override final;
+        siguni::interface::IUnitInputGetDriverVersion &GetHandleUnitInputGetDriverVersion() override final;
 
-			IUnitOutputSetResetK1 &GetHandleUnitOutputSetResetK1() override final;
-			IUnitOutputSetResetK2 &GetHandleUnitOutputSetResetK2() override final;
-			IUnitOutputSetResetK3 &GetHandleUnitOutputSetResetK3() override final;
-			IUnitOutputSetResetK4 &GetHandleUnitOutputSetResetK4() override final;
+        IUnitOutputSetResetBirelayK1 & GetHandleUnitOutputSetResetBirelayK1() override final;
+        IUnitOutputSetResetBirelayK2 & GetHandleUnitOutputSetResetBirelayK2() override final;
+        IUnitOutputSetResetBirelayK3 & GetHandleUnitOutputSetResetBirelayK3() override final;
+        IUnitOutputSetResetBirelayK4 & GetHandleUnitOutputSetResetBirelayK4() override final;
 
-			IUnitInputGetBirelayK1 &GetHandleUnitInputGetBirelayK1() override final;
-			IUnitInputGetBirelayK2 &GetHandleUnitInputGetBirelayK2() override final;
-			IUnitInputGetBirelayK3 &GetHandleUnitInputGetBirelayK3() override final;
-			IUnitInputGetBirelayK4 &GetHandleUnitInputGetBirelayK4() override final;
+        IUnitInputGetBirelayK1 &    GetHandleUnitInputGetBirelayK1() override final;
+        IUnitInputGetBirelayK2 &    GetHandleUnitInputGetBirelayK2() override final;
+        IUnitInputGetBirelayK3 &    GetHandleUnitInputGetBirelayK3() override final;
+        IUnitInputGetBirelayK4 &    GetHandleUnitInputGetBirelayK4() override final;
 
-		private:
-			void SystemClock_Config();
-			void MX_GPIO_Init();
-			void MX_USART1_UART_Init();
-			void MX_SPI3_Init(void);
+        IUnitOutputSetResetExtRelay1 &    GetHandleUnitOutputSetResetExtRelay1() override final;
+        IUnitOutputSetResetExtRelay2 &    GetHandleUnitOutputSetResetExtRelay2() override final;
+        IUnitOutputSetResetExtRelay3 &    GetHandleUnitOutputSetResetExtRelay3() override final;
+        IUnitOutputSetResetExtRelay4 &    GetHandleUnitOutputSetResetExtRelay4() override final;
+        IUnitOutputSetResetExtRelay5 &    GetHandleUnitOutputSetResetExtRelay5() override final;
+        IUnitOutputSetResetExtRelay6 &    GetHandleUnitOutputSetResetExtRelay6() override final;
+        IUnitOutputSetResetExtRelay7 &    GetHandleUnitOutputSetResetExtRelay7() override final;
+        IUnitOutputSetResetExtRelay8 &    GetHandleUnitOutputSetResetExtRelay8() override final;
 
-			static void irqsyshandler(void *param);
+        IUnitInputGetExtRelay1 &     GetHandleUnitInputGetExtRelay1() override final;
+        IUnitInputGetExtRelay2 &     GetHandleUnitInputGetExtRelay2() override final;
+        IUnitInputGetExtRelay3 &     GetHandleUnitInputGetExtRelay3() override final;
+        IUnitInputGetExtRelay4 &     GetHandleUnitInputGetExtRelay4() override final;
+        IUnitInputGetExtRelay5 &     GetHandleUnitInputGetExtRelay5() override final;
+        IUnitInputGetExtRelay6 &     GetHandleUnitInputGetExtRelay6() override final;
+        IUnitInputGetExtRelay7 &     GetHandleUnitInputGetExtRelay7() override final;
+        IUnitInputGetExtRelay8 &     GetHandleUnitInputGetExtRelay8() override final;
 
-		private:
+    private:
 
-			CControlbus &Controlbus;
+        CControlbus &Controlbus;
 
-			CUnitInputGetHwBoardVersion UnitInputGetHwBoardVersion;
-			CUnitInputGetDriverVersion 	UnitInputGetDriverVersion;
+        CUnitInputGetHwBoardVersion UnitInputGetHwBoardVersion;
+        CUnitInputGetDriverVersion 	UnitInputGetDriverVersion;
 
-			RelayDrv &Relay;
+        RelayDrv &Relay;
 
-			CUnitOutputSetResetK1	UnitOutputSetResetK1;
-			CUnitOutputSetResetK2	UnitOutputSetResetK2;
-			CUnitOutputSetResetK3	UnitOutputSetResetK3;
-			CUnitOutputSetResetK4	UnitOutputSetResetK4;
+        CUnitOutputSetResetBirelayK1	UnitOutputSetResetBirelayK1;
+        CUnitOutputSetResetBirelayK2	UnitOutputSetResetBirelayK2;
+        CUnitOutputSetResetBirelayK3	UnitOutputSetResetBirelayK3;
+        CUnitOutputSetResetBirelayK4	UnitOutputSetResetBirelayK4;
 
-			CUnitInputGetBirelayK1	UnitInputGetBirelayK1;
-			CUnitInputGetBirelayK2	UnitInputGetBirelayK2;
-			CUnitInputGetBirelayK3	UnitInputGetBirelayK3;
-			CUnitInputGetBirelayK4	UnitInputGetBirelayK4;
+        CUnitInputGetBirelayK1	UnitInputGetBirelayK1;
+        CUnitInputGetBirelayK2	UnitInputGetBirelayK2;
+        CUnitInputGetBirelayK3	UnitInputGetBirelayK3;
+        CUnitInputGetBirelayK4	UnitInputGetBirelayK4;
+
+        CUnitOutputSetResetExtRelay1         UnitOutputSetResetExtRelay1;
+        CUnitOutputSetResetExtRelay2         UnitOutputSetResetExtRelay2;
+        CUnitOutputSetResetExtRelay3         UnitOutputSetResetExtRelay3;
+        CUnitOutputSetResetExtRelay4         UnitOutputSetResetExtRelay4;
+        CUnitOutputSetResetExtRelay5         UnitOutputSetResetExtRelay5;
+        CUnitOutputSetResetExtRelay6         UnitOutputSetResetExtRelay6;
+        CUnitOutputSetResetExtRelay7         UnitOutputSetResetExtRelay7;
+        CUnitOutputSetResetExtRelay8         UnitOutputSetResetExtRelay8;
+
+        CUnitInputGetExtRelay1               UnitInputGetExtRelay1;
+        CUnitInputGetExtRelay2               UnitInputGetExtRelay2;
+        CUnitInputGetExtRelay3               UnitInputGetExtRelay3;
+        CUnitInputGetExtRelay4               UnitInputGetExtRelay4;
+        CUnitInputGetExtRelay5               UnitInputGetExtRelay5;
+        CUnitInputGetExtRelay6               UnitInputGetExtRelay6;
+        CUnitInputGetExtRelay7               UnitInputGetExtRelay7;
+        CUnitInputGetExtRelay8               UnitInputGetExtRelay8;
+
+    private:
+        void SystemClock_Config();
+        void MX_GPIO_Init();
+        void MX_USART1_UART_Init();
+        void MX_SPI3_Init(void);
+
+        static void irqsyshandler(void *param);
 	};
 }
 

@@ -50,18 +50,35 @@ namespace mainunit::driver
 	CControlbus control(uart1, stbctrl);
 
    CHal::CHal()
-   	   : Controlbus(control)
-   	   , UnitInputGetHwBoardVersion()
-   	   , UnitInputGetDriverVersion()
-   	   , Relay(relay)
-   	   , UnitOutputSetResetK1(Relay)
-   	   , UnitOutputSetResetK2(Relay)
-   	   , UnitOutputSetResetK3(Relay)
-   	   , UnitOutputSetResetK4(Relay)
-       , UnitInputGetBirelayK1(k1status)
-       , UnitInputGetBirelayK2(k2status)
-       , UnitInputGetBirelayK3(k3status)
-       , UnitInputGetBirelayK4(k4status)
+        : Controlbus(control)
+        , UnitInputGetHwBoardVersion()
+        , UnitInputGetDriverVersion()
+        , Relay(relay)
+        , UnitOutputSetResetBirelayK1(Relay)
+        , UnitOutputSetResetBirelayK2(Relay)
+        , UnitOutputSetResetBirelayK3(Relay)
+        , UnitOutputSetResetBirelayK4(Relay)
+        , UnitInputGetBirelayK1(k1status)
+        , UnitInputGetBirelayK2(k2status)
+        , UnitInputGetBirelayK3(k3status)
+        , UnitInputGetBirelayK4(k4status)
+        , UnitOutputSetResetExtRelay1()
+        , UnitOutputSetResetExtRelay2()
+        , UnitOutputSetResetExtRelay3()
+        , UnitOutputSetResetExtRelay4()
+        , UnitOutputSetResetExtRelay5()
+        , UnitOutputSetResetExtRelay6()
+        , UnitOutputSetResetExtRelay7()
+        , UnitOutputSetResetExtRelay8()
+        , UnitInputGetExtRelay1()
+        , UnitInputGetExtRelay2()
+        , UnitInputGetExtRelay3()
+        , UnitInputGetExtRelay4()
+        , UnitInputGetExtRelay5()
+        , UnitInputGetExtRelay6()
+        , UnitInputGetExtRelay7()
+        , UnitInputGetExtRelay8()
+
    {
 	   HAL_Init();
 	   __HAL_RCC_SYSCFG_CLK_ENABLE();
@@ -239,7 +256,7 @@ namespace mainunit::driver
 
 	}
 
-	void CHal::irqsyshandler(void *param)
+    void CHal::irqsyshandler(void */*param*/)
 	{
 		HAL_IncTick();
 	}
@@ -251,55 +268,37 @@ namespace mainunit::driver
    }
 
 
-	siguni::interface::IUnitInputGetHwBoardVersion & CHal::GetHandleUnitInputGetHwBoardVersion()
-   {
-      return UnitInputGetHwBoardVersion;
-   }
+	siguni::interface::IUnitInputGetHwBoardVersion & CHal::GetHandleUnitInputGetHwBoardVersion() { return UnitInputGetHwBoardVersion; }
+	siguni::interface::IUnitInputGetDriverVersion & CHal::GetHandleUnitInputGetDriverVersion() {return UnitInputGetDriverVersion; }
 
-	siguni::interface::IUnitInputGetDriverVersion & CHal::GetHandleUnitInputGetDriverVersion()
-   {
-      return UnitInputGetDriverVersion;
-   }
+    IUnitOutputSetResetBirelayK1 & CHal::GetHandleUnitOutputSetResetBirelayK1() { return UnitOutputSetResetBirelayK1; }
+    IUnitOutputSetResetBirelayK2 & CHal::GetHandleUnitOutputSetResetBirelayK2() { return UnitOutputSetResetBirelayK2; }
+    IUnitOutputSetResetBirelayK3 & CHal::GetHandleUnitOutputSetResetBirelayK3() { return UnitOutputSetResetBirelayK3; }
+    IUnitOutputSetResetBirelayK4 & CHal::GetHandleUnitOutputSetResetBirelayK4() { return UnitOutputSetResetBirelayK4; }
 
-	IUnitOutputSetResetK1 & CHal::GetHandleUnitOutputSetResetK1() 
-	{
-		return UnitOutputSetResetK1;
-	}
+    IUnitInputGetBirelayK1 & CHal::GetHandleUnitInputGetBirelayK1() { return UnitInputGetBirelayK1; }
+    IUnitInputGetBirelayK2 & CHal::GetHandleUnitInputGetBirelayK2() { return UnitInputGetBirelayK2; }
+    IUnitInputGetBirelayK3 & CHal::GetHandleUnitInputGetBirelayK3() { return UnitInputGetBirelayK3; }
+    IUnitInputGetBirelayK4 & CHal::GetHandleUnitInputGetBirelayK4() { return UnitInputGetBirelayK4; }
 
-	IUnitOutputSetResetK2 & CHal::GetHandleUnitOutputSetResetK2() 
-	{
-		return UnitOutputSetResetK2;
-	}
 
-	IUnitOutputSetResetK3 & CHal::GetHandleUnitOutputSetResetK3()
-	{
-		return UnitOutputSetResetK3;
-	}
+	IUnitOutputSetResetExtRelay1 & CHal::GetHandleUnitOutputSetResetExtRelay1() { return UnitOutputSetResetExtRelay1; }
+	IUnitOutputSetResetExtRelay2 & CHal::GetHandleUnitOutputSetResetExtRelay2() { return UnitOutputSetResetExtRelay2; }
+	IUnitOutputSetResetExtRelay3 & CHal::GetHandleUnitOutputSetResetExtRelay3() { return UnitOutputSetResetExtRelay3; }
+	IUnitOutputSetResetExtRelay4 & CHal::GetHandleUnitOutputSetResetExtRelay4() { return UnitOutputSetResetExtRelay4; }
+	IUnitOutputSetResetExtRelay5 & CHal::GetHandleUnitOutputSetResetExtRelay5() { return UnitOutputSetResetExtRelay5; }
+	IUnitOutputSetResetExtRelay6 & CHal::GetHandleUnitOutputSetResetExtRelay6() { return UnitOutputSetResetExtRelay6; }
+	IUnitOutputSetResetExtRelay7 & CHal::GetHandleUnitOutputSetResetExtRelay7() { return UnitOutputSetResetExtRelay7; }
+	IUnitOutputSetResetExtRelay8 & CHal::GetHandleUnitOutputSetResetExtRelay8() { return UnitOutputSetResetExtRelay8; }
 
-	IUnitOutputSetResetK4 & CHal::GetHandleUnitOutputSetResetK4()
-	{
-		return UnitOutputSetResetK4;
-	}
-
-    IUnitInputGetBirelayK1 & CHal::GetHandleUnitInputGetBirelayK1()
-	{
-        return UnitInputGetBirelayK1;
-	}
-
-    IUnitInputGetBirelayK2 & CHal::GetHandleUnitInputGetBirelayK2()
-	{
-        return UnitInputGetBirelayK2;
-	}
-
-    IUnitInputGetBirelayK3 & CHal::GetHandleUnitInputGetBirelayK3()
-	{
-        return UnitInputGetBirelayK3;
-	}
-
-    IUnitInputGetBirelayK4 & CHal::GetHandleUnitInputGetBirelayK4()
-	{
-        return UnitInputGetBirelayK4;
-	}
+	IUnitInputGetExtRelay1 & CHal::GetHandleUnitInputGetExtRelay1() { return UnitInputGetExtRelay1; }
+	IUnitInputGetExtRelay2 & CHal::GetHandleUnitInputGetExtRelay2() { return UnitInputGetExtRelay2; }
+	IUnitInputGetExtRelay3 & CHal::GetHandleUnitInputGetExtRelay3() { return UnitInputGetExtRelay3; }
+	IUnitInputGetExtRelay4 & CHal::GetHandleUnitInputGetExtRelay4() { return UnitInputGetExtRelay4; }
+	IUnitInputGetExtRelay5 & CHal::GetHandleUnitInputGetExtRelay5() { return UnitInputGetExtRelay5; }
+	IUnitInputGetExtRelay6 & CHal::GetHandleUnitInputGetExtRelay6() { return UnitInputGetExtRelay6; }
+	IUnitInputGetExtRelay7 & CHal::GetHandleUnitInputGetExtRelay7() { return UnitInputGetExtRelay7; }
+	IUnitInputGetExtRelay8 & CHal::GetHandleUnitInputGetExtRelay8() { return UnitInputGetExtRelay8; }
 #endif
 
 }
