@@ -8,6 +8,7 @@
 
 #include "ibirelay.h"
 #include "iextrelay.h"
+#include "ibme680.h"
 
 namespace mainunit::driver
 {
@@ -21,10 +22,10 @@ namespace mainunit::driver
 	   virtual siguni::interface::IUnitInputGetHwBoardVersion &     GetHandleUnitInputGetHwBoardVersion() = 0;
 	   virtual siguni::interface::IUnitInputGetDriverVersion &      GetHandleUnitInputGetDriverVersion() = 0;
 
-       virtual IUnitOutputSetResetBirelayK1 &    GetHandleUnitOutputSetResetBirelayK1() = 0;
-       virtual IUnitOutputSetResetBirelayK2 &    GetHandleUnitOutputSetResetBirelayK2() = 0;
-       virtual IUnitOutputSetResetBirelayK3 &    GetHandleUnitOutputSetResetBirelayK3() = 0;
-       virtual IUnitOutputSetResetBirelayK4 &    GetHandleUnitOutputSetResetBirelayK4() = 0;
+      virtual IUnitOutputSetResetBirelayK1 &    GetHandleUnitOutputSetResetBirelayK1() = 0;
+      virtual IUnitOutputSetResetBirelayK2 &    GetHandleUnitOutputSetResetBirelayK2() = 0;
+      virtual IUnitOutputSetResetBirelayK3 &    GetHandleUnitOutputSetResetBirelayK3() = 0;
+      virtual IUnitOutputSetResetBirelayK4 &    GetHandleUnitOutputSetResetBirelayK4() = 0;
 
 	   virtual IUnitInputGetBirelayK1 &     GetHandleUnitInputGetBirelayK1() = 0;
 	   virtual IUnitInputGetBirelayK2 &     GetHandleUnitInputGetBirelayK2() = 0;
@@ -48,6 +49,11 @@ namespace mainunit::driver
 	   virtual IUnitInputGetExtRelay6 &     GetHandleUnitInputGetExtRelay6() = 0;
 	   virtual IUnitInputGetExtRelay7 &     GetHandleUnitInputGetExtRelay7() = 0;
 	   virtual IUnitInputGetExtRelay8 &     GetHandleUnitInputGetExtRelay8() = 0;
+
+
+	   virtual IUnitInputGetBme680Pressure &        GetHandleUnitInputGetBme680Pressure() = 0;
+	   virtual IUnitInputGetBme680Temperature &     GetHandleUnitInputGetBme680Temperature() = 0;
+	   virtual IUnitInputGetBme680Humidity &        GetHandleUnitInputGetBme680Humidity() = 0;
 
 	};
 }

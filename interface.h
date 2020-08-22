@@ -7,4 +7,5 @@
 #include "interface/ihal.h"
 #include "interface/ibirelay.h"
 #include "interface/iextrelay.h"
+#include "interface/ibme680.h"
 

@@ -61,6 +61,10 @@ namespace mainunit
          siguni::CUnitInput         UnitInputGetExtRelay7 { GetHandleUnitInputGetExtRelay7() } ; 
          siguni::CUnitInput         UnitInputGetExtRelay8 { GetHandleUnitInputGetExtRelay8() } ; 
 
+         // units bme680
+         siguni::CUnitInput         UnitInputGetBme680Pressure { GetHandleUnitInputGetBme680Pressure() } ; 
+         siguni::CUnitInput         UnitInputGetBme680Temperature { GetHandleUnitInputGetBme680Temperature() } ; 
+         siguni::CUnitInput         UnitInputGetBme680Humidity { GetHandleUnitInputGetBme680Humidity() } ; 
 
          // signals versions
          siguni::CSignalGetVersion  GetHwBoardVersion { siguni::CSignalGetVersion() };
@@ -95,6 +99,11 @@ namespace mainunit
          siguni::CSignalSetReset    GetExtRelay6 { siguni::CSignalSetReset() };
          siguni::CSignalSetReset    GetExtRelay7 { siguni::CSignalSetReset() };
          siguni::CSignalSetReset    GetExtRelay8 { siguni::CSignalSetReset() };
+
+         // signals bme680
+         siguni::CSignalGetPressure       GetBme680Pressure { siguni::CSignalGetPressure() };
+         siguni::CSignalGetTemperature    GetBme680Temperature { siguni::CSignalGetTemperature() };
+         siguni::CSignalGetHumidity       GetBme680Humidity { siguni::CSignalGetHumidity() };
 
    };
 

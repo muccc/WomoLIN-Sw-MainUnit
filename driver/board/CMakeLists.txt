@@ -9,4 +9,5 @@ add_library(${LIB_NAME}
 	birelay.cpp
 	extrelay.cpp
 	relaydrv.cpp
+	bme680.cpp
 )

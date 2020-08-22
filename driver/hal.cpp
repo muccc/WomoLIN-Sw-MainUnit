@@ -78,6 +78,9 @@ namespace mainunit::driver
         , UnitInputGetExtRelay6()
         , UnitInputGetExtRelay7()
         , UnitInputGetExtRelay8()
+        , UnitInputGetBme680Pressure()
+        , UnitInputGetBme680Temperature()
+        , UnitInputGetBme680Humidity()
 
    {
 	   HAL_Init();
@@ -299,6 +302,11 @@ namespace mainunit::driver
 	IUnitInputGetExtRelay6 & CHal::GetHandleUnitInputGetExtRelay6() { return UnitInputGetExtRelay6; }
 	IUnitInputGetExtRelay7 & CHal::GetHandleUnitInputGetExtRelay7() { return UnitInputGetExtRelay7; }
 	IUnitInputGetExtRelay8 & CHal::GetHandleUnitInputGetExtRelay8() { return UnitInputGetExtRelay8; }
+
+	IUnitInputGetBme680Pressure & CHal::GetHandleUnitInputGetBme680Pressure() { return UnitInputGetBme680Pressure; }
+	IUnitInputGetBme680Temperature & CHal::GetHandleUnitInputGetBme680Temperature() { return UnitInputGetBme680Temperature; }
+	IUnitInputGetBme680Humidity & CHal::GetHandleUnitInputGetBme680Humidity() { return UnitInputGetBme680Humidity; }
+
 #endif
 
 }

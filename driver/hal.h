@@ -15,6 +15,7 @@
 #include "relaydrv.h"
 #include "birelay.h"
 #include "extrelay.h"
+#include "bme680.h"
 
 namespace mainunit::driver
 {
@@ -57,6 +58,10 @@ namespace mainunit::driver
         IUnitInputGetExtRelay7 &     GetHandleUnitInputGetExtRelay7() override final;
         IUnitInputGetExtRelay8 &     GetHandleUnitInputGetExtRelay8() override final;
 
+        IUnitInputGetBme680Pressure &     GetHandleUnitInputGetBme680Pressure() override final;
+        IUnitInputGetBme680Temperature &  GetHandleUnitInputGetBme680Temperature() override final;
+        IUnitInputGetBme680Humidity &     GetHandleUnitInputGetBme680Humidity() override final;
+
     private:
 
         CControlbus &Controlbus;
@@ -93,6 +98,10 @@ namespace mainunit::driver
         CUnitInputGetExtRelay6               UnitInputGetExtRelay6;
         CUnitInputGetExtRelay7               UnitInputGetExtRelay7;
         CUnitInputGetExtRelay8               UnitInputGetExtRelay8;
+
+        CUnitInputGetBme680Pressure          UnitInputGetBme680Pressure;
+        CUnitInputGetBme680Temperature       UnitInputGetBme680Temperature;
+        CUnitInputGetBme680Humidity          UnitInputGetBme680Humidity;
 
     private:
         void SystemClock_Config();

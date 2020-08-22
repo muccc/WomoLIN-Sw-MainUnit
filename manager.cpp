@@ -47,6 +47,11 @@ namespace mainunit
       signalVector["GetExtRelay7"] = &GetExtRelay7;
       signalVector["GetExtRelay8"] = &GetExtRelay8;
 
+      // signal vector bme680 
+      signalVector["GetBme680Pressure"] = &GetBme680Pressure;
+      signalVector["GetBme680Temerature"] = &GetBme680Temperature;
+      signalVector["GetBme680Humidity"] = &GetBme680Humidity;
+
 
       // connect versions
       GetHwBoardVersion.AddUnit( &UnitInputGetHwBoardVersion );
@@ -82,6 +87,12 @@ namespace mainunit
       GetExtRelay6.AddUnit( &UnitInputGetExtRelay6 );
       GetExtRelay7.AddUnit( &UnitInputGetExtRelay7 );
       GetExtRelay8.AddUnit( &UnitInputGetExtRelay8 );
+
+      // connect bme680
+
+      GetBme680Pressure.AddUnit( &UnitInputGetBme680Pressure );
+      GetBme680Temperature.AddUnit( &UnitInputGetBme680Temperature );
+      GetBme680Humidity.AddUnit( &UnitInputGetBme680Humidity );
    }
 
 }
