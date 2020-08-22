@@ -45,7 +45,7 @@ namespace mainunit::driver
 	// Controlbus hardware configuration
 
 	GPIO stbctrl(hSTBCtrl_Pin, hSTBCtrl_GPIO_Port);
-	CircularBuffer<uint8_t> uart1buffer(128);
+	CircularBuffer<uint8_t> uart1buffer(1024);
 	Uart uart1(&huart1, &uart1buffer);
 	CControlbus control(uart1, stbctrl);
 
@@ -179,7 +179,7 @@ namespace mainunit::driver
    	  HAL_GPIO_WritePin(hRel1Reset_GPIO_Port, hRel1Reset_Pin, GPIO_PIN_SET);
 
    	  /*Configure GPIO pin Output Level */
-      HAL_GPIO_WritePin(hSTBCtrl_GPIO_Port, hSTBCtrl_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(hSTBCtrl_GPIO_Port, hSTBCtrl_Pin, GPIO_PIN_SET);
 
    	  /*Configure GPIO pin Output Level */
    	  HAL_GPIO_WritePin(hRel2Reset_GPIO_Port, hRel2Reset_Pin, GPIO_PIN_RESET);
