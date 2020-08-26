@@ -23,6 +23,8 @@
 #define hRel2Reset_GPIO_Port 	GPIOG
 #define hSTBCtrl_Pin 			GPIO_PIN_9
 #define hSTBCtrl_GPIO_Port 		GPIOA
+#define hSignalLED_Pin 			GPIO_PIN_0
+#define hSignalLED_GPIO_Port 	GPIOB
 
 
 namespace mainunit::driver
@@ -30,6 +32,7 @@ namespace mainunit::driver
 	UART_HandleTypeDef huart1;
 	SPI_HandleTypeDef hspi3;
 
+	GPIO signalled(hSignalLED_Pin, hSignalLED_GPIO_Port);
 
 		// Relay hardware configuration
 	GPIO k1status(hK1Status_Pin, hK1Status_GPIO_Port);
@@ -179,6 +182,9 @@ namespace mainunit::driver
    	  __HAL_RCC_GPIOD_CLK_ENABLE();
 
    	  /*Configure GPIO pin Output Level */
+   	  HAL_GPIO_WritePin(hSignalLED_GPIO_Port, hSignalLED_Pin, GPIO_PIN_RESET);
+
+   	  /*Configure GPIO pin Output Level */
    	  HAL_GPIO_WritePin(hRel1Reset_GPIO_Port, hRel1Reset_Pin, GPIO_PIN_SET);
 
    	  /*Configure GPIO pin Output Level */
@@ -186,6 +192,13 @@ namespace mainunit::driver
 
    	  /*Configure GPIO pin Output Level */
    	  HAL_GPIO_WritePin(hRel2Reset_GPIO_Port, hRel2Reset_Pin, GPIO_PIN_RESET);
+
+   	/*Configure GPIO pin : hSignalLED_Pin */
+	GPIO_InitStruct.Pin = hSignalLED_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(hSignalLED_GPIO_Port, &GPIO_InitStruct);
 
    	  /*Configure GPIO pins : hK1Status_Pin hK2Status_Pin hK3Status_Pin hK4Status_Pin */
    	  GPIO_InitStruct.Pin = hK1Status_Pin|hK2Status_Pin|hK3Status_Pin|hK4Status_Pin;
