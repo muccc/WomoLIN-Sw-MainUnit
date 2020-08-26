@@ -38,6 +38,11 @@ void Uart::write(const std::string &data)
 void Uart::irqhandler()
 {
 	uint8_t byte = m_phuart->Instance->RDR;
+	if(byte == '~') {
+		// led on
+	} else if(byte == '_') {
+		// led off
+	}
 	m_pbuffer->put(byte);
 	HAL_UART_IRQHandler(m_phuart);
 	counter++;

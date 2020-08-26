@@ -20,8 +20,9 @@ namespace mainunit::driver
 			clrchn = OutputNr::OUTPUT1;
 		}
 
-		m_relay.reset(clrchn);
-		m_relay.set(setchn);
+		m_relay.reset(clrchn, false);
+		m_relay.set(setchn, false);
+		m_relay.write();
 	}
  
     CUnitOutputSetResetBirelayK2::CUnitOutputSetResetBirelayK2(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
@@ -36,8 +37,9 @@ namespace mainunit::driver
 			clrchn = OutputNr::OUTPUT3;
 		}
 
-		m_relay.reset(clrchn);
-		m_relay.set(setchn);
+		m_relay.reset(clrchn, false);
+		m_relay.set(setchn, false);
+		m_relay.write();
 	}
 
     CUnitOutputSetResetBirelayK3::CUnitOutputSetResetBirelayK3(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
@@ -54,6 +56,7 @@ namespace mainunit::driver
 
 		m_relay.reset(clrchn);
 		m_relay.set(setchn);
+		m_relay.write();
 	}
 
     CUnitOutputSetResetBirelayK4::CUnitOutputSetResetBirelayK4(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
@@ -70,6 +73,7 @@ namespace mainunit::driver
 
 		m_relay.reset(clrchn);
 		m_relay.set(setchn);
+		m_relay.write();
 	}
 
     CUnitInputGetBirelayK1::CUnitInputGetBirelayK1(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}

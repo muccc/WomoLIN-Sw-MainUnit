@@ -6,6 +6,7 @@
 #include "gpio.h"
 #include "spi.h"
 #include "circularbuffer.h"
+#include "led.h"
 
 #include <iostream>
 
@@ -33,6 +34,7 @@ namespace mainunit::driver
 	SPI_HandleTypeDef hspi3;
 
 	GPIO signalled(hSignalLED_Pin, hSignalLED_GPIO_Port);
+	CLed led(signalled);
 
 		// Relay hardware configuration
 	GPIO k1status(hK1Status_Pin, hK1Status_GPIO_Port);
@@ -44,7 +46,7 @@ namespace mainunit::driver
 	SPI spi3(&hspi3);
 	RelayDrv relay(spi3, ShiftRegNr::SHIFTREG1);
 
-	RelayDrv relay1(spi3, ShiftRegNr::SHIFTREG1);
+	RelayDrv relay1(spi3, ShiftRegNr::SHIFTREG2);
 
 
 	// Controlbus hardware configuration
@@ -182,7 +184,7 @@ namespace mainunit::driver
    	  __HAL_RCC_GPIOD_CLK_ENABLE();
 
    	  /*Configure GPIO pin Output Level */
-   	  HAL_GPIO_WritePin(hSignalLED_GPIO_Port, hSignalLED_Pin, GPIO_PIN_RESET);
+   	  HAL_GPIO_WritePin(hSignalLED_GPIO_Port, hSignalLED_Pin, GPIO_PIN_SET);
 
    	  /*Configure GPIO pin Output Level */
    	  HAL_GPIO_WritePin(hRel1Reset_GPIO_Port, hRel1Reset_Pin, GPIO_PIN_SET);

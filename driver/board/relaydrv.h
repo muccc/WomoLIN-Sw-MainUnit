@@ -51,13 +51,14 @@ public:
 	RelayDrv(const SPI &hspi, const ShiftRegNr reg);
 	virtual ~RelayDrv();
 
-	void set(OutputNr chn);
-	void reset(OutputNr chn);
+	void set(OutputNr chn, bool _write = true);
+	void reset(OutputNr chn, bool _write = true);
 	bool isSet(OutputNr chn);
 
-private:
 	void write();
 	void read();
+
+private:
 
 private:
 	SPI &m_pspi;

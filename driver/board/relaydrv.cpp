@@ -15,33 +15,38 @@
 
 uint8_t RelayDrv::m_transfer[static_cast<uint8_t>(ShiftRegNr::SHIFTREGMAX)] = {0, 0};
 
+
 RelayDrv::RelayDrv(const SPI &hspi, const ShiftRegNr reg) : m_pspi(const_cast<SPI&>(hspi)), shiftreg(reg)//shiftreg(ShiftRegNr::SHIFTREG1)
 {
-	read();
+	RelayDrv::m_transfer[0] = 0;
+	RelayDrv::m_transfer[1] = 0;
+	//read();
 }
 
 RelayDrv::~RelayDrv()
 {
 }
 
-void RelayDrv::set(OutputNr chn)
+void RelayDrv::set(OutputNr chn, bool _write)
 {
 	if(chn >= OutputNr::OUTPUTMAX)
 		return;
 
 	_SET_BIT(m_transfer[static_cast<uint32_t>(shiftreg)], static_cast<uint8_t>(chn));
 
-	write();
+	if(_write)
+		write();
 }
 
-void RelayDrv::reset(OutputNr chn)
+void RelayDrv::reset(OutputNr chn, bool _write)
 {
 	if(chn >= OutputNr::OUTPUTMAX)
 		return;
 
 	_CLR_BIT(m_transfer[static_cast<uint32_t>(shiftreg)], static_cast<uint8_t>(chn));
 
-	write();
+	if(_write)
+		write();
 }
 
 bool RelayDrv::isSet(OutputNr chn)
@@ -56,9 +61,9 @@ void RelayDrv::write()
 {
 	std::vector<uint8_t> data;
 
-	data.push_back(m_transfer[static_cast<uint8_t>(ShiftRegNr::SHIFTREG1)]);
-	data.push_back(m_transfer[static_cast<uint8_t>(ShiftRegNr::SHIFTREG2)]);
 
+	data.push_back(m_transfer[static_cast<uint8_t>(ShiftRegNr::SHIFTREG2)]);
+	data.push_back(m_transfer[static_cast<uint8_t>(ShiftRegNr::SHIFTREG1)]);
 	m_pspi.write(data);
 }
 
