@@ -81,6 +81,8 @@ namespace mainunit::driver
         CUnitInputGetBirelayK3	UnitInputGetBirelayK3;
         CUnitInputGetBirelayK4	UnitInputGetBirelayK4;
 
+        RelayDrv &Relay1;
+
         CUnitOutputSetResetExtRelay1         UnitOutputSetResetExtRelay1;
         CUnitOutputSetResetExtRelay2         UnitOutputSetResetExtRelay2;
         CUnitOutputSetResetExtRelay3         UnitOutputSetResetExtRelay3;

@@ -12,52 +12,64 @@ namespace mainunit::driver
 
     void CUnitOutputSetResetBirelayK1::Set( std::string & attSetOutput, CAdditionals & /*attAdditionals*/ )
 	{
-		OutputNr chn = OutputNr::OUTPUT1;
+		OutputNr setchn = OutputNr::OUTPUT1;
+		OutputNr clrchn = OutputNr::OUTPUT2;
 
 		if(attSetOutput == "SET") {
-			chn = OutputNr::OUTPUT2;
+			setchn = OutputNr::OUTPUT2;
+			clrchn = OutputNr::OUTPUT1;
 		}
 
-		m_relay.set(chn);
+		m_relay.reset(clrchn);
+		m_relay.set(setchn);
 	}
  
     CUnitOutputSetResetBirelayK2::CUnitOutputSetResetBirelayK2(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
 
     void CUnitOutputSetResetBirelayK2::Set( std::string & attSetOutput, CAdditionals & /*attAdditionals*/ )
 	{
-		OutputNr chn = OutputNr::OUTPUT3;
+		OutputNr setchn = OutputNr::OUTPUT3;
+		OutputNr clrchn = OutputNr::OUTPUT4;
 
 		if(attSetOutput == "SET") {
-			chn = OutputNr::OUTPUT4;
+			setchn = OutputNr::OUTPUT4;
+			clrchn = OutputNr::OUTPUT3;
 		}
 
-		m_relay.set(chn);
+		m_relay.reset(clrchn);
+		m_relay.set(setchn);
 	}
 
     CUnitOutputSetResetBirelayK3::CUnitOutputSetResetBirelayK3(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
 
     void CUnitOutputSetResetBirelayK3::Set( std::string & attSetOutput, CAdditionals & /*attAdditionals*/ )
 	{
-		OutputNr chn = OutputNr::OUTPUT5;
+		OutputNr setchn = OutputNr::OUTPUT5;
+		OutputNr clrchn = OutputNr::OUTPUT6;
 
 		if(attSetOutput == "SET") {
-			chn = OutputNr::OUTPUT6;
+			setchn = OutputNr::OUTPUT6;
+			clrchn = OutputNr::OUTPUT5;
 		}
 
-		m_relay.set(chn);
+		m_relay.reset(clrchn);
+		m_relay.set(setchn);
 	}
 
     CUnitOutputSetResetBirelayK4::CUnitOutputSetResetBirelayK4(const RelayDrv &relay) : m_relay(const_cast<RelayDrv&>(relay)) {}
 
     void CUnitOutputSetResetBirelayK4::Set( std::string & attSetOutput, CAdditionals & /*attAdditionals*/ )
 	{
-		OutputNr chn = OutputNr::OUTPUT7;
+		OutputNr setchn = OutputNr::OUTPUT7;
+		OutputNr clrchn = OutputNr::OUTPUT8;
 
 		if(attSetOutput == "SET") {
-			chn = OutputNr::OUTPUT8;
+			setchn = OutputNr::OUTPUT8;
+			clrchn = OutputNr::OUTPUT7;
 		}
 
-		m_relay.set(chn);
+		m_relay.reset(clrchn);
+		m_relay.set(setchn);
 	}
 
     CUnitInputGetBirelayK1::CUnitInputGetBirelayK1(const GPIO &status) : m_status(const_cast<GPIO&>(status)) {}

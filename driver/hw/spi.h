@@ -15,7 +15,7 @@ class SPI
 public:
 	SPI(SPI_HandleTypeDef *hspi);
 
-	uint32_t read(std::vector<uint8_t> &data);
+	uint32_t read(std::vector<uint8_t> &data, const uint32_t toread);
 	void write(const std::vector<uint8_t> &data);
 
 	SPI() = delete;

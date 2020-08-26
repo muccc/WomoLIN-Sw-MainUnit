@@ -39,7 +39,9 @@ namespace mainunit::driver
 	GPIO rel1reset(hRel1Reset_Pin, hRel1Reset_GPIO_Port);
 	GPIO rel2reset(hRel2Reset_Pin, hRel2Reset_GPIO_Port);
 	SPI spi3(&hspi3);
-	RelayDrv relay(spi3);
+	RelayDrv relay(spi3, ShiftRegNr::SHIFTREG1);
+
+	RelayDrv relay1(spi3, ShiftRegNr::SHIFTREG1);
 
 
 	// Controlbus hardware configuration
@@ -62,22 +64,23 @@ namespace mainunit::driver
         , UnitInputGetBirelayK2(k2status)
         , UnitInputGetBirelayK3(k3status)
         , UnitInputGetBirelayK4(k4status)
-        , UnitOutputSetResetExtRelay1()
-        , UnitOutputSetResetExtRelay2()
-        , UnitOutputSetResetExtRelay3()
-        , UnitOutputSetResetExtRelay4()
-        , UnitOutputSetResetExtRelay5()
-        , UnitOutputSetResetExtRelay6()
-        , UnitOutputSetResetExtRelay7()
-        , UnitOutputSetResetExtRelay8()
-        , UnitInputGetExtRelay1()
-        , UnitInputGetExtRelay2()
-        , UnitInputGetExtRelay3()
-        , UnitInputGetExtRelay4()
-        , UnitInputGetExtRelay5()
-        , UnitInputGetExtRelay6()
-        , UnitInputGetExtRelay7()
-        , UnitInputGetExtRelay8()
+   	    , Relay1(relay1)
+        , UnitOutputSetResetExtRelay1(Relay1)
+        , UnitOutputSetResetExtRelay2(Relay1)
+        , UnitOutputSetResetExtRelay3(Relay1)
+        , UnitOutputSetResetExtRelay4(Relay1)
+        , UnitOutputSetResetExtRelay5(Relay1)
+        , UnitOutputSetResetExtRelay6(Relay1)
+        , UnitOutputSetResetExtRelay7(Relay1)
+        , UnitOutputSetResetExtRelay8(Relay1)
+        , UnitInputGetExtRelay1(Relay1)
+        , UnitInputGetExtRelay2(Relay1)
+        , UnitInputGetExtRelay3(Relay1)
+        , UnitInputGetExtRelay4(Relay1)
+        , UnitInputGetExtRelay5(Relay1)
+        , UnitInputGetExtRelay6(Relay1)
+        , UnitInputGetExtRelay7(Relay1)
+        , UnitInputGetExtRelay8(Relay1)
         , UnitInputGetBme680Pressure()
         , UnitInputGetBme680Temperature()
         , UnitInputGetBme680Humidity()
