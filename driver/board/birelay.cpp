@@ -54,8 +54,8 @@ namespace mainunit::driver
 			clrchn = OutputNr::OUTPUT5;
 		}
 
-		m_relay.reset(clrchn);
-		m_relay.set(setchn);
+		m_relay.reset(clrchn, false);
+		m_relay.set(setchn, false);
 		m_relay.write();
 	}
 
@@ -71,8 +71,8 @@ namespace mainunit::driver
 			clrchn = OutputNr::OUTPUT7;
 		}
 
-		m_relay.reset(clrchn);
-		m_relay.set(setchn);
+		m_relay.reset(clrchn, false);
+		m_relay.set(setchn, false);
 		m_relay.write();
 	}
 
