@@ -109,7 +109,8 @@ namespace mainunit::driver
         void SystemClock_Config();
         void MX_GPIO_Init();
         void MX_USART1_UART_Init();
-        void MX_SPI3_Init(void);
+        void MX_SPI3_Init();
+        void MX_I2C3_Init();
 
         static void irqsyshandler(void *param);
 	};

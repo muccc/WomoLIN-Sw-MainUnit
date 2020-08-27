@@ -8,4 +8,5 @@ add_library(${LIB_NAME}
 	gpio.cpp
 	uart.cpp
 	spi.cpp
+	i2c.cpp
 )

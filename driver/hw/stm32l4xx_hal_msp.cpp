@@ -254,6 +254,62 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)
 	  }
 }
 
+void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
+{
+	GPIO_InitTypeDef GPIO_InitStruct = {0};
+	if(hi2c->Instance==I2C3)
+	{
+		__HAL_RCC_GPIOC_CLK_ENABLE();
+		/**I2C3 GPIO Configuration
+		PC0     ------> I2C3_SCL
+		PC1     ------> I2C3_SDA
+		*/
+		GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
+		GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+		GPIO_InitStruct.Pull = GPIO_PULLUP;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+		GPIO_InitStruct.Alternate = GPIO_AF4_I2C3;
+		HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+		/* Peripheral clock enable */
+		__HAL_RCC_I2C3_CLK_ENABLE();
+		/* I2C3 interrupt Init */
+		HAL_NVIC_SetPriority(I2C3_EV_IRQn, 0, 0);
+		HAL_NVIC_EnableIRQ(I2C3_EV_IRQn);
+		HAL_NVIC_SetPriority(I2C3_ER_IRQn, 0, 0);
+		HAL_NVIC_EnableIRQ(I2C3_ER_IRQn);
+	}
+
+}
+
+/**
+* @brief I2C MSP De-Initialization
+* This function freeze the hardware resources used in this example
+* @param hi2c: I2C handle pointer
+* @retval None
+*/
+void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
+{
+
+	if(hi2c->Instance==I2C3)
+	{
+		/* Peripheral clock disable */
+		__HAL_RCC_I2C3_CLK_DISABLE();
+
+		/**I2C3 GPIO Configuration
+		PC0     ------> I2C3_SCL
+		PC1     ------> I2C3_SDA
+		*/
+		HAL_GPIO_DeInit(GPIOC, GPIO_PIN_0|GPIO_PIN_1);
+
+		/* I2C3 interrupt DeInit */
+		HAL_NVIC_DisableIRQ(I2C3_EV_IRQn);
+		HAL_NVIC_DisableIRQ(I2C3_ER_IRQn);
+	}
+
+}
+
+
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */
