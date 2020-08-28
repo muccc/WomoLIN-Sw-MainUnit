@@ -192,10 +192,10 @@ namespace mainunit::driver
    	  HAL_GPIO_WritePin(hRel1Reset_GPIO_Port, hRel1Reset_Pin, GPIO_PIN_SET);
 
    	  /*Configure GPIO pin Output Level */
-      HAL_GPIO_WritePin(hSTBCtrl_GPIO_Port, hSTBCtrl_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(hSTBCtrl_GPIO_Port, hSTBCtrl_Pin, GPIO_PIN_SET);
 
    	  /*Configure GPIO pin Output Level */
-   	  HAL_GPIO_WritePin(hRel2Reset_GPIO_Port, hRel2Reset_Pin, GPIO_PIN_RESET);
+   	  HAL_GPIO_WritePin(hRel2Reset_GPIO_Port, hRel2Reset_Pin, GPIO_PIN_SET);
 
    	/*Configure GPIO pin : hSignalLED_Pin */
 	GPIO_InitStruct.Pin = hSignalLED_Pin;
