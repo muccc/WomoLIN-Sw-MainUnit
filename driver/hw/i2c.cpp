@@ -7,16 +7,26 @@
 
 #include "i2c.h"
 
-I2C::I2C(I2C_HandleTypeDef *hi2c, const uint16_t addr) : m_phi2c(hi2c), m_addr(addr)
+#include <string.h>
+
+CI2C::CI2C(I2C_HandleTypeDef *hi2c) : m_phi2c(hi2c)
 {
 
 }
 
-uint32_t I2C::read(std::vector<uint8_t> &data, uint32_t toread)
+uint32_t CI2C::read(const uint16_t addr, std::vector<uint8_t> &data, uint32_t toread)
 {
-	uint8_t tmp[toread];
+	const uint32_t maxtoread = 16;
+	uint8_t tmp[maxtoread];
+	uint16_t regaddr = data.front();
+	data.clear();
+	memset(tmp, 0, maxtoread);
 
-	HAL_I2C_Master_Receive(m_phi2c, m_addr, tmp, toread, 100);
+	if(toread > maxtoread)
+		toread = maxtoread;
+
+	if(HAL_I2C_Mem_Read(m_phi2c, (uint16_t)(addr << 1), regaddr, I2C_MEMADD_SIZE_8BIT, &tmp[0], (uint16_t)toread, 10000) != HAL_OK)
+		return 0;
 
 	for(uint32_t i = 0; i < toread; i++)
 		data.push_back(tmp[i]);
@@ -24,7 +34,7 @@ uint32_t I2C::read(std::vector<uint8_t> &data, uint32_t toread)
 	return toread;
 }
 
-void I2C::write(const std::vector<uint8_t> &data)
+void CI2C::write(const uint16_t addr, const std::vector<uint8_t> &data)
 {
-	HAL_I2C_Master_Transmit(m_phi2c, m_addr, (uint8_t *)data.data(), data.size(), 100);
+	HAL_I2C_Mem_Write(m_phi2c, (uint16_t)(addr << 1), (uint16_t)data[0], I2C_MEMADD_SIZE_8BIT, (uint8_t *)&data[1], (uint16_t)(data.size() - 1), 10000);
 }

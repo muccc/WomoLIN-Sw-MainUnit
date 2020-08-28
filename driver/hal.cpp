@@ -5,6 +5,7 @@
 #include "hal.h"
 #include "gpio.h"
 #include "spi.h"
+#include "i2c.h"
 #include "circularbuffer.h"
 #include "led.h"
 
@@ -35,7 +36,10 @@ namespace mainunit::driver
 	I2C_HandleTypeDef hi2c3;
 
 	GPIO signalled(hSignalLED_Pin, hSignalLED_GPIO_Port);
-	CLed led(signalled);
+	//CLed led(signalled);
+
+	CI2C i2c(&hi2c3);
+	CBme680Drv bme680(i2c);
 
 		// Relay hardware configuration
 	GPIO k1status(hK1Status_Pin, hK1Status_GPIO_Port);
@@ -45,51 +49,51 @@ namespace mainunit::driver
 	GPIO rel1reset(hRel1Reset_Pin, hRel1Reset_GPIO_Port);
 	GPIO rel2reset(hRel2Reset_Pin, hRel2Reset_GPIO_Port);
 	SPI spi3(&hspi3);
-	RelayDrv relay(spi3, ShiftRegNr::SHIFTREG1);
-
-	RelayDrv relay1(spi3, ShiftRegNr::SHIFTREG2);
+	RelayDrv birelay(spi3, ShiftRegNr::SHIFTREG1);
+	RelayDrv extrelay(spi3, ShiftRegNr::SHIFTREG2);
 
 
 	// Controlbus hardware configuration
 
 	GPIO stbctrl(hSTBCtrl_Pin, hSTBCtrl_GPIO_Port);
 	CircularBuffer<uint8_t> uart1buffer(1024);
-	Uart uart1(&huart1, &uart1buffer);
+	Uart uart1(&huart1, &uart1buffer, signalled);
 	CControlbus control(uart1, stbctrl);
 
    CHal::CHal()
         : Controlbus(control)
         , UnitInputGetHwBoardVersion()
         , UnitInputGetDriverVersion()
-        , Relay(relay)
-        , UnitOutputSetResetBirelayK1(Relay)
-        , UnitOutputSetResetBirelayK2(Relay)
-        , UnitOutputSetResetBirelayK3(Relay)
-        , UnitOutputSetResetBirelayK4(Relay)
+        , BiRelay(birelay)
+        , UnitOutputSetResetBirelayK1(BiRelay)
+        , UnitOutputSetResetBirelayK2(BiRelay)
+        , UnitOutputSetResetBirelayK3(BiRelay)
+        , UnitOutputSetResetBirelayK4(BiRelay)
         , UnitInputGetBirelayK1(k1status)
         , UnitInputGetBirelayK2(k2status)
         , UnitInputGetBirelayK3(k3status)
         , UnitInputGetBirelayK4(k4status)
-   	    , Relay1(relay1)
-        , UnitOutputSetResetExtRelay1(Relay1)
-        , UnitOutputSetResetExtRelay2(Relay1)
-        , UnitOutputSetResetExtRelay3(Relay1)
-        , UnitOutputSetResetExtRelay4(Relay1)
-        , UnitOutputSetResetExtRelay5(Relay1)
-        , UnitOutputSetResetExtRelay6(Relay1)
-        , UnitOutputSetResetExtRelay7(Relay1)
-        , UnitOutputSetResetExtRelay8(Relay1)
-        , UnitInputGetExtRelay1(Relay1)
-        , UnitInputGetExtRelay2(Relay1)
-        , UnitInputGetExtRelay3(Relay1)
-        , UnitInputGetExtRelay4(Relay1)
-        , UnitInputGetExtRelay5(Relay1)
-        , UnitInputGetExtRelay6(Relay1)
-        , UnitInputGetExtRelay7(Relay1)
-        , UnitInputGetExtRelay8(Relay1)
-        , UnitInputGetBme680Pressure()
-        , UnitInputGetBme680Temperature()
-        , UnitInputGetBme680Humidity()
+   	    , ExtRelay(extrelay)
+        , UnitOutputSetResetExtRelay1(ExtRelay)
+        , UnitOutputSetResetExtRelay2(ExtRelay)
+        , UnitOutputSetResetExtRelay3(ExtRelay)
+        , UnitOutputSetResetExtRelay4(ExtRelay)
+        , UnitOutputSetResetExtRelay5(ExtRelay)
+        , UnitOutputSetResetExtRelay6(ExtRelay)
+        , UnitOutputSetResetExtRelay7(ExtRelay)
+        , UnitOutputSetResetExtRelay8(ExtRelay)
+        , UnitInputGetExtRelay1(ExtRelay)
+        , UnitInputGetExtRelay2(ExtRelay)
+        , UnitInputGetExtRelay3(ExtRelay)
+        , UnitInputGetExtRelay4(ExtRelay)
+        , UnitInputGetExtRelay5(ExtRelay)
+        , UnitInputGetExtRelay6(ExtRelay)
+        , UnitInputGetExtRelay7(ExtRelay)
+        , UnitInputGetExtRelay8(ExtRelay)
+   	    , Bme680(bme680)
+        , UnitInputGetBme680Pressure(Bme680)
+        , UnitInputGetBme680Temperature(Bme680)
+        , UnitInputGetBme680Humidity(Bme680)
 
    {
 	   HAL_Init();
@@ -102,6 +106,10 @@ namespace mainunit::driver
 	   MX_I2C3_Init();
 
 	   InterruptHandler::registerCallback(IRQ_SYSTICK, CHal::irqsyshandler, nullptr);
+
+	   if(Bme680.init()) {
+		   Bme680.read();
+	   }
    }
 
    void CHal::SystemClock_Config()

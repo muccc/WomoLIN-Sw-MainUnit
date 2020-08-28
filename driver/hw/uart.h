@@ -10,11 +10,12 @@
 #include "stm32l4xx_it.h"
 
 #include "circularbuffer.h"
+#include "gpio.h"
 
 class Uart
 {
 public:
-	Uart(UART_HandleTypeDef *huart, CircularBuffer<uint8_t> *buffer);
+	Uart(UART_HandleTypeDef *huart, CircularBuffer<uint8_t> *buffer, const GPIO &gpio);
 
 	uint32_t read(std::string &data);
 	void write(const std::string &data);
@@ -30,6 +31,7 @@ private:
 	UART_HandleTypeDef *m_phuart;
 	CircularBuffer<uint8_t> *m_pbuffer;
 	uint32_t m_lastsendsize;
+	GPIO &m_pled;
 };
 
 

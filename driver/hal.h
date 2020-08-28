@@ -16,6 +16,7 @@
 #include "birelay.h"
 #include "extrelay.h"
 #include "bme680.h"
+#include "bme680drv.h"
 
 namespace mainunit::driver
 {
@@ -69,7 +70,7 @@ namespace mainunit::driver
         CUnitInputGetHwBoardVersion UnitInputGetHwBoardVersion;
         CUnitInputGetDriverVersion 	UnitInputGetDriverVersion;
 
-        RelayDrv &Relay;
+        RelayDrv &BiRelay;
 
         CUnitOutputSetResetBirelayK1	UnitOutputSetResetBirelayK1;
         CUnitOutputSetResetBirelayK2	UnitOutputSetResetBirelayK2;
@@ -81,7 +82,7 @@ namespace mainunit::driver
         CUnitInputGetBirelayK3	UnitInputGetBirelayK3;
         CUnitInputGetBirelayK4	UnitInputGetBirelayK4;
 
-        RelayDrv &Relay1;
+        RelayDrv &ExtRelay;
 
         CUnitOutputSetResetExtRelay1         UnitOutputSetResetExtRelay1;
         CUnitOutputSetResetExtRelay2         UnitOutputSetResetExtRelay2;
@@ -100,6 +101,8 @@ namespace mainunit::driver
         CUnitInputGetExtRelay6               UnitInputGetExtRelay6;
         CUnitInputGetExtRelay7               UnitInputGetExtRelay7;
         CUnitInputGetExtRelay8               UnitInputGetExtRelay8;
+
+        CBme680Drv &Bme680;
 
         CUnitInputGetBme680Pressure          UnitInputGetBme680Pressure;
         CUnitInputGetBme680Temperature       UnitInputGetBme680Temperature;
