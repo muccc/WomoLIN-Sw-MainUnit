@@ -1,0 +1,3 @@
+[submodule "siguni"]
+	path = siguni
+	url = https://github.com/muccc/WomoLIN-Sw-SigUni.git
