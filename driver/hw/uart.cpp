@@ -3,7 +3,14 @@
 /* Author Tilo Seeck <tiloseeck@web.de> */
 #include "uart.h"
 
-Uart::Uart(UART_HandleTypeDef *huart, CircularBuffer<uint8_t> *buffer, const GPIO &gpio) : m_phuart(huart), m_pbuffer(buffer), m_pled(const_cast<GPIO&>(gpio)), m_lastsendsize(0)
+Uart::Uart(UART_HandleTypeDef *huart,
+           CircularBuffer<uint8_t> *buffer,
+           const GPIO &gpio)
+    : m_phuart(huart)
+    , m_pbuffer(buffer)
+    , m_lastsendsize(0)
+    , m_pled(const_cast<GPIO&>(gpio))
+
 {
 	InterruptHandler::registerCallback(IRQ_UART1, Uart::irquarthandler, this);
 }
@@ -28,26 +35,28 @@ uint32_t Uart::read(std::string &data)
 
 void Uart::write(const std::string &data)
 {
-	m_pled.setLow();
+    //m_pled.setLow();
 	HAL_UART_Transmit(m_phuart, (uint8_t *) data.c_str(), data.length(), 10000000);
 	m_lastsendsize = data.length();
-	m_pled.setHigh();
+    //m_pled.setHigh();
 }
 
 void Uart::irqhandler()
 {
-	m_pled.setLow();
-	uint8_t byte = m_phuart->Instance->RDR;
-	if(byte == '~') {
-		// led on
+    uint8_t byte = m_phuart->Instance->RDR;
+    if(byte == '^') {
+        m_pled.setLow();
 
-	} else if(byte == '_') {
-		// led off
-
+    } else if(byte == '$') {
+        m_pled.setHigh();
 	}
-	m_pbuffer->put(byte);
+    else{
+        ; // don't change led status
+    }
+
+    m_pbuffer->put(byte);
 	HAL_UART_IRQHandler(m_phuart);
-	m_pled.setHigh();
+
 }
 
 void Uart::irquarthandler(void *param)
