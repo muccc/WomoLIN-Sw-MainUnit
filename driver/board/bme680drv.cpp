@@ -1,9 +1,7 @@
-/*
- * bme680drv.cpp
- *
- *  Created on: 28.08.2020
- *      Author: tseeck
- */
+/* SPDX-License-Identifier: GPLv3-or-later */
+/* Copyright (c) 2020 Project WomoLIN */
+/* Author Tilo Seeck <tiloseeck@web.de> */
+
 #include "bme680drv.h"
 
 CBme680Drv::CBme680Drv(const CI2C &i2c) : m_pi2c(const_cast<CI2C&>(i2c))

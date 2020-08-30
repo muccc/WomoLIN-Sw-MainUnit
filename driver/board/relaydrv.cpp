@@ -1,9 +1,6 @@
-/*
- * relaydrv.cpp
- *
- *  Created on: 17.08.2020
- *      Author: tseeck
- */
+/* SPDX-License-Identifier: GPLv3-or-later */
+/* Copyright (c) 2020 Project WomoLIN */
+/* Author Tilo Seeck <tiloseeck@web.de> */
 
 #include "relaydrv.h"
 

@@ -1,9 +1,6 @@
-/*
- * relaydrv.h
- *
- *  Created on: 17.08.2020
- *      Author: tseeck
- */
+/* SPDX-License-Identifier: GPLv3-or-later */
+/* Copyright (c) 2020 Project WomoLIN */
+/* Author Tilo Seeck <tiloseeck@web.de> */
 
 #ifndef DRIVER_BOARD_RELAYDRV_H_
 #define DRIVER_BOARD_RELAYDRV_H_

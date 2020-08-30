@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: GPLv3-or-later */
 /* Copyright (c) 2019 Project WomoLIN */
 /* Author Tilo Seeck <tiloseeck@web.de> */
+
 #include "uart.h"
 
 Uart::Uart(UART_HandleTypeDef *huart,

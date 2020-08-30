@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPLv3-or-later */
-/* Copyright (c) 2019 Project WomoLIN */
-/* Author Myron Franze <myronfranze@web.de> */
+/* Copyright (c) 2020 Project WomoLIN */
+/* Author Tilo Seeck <tiloseeck@web.de> */
 
 #include "extrelay.h"
 
