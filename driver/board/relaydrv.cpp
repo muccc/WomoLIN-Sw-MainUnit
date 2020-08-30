@@ -11,7 +11,7 @@
 
 #define _SET_BIT(byte, bit)		((byte) |= (1UL << (bit)))
 #define _CLR_BIT(byte, bit)		((byte) &= ~(1UL << (bit)))
-#define _ISSET_BIT(byte, bit)		((byte) &= (1UL << (bit)))
+#define _ISSET_BIT(byte, bit)		(byte & (1UL << (bit)))
 
 uint8_t RelayDrv::m_transfer[static_cast<uint8_t>(ShiftRegNr::SHIFTREGMAX)] = {0, 0};
 
