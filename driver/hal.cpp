@@ -32,6 +32,7 @@
 namespace mainunit::driver
 {
 	UART_HandleTypeDef huart1;
+	UART_HandleTypeDef huart2;
 	SPI_HandleTypeDef hspi3;
 	I2C_HandleTypeDef hi2c3;
 
@@ -249,6 +250,26 @@ namespace mainunit::driver
 		{
 			//Error_Handler();
 			return;
+		}
+	}
+
+	void CHal::MX_USART2_UART_Init(void)
+	{
+		GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+		huart2.Instance = USART2;
+		huart2.Init.BaudRate = 115200;
+		huart2.Init.WordLength = UART_WORDLENGTH_8B;
+		huart2.Init.StopBits = UART_STOPBITS_1;
+		huart2.Init.Parity = UART_PARITY_NONE;
+		huart2.Init.Mode = UART_MODE_TX_RX;
+		huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+		huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+		huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+		huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+		if (HAL_UART_Init(&huart2) != HAL_OK)
+		{
+			//Error_Handler();
 		}
 	}
 
