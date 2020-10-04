@@ -13,4 +13,7 @@ add_library(${LIB_NAME}
 	bme680drv.cpp
 	led.cpp
 	ext/bme680.c
+	lsm303agr.cpp
+	lsm303agrmag.cpp
+	lsm303agracc.cpp
 )

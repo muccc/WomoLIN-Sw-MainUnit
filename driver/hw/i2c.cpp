@@ -34,9 +34,13 @@ uint32_t CI2C::read(const uint16_t addr, std::vector<uint8_t> &data, uint32_t to
 	return toread;
 }
 
-void CI2C::write(const uint16_t addr, const std::vector<uint8_t> &data)
+bool CI2C::write(const uint16_t addr, const std::vector<uint8_t> &data)
 {
-	HAL_I2C_Mem_Write(m_phi2c, (uint16_t)(addr << 1), (uint16_t)data[0], I2C_MEMADD_SIZE_8BIT, (uint8_t *)&data[1], (uint16_t)(data.size() - 1), 10000);
+	if(HAL_I2C_Mem_Write(m_phi2c, (uint16_t)(addr << 1), (uint16_t)data[0], I2C_MEMADD_SIZE_8BIT, (uint8_t *)&data[1], (uint16_t)(data.size() - 1), 10000) != HAL_OK) {
+		return false;
+	}
+
+	return true;
 }
 
 }

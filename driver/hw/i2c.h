@@ -19,7 +19,7 @@ public:
 	CI2C(I2C_HandleTypeDef *hspi);
 
 	uint32_t read(const uint16_t addr, std::vector<uint8_t> &data, uint32_t toread);
-	void write(const uint16_t addr, const std::vector<uint8_t> &data);
+	bool write(const uint16_t addr, const std::vector<uint8_t> &data);
 
 	CI2C() = delete;
 	CI2C(const CI2C &) = delete;
