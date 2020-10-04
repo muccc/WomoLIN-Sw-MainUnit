@@ -7,6 +7,9 @@
 
 #include "gpio.h"
 
+namespace mainunit::driver
+{
+
 class CLed
 {
 public:
@@ -22,6 +25,6 @@ private:
 	GPIO &m_pled;
 };
 
-
+}
 
 #endif /* DRIVER_BOARD_LED_H_ */

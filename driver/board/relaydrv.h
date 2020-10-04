@@ -8,19 +8,10 @@
 //#include <stdint.h>
 
 #include "spi.h"
-#if 0
-enum class OutputNr
+
+namespace mainunit::driver
 {
-	OUTPUT1 = 0x01,
-	OUTPUT2 = 0x02,
-	OUTPUT3 = 0x04,
-	OUTPUT4 = 0x08,
-	OUTPUT5 = 0x10,
-	OUTPUT6 = 0x20,
-	OUTPUT7 = 0x40,
-	OUTPUT8 = 0x80
-};
-#else
+
 enum class OutputNr
 {
 	OUTPUT1 = 0,
@@ -33,7 +24,6 @@ enum class OutputNr
 	OUTPUT8 = 7,
 	OUTPUTMAX = 8
 };
-#endif
 
 enum class ShiftRegNr
 {
@@ -64,5 +54,6 @@ private:
 
 };
 
+}
 
 #endif /* DRIVER_BOARD_RELAYDRV_H_ */

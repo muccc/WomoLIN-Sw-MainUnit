@@ -4,6 +4,9 @@
 
 #include "bme680drv.h"
 
+namespace mainunit::driver
+{
+
 CBme680Drv::CBme680Drv(const CI2C &i2c) : m_pi2c(const_cast<CI2C&>(i2c))
 {
 	m_sensor.dev_id = BME680_ADDR;
@@ -135,5 +138,5 @@ int8_t CBme680Drv::readInterface(void *ptrclass, uint8_t dev_id, uint8_t reg_add
 	return sensor->readFromsensor(dev_id, reg_addr, reg_data, len);
 }
 
-
+}
 

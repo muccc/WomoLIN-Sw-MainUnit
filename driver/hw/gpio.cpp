@@ -4,6 +4,9 @@
 
 #include "gpio.h"
 
+namespace mainunit::driver
+{
+
 GPIO::GPIO(uint16_t pin, GPIO_TypeDef *port) : m_pin(pin), m_port(port), m_state(false)
 {
 #if 0
@@ -57,3 +60,4 @@ bool GPIO::getState()
 	return m_state;
 }
 
+}

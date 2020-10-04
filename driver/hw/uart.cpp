@@ -4,6 +4,9 @@
 
 #include "uart.h"
 
+namespace mainunit::driver
+{
+
 Uart::Uart(UART_HandleTypeDef *huart,
            CircularBuffer<uint8_t> *buffer,
            const GPIO &gpio)
@@ -66,3 +69,4 @@ void Uart::irquarthandler(void *param)
 	puart->irqhandler();
 }
 
+}

@@ -10,6 +10,9 @@
 
 #include <string>
 
+namespace mainunit::driver
+{
+
 class CBme680Drv
 {
 public:
@@ -40,6 +43,6 @@ private:
 	CI2C &m_pi2c;
 };
 
-
+}
 
 #endif /* DRIVER_BOARD_BME680DRV_H_ */

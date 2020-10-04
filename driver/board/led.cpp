@@ -4,6 +4,8 @@
 
 #include "led.h"
 
+namespace mainunit::driver
+{
 
 CLed::CLed(const GPIO &gpio) : m_pled(const_cast<GPIO&>(gpio))
 {
@@ -19,4 +21,6 @@ void CLed::set(bool status)
 		m_pled.setHigh();
 	else
 		m_pled.setLow();
+}
+
 }

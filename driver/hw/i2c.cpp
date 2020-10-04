@@ -6,6 +6,9 @@
 
 #include <string.h>
 
+namespace mainunit::driver
+{
+
 CI2C::CI2C(I2C_HandleTypeDef *hi2c) : m_phi2c(hi2c)
 {
 
@@ -34,4 +37,6 @@ uint32_t CI2C::read(const uint16_t addr, std::vector<uint8_t> &data, uint32_t to
 void CI2C::write(const uint16_t addr, const std::vector<uint8_t> &data)
 {
 	HAL_I2C_Mem_Write(m_phi2c, (uint16_t)(addr << 1), (uint16_t)data[0], I2C_MEMADD_SIZE_8BIT, (uint8_t *)&data[1], (uint16_t)(data.size() - 1), 10000);
+}
+
 }

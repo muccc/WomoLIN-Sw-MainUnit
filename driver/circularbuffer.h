@@ -7,6 +7,9 @@
 
 #include <memory>
 
+namespace mainunit::driver
+{
+
 template <class T>
 class CircularBuffer
 {
@@ -86,5 +89,6 @@ private:
 	bool m_full = false;
 };
 
+}
 
 #endif /* INC_CIRCULARBUFFER_HPP_ */

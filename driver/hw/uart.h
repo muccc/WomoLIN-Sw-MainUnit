@@ -12,6 +12,9 @@
 #include "circularbuffer.h"
 #include "gpio.h"
 
+namespace mainunit::driver
+{
+
 class Uart
 {
 public:
@@ -34,6 +37,6 @@ private:
 	GPIO &m_pled;
 };
 
-
+}
 
 #endif /* INC_UART_HPP_ */

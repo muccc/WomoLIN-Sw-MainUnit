@@ -6,6 +6,9 @@
 
 #include <vector>
 
+namespace mainunit::driver
+{
+
 #define _SET_BIT(byte, bit)		((byte) |= (1UL << (bit)))
 #define _CLR_BIT(byte, bit)		((byte) &= ~(1UL << (bit)))
 #define _ISSET_BIT(byte, bit)		(byte & (1UL << (bit)))
@@ -72,4 +75,6 @@ void RelayDrv::read()
 
 	m_transfer[static_cast<uint8_t>(ShiftRegNr::SHIFTREG1)] = data[static_cast<uint8_t>(ShiftRegNr::SHIFTREG1)];
 	m_transfer[static_cast<uint8_t>(ShiftRegNr::SHIFTREG2)] = data[static_cast<uint8_t>(ShiftRegNr::SHIFTREG2)];
+}
+
 }

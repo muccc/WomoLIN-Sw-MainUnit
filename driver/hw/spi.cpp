@@ -4,6 +4,9 @@
 
 #include "spi.h"
 
+namespace mainunit::driver
+{
+
 SPI::SPI(SPI_HandleTypeDef *hspi) : m_phspi(hspi)
 {
 }
@@ -24,4 +27,6 @@ void SPI::write(const std::vector<uint8_t> &data)
 {
 	if(data.size() > 0)
 		HAL_SPI_Transmit(m_phspi, (uint8_t *)data.data(), data.size(), 100);
+}
+
 }

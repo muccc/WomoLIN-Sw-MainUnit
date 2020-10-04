@@ -12,6 +12,9 @@
 #include "stm32l476xx.h"
 #include "stm32l4xx_hal.h"
 
+namespace mainunit::driver
+{
+
 class GPIO final : public IGPIO
 {
 public:
@@ -31,5 +34,7 @@ private:
 	GPIO_TypeDef *m_port;
 	bool m_state;
 };
+
+}
 
 #endif /* INC_GPIO_HPP_ */

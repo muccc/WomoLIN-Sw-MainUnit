@@ -10,6 +10,9 @@
 
 #include <vector>
 
+namespace mainunit::driver
+{
+
 class CI2C
 {
 public:
@@ -25,6 +28,6 @@ private:
 	I2C_HandleTypeDef *m_phi2c;
 };
 
-
+}
 
 #endif /* INC_I2C_HPP_ */

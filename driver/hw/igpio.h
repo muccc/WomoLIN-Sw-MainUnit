@@ -5,6 +5,8 @@
 #ifndef INC_IGPIO_HPP_
 #define INC_IGPIO_HPP_
 
+namespace mainunit::driver
+{
 
 class IGPIO
 {
@@ -16,5 +18,6 @@ public:
 	virtual bool getState() = 0;
 };
 
+}
 
 #endif /* INC_IGPIO_HPP_ */

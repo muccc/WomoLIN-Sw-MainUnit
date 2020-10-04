@@ -10,6 +10,9 @@
 
 #include <vector>
 
+namespace mainunit::driver
+{
+
 class SPI
 {
 public:
@@ -25,5 +28,6 @@ private:
 	SPI_HandleTypeDef *m_phspi;
 };
 
+}
 
 #endif /* INC_SPI_HPP_ */
