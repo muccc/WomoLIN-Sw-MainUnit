@@ -10,6 +10,8 @@ add_library(${LIB_NAME}
 	extrelay.cpp
 	relaydrv.cpp
 	bme680.cpp
+	lsm303.cpp
+	ibs.cpp
 	bme680drv.cpp
 	led.cpp
 	ext/bme680.c
