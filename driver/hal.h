@@ -63,6 +63,16 @@ namespace mainunit::driver
         IUnitInputGetBme680Temperature &  GetHandleUnitInputGetBme680Temperature() override final;
         IUnitInputGetBme680Humidity &     GetHandleUnitInputGetBme680Humidity() override final;
 
+        IUnitInputGetLsm303Magnetic &     GetHandleUnitInputGetLsm303Magnetic() override final; 
+        IUnitInputGetLsm303Acceleration & GetHandleUnitInputGetLsm303Acceleration() override final; 
+   
+        IUnitInputGetIbsTemperature &     GetHandleUnitInputGetIbsTemperature() override final; 
+        IUnitInputGetIbsVoltage &         GetHandleUnitInputGetIbsVoltage() override final; 
+        IUnitInputGetIbsCurrent &         GetHandleUnitInputGetIbsCurrent() override final; 
+        IUnitInputGetIbsCapacity &        GetHandleUnitInputGetIbsCapacity() override final; 
+        IUnitInputGetIbsCharge &          GetHandleUnitInputGetIbsCharge() override final; 
+        IUnitInputGetIbsHealth &          GetHandleUnitInputGetIbsHealth() override final; 
+
     private:
 
         CControlbus &Controlbus;
@@ -107,6 +117,21 @@ namespace mainunit::driver
         CUnitInputGetBme680Pressure          UnitInputGetBme680Pressure;
         CUnitInputGetBme680Temperature       UnitInputGetBme680Temperature;
         CUnitInputGetBme680Humidity          UnitInputGetBme680Humidity;
+
+        CLsm303Drv &Lsm303;
+
+        CUnitInputGetLsm303Magnetic          UnitInputGetLsm303Magnetic; 
+        CUnitInputGetLsm303Acceleration      UnitInputGetLsm303Acceleration; 
+
+        CIbsDrv &Ibs;   
+ 
+        CUnitInputGetIbsTemperature          UnitInputGetIbsTemperature; 
+        CUnitInputGetIbsVoltage              UnitInputGetIbsVoltage; 
+        CUnitInputGetIbsCurrent              UnitInputGetIbsCurrent; 
+        CUnitInputGetIbsCapacity             UnitInputGetIbsCapacity; 
+        CUnitInputGetIbsCharge               UnitInputGetIbsCharge; 
+        CUnitInputGetIbsHealth               UnitInputGetIbsHealth; 
+
 
     private:
         void SystemClock_Config();
