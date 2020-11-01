@@ -9,4 +9,5 @@ add_library(${LIB_NAME}
 	uart.cpp
 	spi.cpp
 	i2c.cpp
+	lin.cpp
 )

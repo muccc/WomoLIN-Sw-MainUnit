@@ -9,14 +9,20 @@ add_library(${LIB_NAME}
 	birelay.cpp
 	extrelay.cpp
 	relaydrv.cpp
-	bme680.cpp
-	lsm303.cpp
-	ibs.cpp
+	bme680.cpp	
 	bme680drv.cpp
 	led.cpp
 	ext/bme680.c
 	lsm303agr.cpp
 	lsm303agrmag.cpp
 	lsm303agracc.cpp
-   hss.cpp
+	lsm303.cpp
+	lintransceiver.cpp
+	linmultiplexer.cpp
+	linmgr.cpp
+	hellaibs.cpp
+	hellaibs1.cpp
+	hellaibs2.cpp
+	ibs.cpp
+    hss.cpp
 )
