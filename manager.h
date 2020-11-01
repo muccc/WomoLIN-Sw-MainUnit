@@ -11,8 +11,6 @@
 #include "siguni/protocol.h"
 
 #include "driver/hal.h"
-#include "driver/board/birelay.h"
-#include "driver/board/controlbus.h"
 
 namespace mainunit
 {
@@ -66,6 +64,18 @@ namespace mainunit
          siguni::CUnitInput         UnitInputGetBme680Temperature { GetHandleUnitInputGetBme680Temperature() } ; 
          siguni::CUnitInput         UnitInputGetBme680Humidity { GetHandleUnitInputGetBme680Humidity() } ; 
 
+         // units lsm303 
+         siguni::CUnitInput         UnitInputGetLsm303Magnetic { GetHandleUnitInputGetLsm303Magnetic() } ; 
+         siguni::CUnitInput         UnitInputGetLsm303Acceleration { GetHandleUnitInputGetLsm303Acceleration() } ; 
+
+         // units ibs
+         siguni::CUnitInput         UnitInputGetIbsTemperature { GetHandleUnitInputGetIbsTemperature() }; 
+         siguni::CUnitInput         UnitInputGetIbsVoltage { GetHandleUnitInputGetIbsVoltage() }; 
+         siguni::CUnitInput         UnitInputGetIbsCurrent { GetHandleUnitInputGetIbsCurrent() }; 
+         siguni::CUnitInput         UnitInputGetIbsCapacity { GetHandleUnitInputGetIbsCapacity() }; 
+         siguni::CUnitInput         UnitInputGetIbsCharge { GetHandleUnitInputGetIbsCharge() }; 
+         siguni::CUnitInput         UnitInputGetIbsHealth { GetHandleUnitInputGetIbsHealth() }; 
+
          // signals versions
          siguni::CSignalGetVersion  GetHwBoardVersion { siguni::CSignalGetVersion() };
          siguni::CSignalGetVersion  GetDriverVersion { siguni::CSignalGetVersion() };
@@ -104,6 +114,18 @@ namespace mainunit
          siguni::CSignalGetPressure       GetBme680Pressure { siguni::CSignalGetPressure() };
          siguni::CSignalGetTemperature    GetBme680Temperature { siguni::CSignalGetTemperature() };
          siguni::CSignalGetHumidity       GetBme680Humidity { siguni::CSignalGetHumidity() };
+
+         // signals lsm303 
+         siguni::CSignalGetMagnetic          GetLsm303Magnetic { siguni::CSignalGetMagnetic() } ; 
+         siguni::CSignalGetAcceleration      GetLsm303Acceleration { siguni::CSignalGetAcceleration } ; 
+
+         // signals ibs
+         siguni::CSignalGetTemperature       GetIbsTemperature { siguni::CSignalGetTemperature() }; 
+         siguni::CSignalGetVoltage           GetIbsVoltage { siguni::CSignalGetVoltage() }; 
+         siguni::CSignalGetCurrent           GetIbsCurrent { siguni::CSignalGetCurrent() }; 
+         siguni::CSignalGetBatteryCapacity   GetIbsCapacity { siguni::CSignalGetBatteryCapacity() }; 
+         siguni::CSignalGetBatteryCharge     GetIbsCharge { siguni::CSignalGetBatteryCharge() }; 
+         siguni::CSignalGetBatteryHealth     GetIbsHealth { siguni::CSignalGetBatteryHealth() }; 
 
    };
 

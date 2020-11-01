@@ -52,6 +52,17 @@ namespace mainunit
       signalVector["GetBme680Temperature"] = &GetBme680Temperature;
       signalVector["GetBme680Humidity"] = &GetBme680Humidity;
 
+      // signal vector lsm303
+      signalVector["GetLsm303Magnetic"] = &GetLsm303Magnetic;
+      signalVector["GetLsm303Acceleration "] = &GetLsm303Acceleration;
+
+      // signal vector ibs
+      signalVector["GetIbsTemperature"] = &GetIbsTemperature;
+      signalVector["GetIbsVoltage"] = &GetIbsVoltage;
+      signalVector["GetIbsCurrent"] = &GetIbsCurrent;
+      signalVector["GetIbsCapacity"] = &GetIbsCapacity;
+      signalVector["GetIbsCharge"] = &GetIbsCharge;
+      signalVector["GetIbsHealth"] = &GetIbsHealth;
 
       // connect versions
       GetHwBoardVersion.AddUnit( &UnitInputGetHwBoardVersion );
@@ -93,6 +104,19 @@ namespace mainunit
       GetBme680Pressure.AddUnit( &UnitInputGetBme680Pressure );
       GetBme680Temperature.AddUnit( &UnitInputGetBme680Temperature );
       GetBme680Humidity.AddUnit( &UnitInputGetBme680Humidity );
+
+      // connect lsm303
+      GetLsm303Magnetic.AddUnit( &UnitInputGetLsm303Magnetic ); 
+      GetLsm303Acceleration.AddUnit( &UnitInputGetLsm303Acceleration ); 
+
+      // connect ibs
+      GetIbsTemperatur.AddUnit( &UnitInputGetIbsTemperatur );
+      GetIbsVoltag.AddUnit( &UnitInputGetIbsVoltage );
+      GetIbsCurren.AddUnit( &UnitInputGetIbsCurrent );
+      GetIbsCapacit.AddUnit( &UnitInputGetIbsCapacity );
+      GetIbsCharg.AddUnit( &UnitInputGetIbsCharge );
+      GetIbsHealt.AddUnit( &UnitInputGetIbsHealth );
+
    }
 
 }
