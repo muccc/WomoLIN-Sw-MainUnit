@@ -18,6 +18,7 @@
 #include "bme680.h"
 #include "lsm303.h"
 #include "ibs.h"
+#include "hss.h"
 #include "bme680drv.h"
 
 namespace mainunit::driver
@@ -74,6 +75,16 @@ namespace mainunit::driver
         IUnitInputGetIbsCapacity &        GetHandleUnitInputGetIbsCapacity() override final; 
         IUnitInputGetIbsCharge &          GetHandleUnitInputGetIbsCharge() override final; 
         IUnitInputGetIbsHealth &          GetHandleUnitInputGetIbsHealth() override final; 
+
+        IUnitOutputSetResetHss1 & GetHandleUnitOutputSetResetHss1() override final;
+        IUnitOutputSetResetHss2 & GetHandleUnitOutputSetResetHss2() override final;
+        IUnitOutputSetResetHss3 & GetHandleUnitOutputSetResetHss3() override final;
+        IUnitOutputSetResetHss4 & GetHandleUnitOutputSetResetHss4() override final;
+
+        IUnitInputGetHss1 &    GetHandleUnitInputGetHss1() override final;
+        IUnitInputGetHss2 &    GetHandleUnitInputGetHss2() override final;
+        IUnitInputGetHss3 &    GetHandleUnitInputGetHss3() override final;
+        IUnitInputGetHss4 &    GetHandleUnitInputGetHss4() override final;
 
     private:
 
@@ -133,6 +144,17 @@ namespace mainunit::driver
         CUnitInputGetIbsCapacity             UnitInputGetIbsCapacity; 
         CUnitInputGetIbsCharge               UnitInputGetIbsCharge; 
         CUnitInputGetIbsHealth               UnitInputGetIbsHealth; 
+
+        // Hss
+        CUnitOutputSetResetHss1         UnitOutputSetResetHss1;
+        CUnitOutputSetResetHss2         UnitOutputSetResetHss2;
+        CUnitOutputSetResetHss3         UnitOutputSetResetHss3;
+        CUnitOutputSetResetHss4         UnitOutputSetResetHss4;
+
+        CUnitInputGetHss1               UnitInputGetHss1;
+        CUnitInputGetHss2               UnitInputGetHss2;
+        CUnitInputGetHss3               UnitInputGetHss3;
+        CUnitInputGetHss4               UnitInputGetHss4;
 
 
     private:

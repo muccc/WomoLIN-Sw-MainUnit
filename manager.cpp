@@ -64,6 +64,17 @@ namespace mainunit
       signalVector["GetIbsCharge"] = &GetIbsCharge;
       signalVector["GetIbsHealth"] = &GetIbsHealth;
 
+      // signal vector hss
+      signalVector["SetResetHss1"] = &SetResetHss1;
+      signalVector["SetResetHss2"] = &SetResetHss2;
+      signalVector["SetResetHss3"] = &SetResetHss3;
+      signalVector["SetResetHss4"] = &SetResetHss4;
+
+      signalVector["GetHss1"] = &GetHss1;
+      signalVector["GetHss2"] = &GetHss2;
+      signalVector["GetHss3"] = &GetHss3;
+      signalVector["GetHss4"] = &GetHss4;
+
       // connect versions
       GetHwBoardVersion.AddUnit( &UnitInputGetHwBoardVersion );
       GetDriverVersion.AddUnit( &UnitInputGetDriverVersion );
@@ -116,6 +127,16 @@ namespace mainunit
       GetIbsCharge.AddUnit( &UnitInputGetIbsCharge );
       GetIbsHealth.AddUnit( &UnitInputGetIbsHealth );
 
+      // connect hss
+      SetResetHss1.AddUnit( &UnitOutputSetResetHss1 );
+      SetResetHss2.AddUnit( &UnitOutputSetResetHss2 );
+      SetResetHss3.AddUnit( &UnitOutputSetResetHss3 );
+      SetResetHss4.AddUnit( &UnitOutputSetResetHss4 );
+
+      GetHss1.AddUnit( &UnitInputGetHss1 );
+      GetHss2.AddUnit( &UnitInputGetHss2 );
+      GetHss3.AddUnit( &UnitInputGetHss3 );
+      GetHss4.AddUnit( &UnitInputGetHss4 );
    }
 
 }

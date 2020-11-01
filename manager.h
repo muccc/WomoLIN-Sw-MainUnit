@@ -76,6 +76,17 @@ namespace mainunit
          siguni::CUnitInput         UnitInputGetIbsCharge { GetHandleUnitInputGetIbsCharge() }; 
          siguni::CUnitInput         UnitInputGetIbsHealth { GetHandleUnitInputGetIbsHealth() }; 
 
+         // units hss
+         siguni::CUnitOutput        UnitOutputSetResetHss1 { GetHandleUnitOutputSetResetHss1() } ;
+         siguni::CUnitOutput        UnitOutputSetResetHss2 { GetHandleUnitOutputSetResetHss2() } ;
+         siguni::CUnitOutput        UnitOutputSetResetHss3 { GetHandleUnitOutputSetResetHss3() } ;
+         siguni::CUnitOutput        UnitOutputSetResetHss4 { GetHandleUnitOutputSetResetHss4() } ;
+
+         siguni::CUnitInput         UnitInputGetHss1 { GetHandleUnitInputGetHss1() } ;
+         siguni::CUnitInput         UnitInputGetHss2 { GetHandleUnitInputGetHss2() } ;
+         siguni::CUnitInput         UnitInputGetHss3 { GetHandleUnitInputGetHss3() } ;
+         siguni::CUnitInput         UnitInputGetHss4 { GetHandleUnitInputGetHss4() } ;
+
          // signals versions
          siguni::CSignalGetVersion  GetHwBoardVersion { siguni::CSignalGetVersion() };
          siguni::CSignalGetVersion  GetDriverVersion { siguni::CSignalGetVersion() };
@@ -127,6 +138,16 @@ namespace mainunit
          siguni::CSignalGetBatteryCharge     GetIbsCharge { siguni::CSignalGetBatteryCharge() }; 
          siguni::CSignalGetBatteryHealth     GetIbsHealth { siguni::CSignalGetBatteryHealth() }; 
 
+         // signal hss
+         siguni::CSignalSetReset    SetResetHss1 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    SetResetHss2 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    SetResetHss3 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    SetResetHss4 { siguni::CSignalSetReset() };
+
+         siguni::CSignalSetReset    GetHss1 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    GetHss2 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    GetHss3 { siguni::CSignalSetReset() };
+         siguni::CSignalSetReset    GetHss4 { siguni::CSignalSetReset() };
    };
 
 }

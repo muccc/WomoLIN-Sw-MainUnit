@@ -105,7 +105,14 @@ namespace mainunit::driver
         , UnitInputGetIbsCapacity(/* TODO Ibs*/)
         , UnitInputGetIbsCharge(/* TODO Ibs*/)
         , UnitInputGetIbsHealth(/* TODO Ibs*/)
-
+        , UnitOutputSetResetHss1(/* TODO BiRelay*/)
+        , UnitOutputSetResetHss2(/* TODO BiRelay*/)
+        , UnitOutputSetResetHss3(/* TODO BiRelay*/)
+        , UnitOutputSetResetHss4(/* TODO BiRelay*/)
+        , UnitInputGetHss1(/* TODO k1status*/)
+        , UnitInputGetHss2(/* TODO k2status*/)
+        , UnitInputGetHss3(/* TODO k3status*/)
+        , UnitInputGetHss4(/* TODO k4status*/)
 
 
 
@@ -407,6 +414,16 @@ namespace mainunit::driver
     IUnitInputGetIbsCapacity &        CHal::GetHandleUnitInputGetIbsCapacity() { return UnitInputGetIbsCapacity; }
     IUnitInputGetIbsCharge &          CHal::GetHandleUnitInputGetIbsCharge() { return UnitInputGetIbsCharge; }
     IUnitInputGetIbsHealth &          CHal::GetHandleUnitInputGetIbsHealth() { return UnitInputGetIbsHealth; }
+
+    IUnitOutputSetResetHss1 & CHal::GetHandleUnitOutputSetResetHss1() { return UnitOutputSetResetHss1; }
+    IUnitOutputSetResetHss2 & CHal::GetHandleUnitOutputSetResetHss2() { return UnitOutputSetResetHss2; }
+    IUnitOutputSetResetHss3 & CHal::GetHandleUnitOutputSetResetHss3() { return UnitOutputSetResetHss3; }
+    IUnitOutputSetResetHss4 & CHal::GetHandleUnitOutputSetResetHss4() { return UnitOutputSetResetHss4; }
+
+    IUnitInputGetHss1 & CHal::GetHandleUnitInputGetHss1() { return UnitInputGetHss1; }
+    IUnitInputGetHss2 & CHal::GetHandleUnitInputGetHss2() { return UnitInputGetHss2; }
+    IUnitInputGetHss3 & CHal::GetHandleUnitInputGetHss3() { return UnitInputGetHss3; }
+    IUnitInputGetHss4 & CHal::GetHandleUnitInputGetHss4() { return UnitInputGetHss4; }
 
 
 #endif

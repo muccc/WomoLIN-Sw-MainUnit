@@ -11,6 +11,7 @@
 #include "ibme680.h"
 #include "ilsm303.h"
 #include "iibs.h"
+#include "ihss.h"
 
 namespace mainunit::driver
 {
@@ -24,10 +25,10 @@ namespace mainunit::driver
 	   virtual siguni::interface::IUnitInputGetHwBoardVersion &     GetHandleUnitInputGetHwBoardVersion() = 0;
 	   virtual siguni::interface::IUnitInputGetDriverVersion &      GetHandleUnitInputGetDriverVersion() = 0;
 
-      virtual IUnitOutputSetResetBirelayK1 &    GetHandleUnitOutputSetResetBirelayK1() = 0;
-      virtual IUnitOutputSetResetBirelayK2 &    GetHandleUnitOutputSetResetBirelayK2() = 0;
-      virtual IUnitOutputSetResetBirelayK3 &    GetHandleUnitOutputSetResetBirelayK3() = 0;
-      virtual IUnitOutputSetResetBirelayK4 &    GetHandleUnitOutputSetResetBirelayK4() = 0;
+       virtual IUnitOutputSetResetBirelayK1 &    GetHandleUnitOutputSetResetBirelayK1() = 0;
+       virtual IUnitOutputSetResetBirelayK2 &    GetHandleUnitOutputSetResetBirelayK2() = 0;
+       virtual IUnitOutputSetResetBirelayK3 &    GetHandleUnitOutputSetResetBirelayK3() = 0;
+       virtual IUnitOutputSetResetBirelayK4 &    GetHandleUnitOutputSetResetBirelayK4() = 0;
 
 	   virtual IUnitInputGetBirelayK1 &     GetHandleUnitInputGetBirelayK1() = 0;
 	   virtual IUnitInputGetBirelayK2 &     GetHandleUnitInputGetBirelayK2() = 0;
@@ -68,6 +69,16 @@ namespace mainunit::driver
       virtual IUnitInputGetIbsCapacity &        GetHandleUnitInputGetIbsCapacity() = 0; 
       virtual IUnitInputGetIbsCharge &          GetHandleUnitInputGetIbsCharge() = 0; 
       virtual IUnitInputGetIbsHealth &          GetHandleUnitInputGetIbsHealth() = 0; 
+
+      virtual IUnitOutputSetResetHss1 &    GetHandleUnitOutputSetResetHss1() = 0;
+      virtual IUnitOutputSetResetHss2 &    GetHandleUnitOutputSetResetHss2() = 0;
+      virtual IUnitOutputSetResetHss3 &    GetHandleUnitOutputSetResetHss3() = 0;
+      virtual IUnitOutputSetResetHss4 &    GetHandleUnitOutputSetResetHss4() = 0;
+
+      virtual IUnitInputGetHss1 &     GetHandleUnitInputGetHss1() = 0;
+      virtual IUnitInputGetHss2 &     GetHandleUnitInputGetHss2() = 0;
+      virtual IUnitInputGetHss3 &     GetHandleUnitInputGetHss3() = 0;
+      virtual IUnitInputGetHss4 &     GetHandleUnitInputGetHss4() = 0;
 
 	};
 }

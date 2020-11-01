@@ -18,4 +18,5 @@ add_library(${LIB_NAME}
 	lsm303agr.cpp
 	lsm303agrmag.cpp
 	lsm303agracc.cpp
+   hss.cpp
 )
