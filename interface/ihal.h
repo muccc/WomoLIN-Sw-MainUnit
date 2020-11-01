@@ -9,6 +9,8 @@
 #include "ibirelay.h"
 #include "iextrelay.h"
 #include "ibme680.h"
+#include "ilsm303.h"
+#include "iibs.h"
 
 namespace mainunit::driver
 {
@@ -54,6 +56,18 @@ namespace mainunit::driver
 	   virtual IUnitInputGetBme680Pressure &        GetHandleUnitInputGetBme680Pressure() = 0;
 	   virtual IUnitInputGetBme680Temperature &     GetHandleUnitInputGetBme680Temperature() = 0;
 	   virtual IUnitInputGetBme680Humidity &        GetHandleUnitInputGetBme680Humidity() = 0;
+
+
+      virtual IUnitInputGetLsm303Magnetic &     GetHandleUnitInputGetLsm303Magnetic() = 0; 
+      virtual IUnitInputGetLsm303Acceleration & GetHandleUnitInputGetLsm303Acceleration() = 0; 
+   
+   
+      virtual IUnitInputGetIbsTemperature &     GetHandleUnitInputGetIbsTemperature() = 0; 
+      virtual IUnitInputGetIbsVoltage &         GetHandleUnitInputGetIbsVoltage() = 0; 
+      virtual IUnitInputGetIbsCurrent &         GetHandleUnitInputGetIbsCurrent() = 0; 
+      virtual IUnitInputGetIbsCapacity &        GetHandleUnitInputGetIbsCapacity() = 0; 
+      virtual IUnitInputGetIbsCharge &          GetHandleUnitInputGetIbsCharge() = 0; 
+      virtual IUnitInputGetIbsHealth &          GetHandleUnitInputGetIbsHealth() = 0; 
 
 	};
 }
