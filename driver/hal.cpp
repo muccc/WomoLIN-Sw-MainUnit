@@ -95,16 +95,16 @@ namespace mainunit::driver
         , UnitInputGetBme680Pressure(Bme680)
         , UnitInputGetBme680Temperature(Bme680)
         , UnitInputGetBme680Humidity(Bme680)
-        , Lsm303(lsm303)
-        , UnitInputGetLsm303Magnetic(Lsm303)
-        , UnitInputGetLsm303Acceleration(Lsm303)
-        , Ibs(ibs)   
-        , UnitInputGetIbsTemperature(Ibs)
-        , UnitInputGetIbsVoltage(Ibs)
-        , UnitInputGetIbsCurrent(Ibs)
-        , UnitInputGetIbsCapacity(Ibs)
-        , UnitInputGetIbsCharge(Ibs)
-        , UnitInputGetIbsHealth(Ibs)
+        //, Lsm303(lsm303)
+        , UnitInputGetLsm303Magnetic(/* TODO Lsm303*/)
+        , UnitInputGetLsm303Acceleration(/* Lsm303*/)
+        //, Ibs(ibs)
+        , UnitInputGetIbsTemperature(/* TODO Ibs*/)
+        , UnitInputGetIbsVoltage(/* TODO Ibs*/)
+        , UnitInputGetIbsCurrent(/* TODO Ibs*/)
+        , UnitInputGetIbsCapacity(/* TODO Ibs*/)
+        , UnitInputGetIbsCharge(/* TODO Ibs*/)
+        , UnitInputGetIbsHealth(/* TODO Ibs*/)
 
 
 
@@ -398,15 +398,15 @@ namespace mainunit::driver
 	IUnitInputGetBme680Temperature & CHal::GetHandleUnitInputGetBme680Temperature() { return UnitInputGetBme680Temperature; }
 	IUnitInputGetBme680Humidity &    CHal::GetHandleUnitInputGetBme680Humidity() { return UnitInputGetBme680Humidity; }
 
-   IUnitInputGetLsm303Magnetic &     CHal::GetHandleUnitInputGetLsm303Magnetic() { return UnitInputGetLsm303Magnetic; }
-   IUnitInputGetLsm303Acceleration & CHal::GetHandleUnitInputGetLsm303Acceleration() { return UnitInputGetLsm303Acceleration; }
+    IUnitInputGetLsm303Magnetic &     CHal::GetHandleUnitInputGetLsm303Magnetic() { return UnitInputGetLsm303Magnetic; }
+    IUnitInputGetLsm303Acceleration & CHal::GetHandleUnitInputGetLsm303Acceleration() { return UnitInputGetLsm303Acceleration; }
    
-   IUnitInputGetIbsTemperature &     CHal::GetHandleUnitInputGetIbsTemperature() { return UnitInputGetIbsTemperature; }
-   IUnitInputGetIbsVoltage &         CHal::GetHandleUnitInputGetIbsVoltage() { return UnitInputGetIbsVoltage; }
-   IUnitInputGetIbsCurrent &         CHal::GetHandleUnitInputGetIbsCurrent() { return UnitInputGetIbsCurrent; }
-   IUnitInputGetIbsCapacity &        CHal::GetHandleUnitInputGetIbsCapacity() { return UnitInputGetIbsCapacity; }
-   IUnitInputGetIbsCharge &          CHal::GetHandleUnitInputGetIbsCharge() { return UnitInputGetIbsCharge; }
-   IUnitInputGetIbsHealth &          CHal::GetHandleUnitInputGetIbsHealth() { return UnitInputGetIbsHealth; }
+    IUnitInputGetIbsTemperature &     CHal::GetHandleUnitInputGetIbsTemperature() { return UnitInputGetIbsTemperature; }
+    IUnitInputGetIbsVoltage &         CHal::GetHandleUnitInputGetIbsVoltage() { return UnitInputGetIbsVoltage; }
+    IUnitInputGetIbsCurrent &         CHal::GetHandleUnitInputGetIbsCurrent() { return UnitInputGetIbsCurrent; }
+    IUnitInputGetIbsCapacity &        CHal::GetHandleUnitInputGetIbsCapacity() { return UnitInputGetIbsCapacity; }
+    IUnitInputGetIbsCharge &          CHal::GetHandleUnitInputGetIbsCharge() { return UnitInputGetIbsCharge; }
+    IUnitInputGetIbsHealth &          CHal::GetHandleUnitInputGetIbsHealth() { return UnitInputGetIbsHealth; }
 
 
 #endif

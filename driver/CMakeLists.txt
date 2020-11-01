@@ -11,6 +11,6 @@ SET(LIB_NAME "drivermainunit")
 project(${LIB_NAME})
 
 add_library(${LIB_NAME} 
-			hal.cpp
+    hal.cpp
 )
 

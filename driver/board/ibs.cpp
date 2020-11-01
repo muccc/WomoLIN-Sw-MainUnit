@@ -2,7 +2,7 @@
 /* Copyright (c) 2019 Project WomoLIN */
 /* Author Tilo Seeck tiloseeck@web.de> */
 
-#include "bme680.h"
+#include "ibs.h"
 
 
 namespace mainunit::driver

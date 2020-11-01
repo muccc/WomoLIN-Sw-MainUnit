@@ -16,6 +16,8 @@
 #include "birelay.h"
 #include "extrelay.h"
 #include "bme680.h"
+#include "lsm303.h"
+#include "ibs.h"
 #include "bme680drv.h"
 
 namespace mainunit::driver
@@ -118,12 +120,12 @@ namespace mainunit::driver
         CUnitInputGetBme680Temperature       UnitInputGetBme680Temperature;
         CUnitInputGetBme680Humidity          UnitInputGetBme680Humidity;
 
-        CLsm303Drv &Lsm303;
+        // TODO CLsm303Drv &Lsm303;
 
         CUnitInputGetLsm303Magnetic          UnitInputGetLsm303Magnetic; 
         CUnitInputGetLsm303Acceleration      UnitInputGetLsm303Acceleration; 
 
-        CIbsDrv &Ibs;   
+        // TODO CIbsDrv &Ibs;
  
         CUnitInputGetIbsTemperature          UnitInputGetIbsTemperature; 
         CUnitInputGetIbsVoltage              UnitInputGetIbsVoltage; 
