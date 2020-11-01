@@ -117,7 +117,7 @@ namespace mainunit
 
          // signals lsm303 
          siguni::CSignalGetMagnetic          GetLsm303Magnetic { siguni::CSignalGetMagnetic() } ; 
-         siguni::CSignalGetAcceleration      GetLsm303Acceleration { siguni::CSignalGetAcceleration } ; 
+         siguni::CSignalGetAcceleration      GetLsm303Acceleration { siguni::CSignalGetAcceleration() } ;
 
          // signals ibs
          siguni::CSignalGetTemperature       GetIbsTemperature { siguni::CSignalGetTemperature() }; 

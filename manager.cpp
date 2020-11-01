@@ -100,7 +100,6 @@ namespace mainunit
       GetExtRelay8.AddUnit( &UnitInputGetExtRelay8 );
 
       // connect bme680
-
       GetBme680Pressure.AddUnit( &UnitInputGetBme680Pressure );
       GetBme680Temperature.AddUnit( &UnitInputGetBme680Temperature );
       GetBme680Humidity.AddUnit( &UnitInputGetBme680Humidity );
@@ -110,12 +109,12 @@ namespace mainunit
       GetLsm303Acceleration.AddUnit( &UnitInputGetLsm303Acceleration ); 
 
       // connect ibs
-      GetIbsTemperatur.AddUnit( &UnitInputGetIbsTemperatur );
-      GetIbsVoltag.AddUnit( &UnitInputGetIbsVoltage );
-      GetIbsCurren.AddUnit( &UnitInputGetIbsCurrent );
-      GetIbsCapacit.AddUnit( &UnitInputGetIbsCapacity );
-      GetIbsCharg.AddUnit( &UnitInputGetIbsCharge );
-      GetIbsHealt.AddUnit( &UnitInputGetIbsHealth );
+      GetIbsTemperature.AddUnit( &UnitInputGetIbsTemperature );
+      GetIbsVoltage.AddUnit( &UnitInputGetIbsVoltage );
+      GetIbsCurrent.AddUnit( &UnitInputGetIbsCurrent );
+      GetIbsCapacity.AddUnit( &UnitInputGetIbsCapacity );
+      GetIbsCharge.AddUnit( &UnitInputGetIbsCharge );
+      GetIbsHealth.AddUnit( &UnitInputGetIbsHealth );
 
    }
 
