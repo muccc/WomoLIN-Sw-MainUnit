@@ -4,8 +4,9 @@ add_subdirectory(cmsis)
 add_subdirectory(hal)
 add_subdirectory(hw)
 add_subdirectory(board)
+add_subdirectory(periphery)
 
-include_directories(./board ./hw ./hal/inc ./cmsis/inc ./)
+include_directories(./periphery ./board ./hw ./hal/inc ./cmsis/inc ./)
 
 SET(LIB_NAME "drivermainunit")
 project(${LIB_NAME})

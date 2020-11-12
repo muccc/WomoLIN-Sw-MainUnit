@@ -5,7 +5,7 @@
 #ifndef INC_HELLAIBS_HPP_
 #define INC_HELLAIBS_HPP_
 
-#include "linmgr.h"
+#include "../board/linmgr.h"
 
 namespace mainunit::driver
 {

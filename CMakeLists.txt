@@ -31,7 +31,7 @@ add_executable(${EXECUTABLE}
    driver/cmsis/src/stm32l4xx_it.cpp
 )
 
-target_link_libraries (${EXECUTABLE} siguni drivermainunit cmsis hal hw board)
+target_link_libraries (${EXECUTABLE} siguni drivermainunit cmsis hal hw board periphery)
 
 target_compile_definitions(${EXECUTABLE} PRIVATE
 	-DSTM32L476xx
@@ -43,6 +43,7 @@ target_include_directories(${EXECUTABLE} PRIVATE
 	driver/hal/inc
 	driver/hw
 	driver/board
+	driver/periphery
 )
 
 target_compile_options(${EXECUTABLE} PRIVATE

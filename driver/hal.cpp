@@ -8,6 +8,8 @@
 #include "i2c.h"
 #include "circularbuffer.h"
 #include "led.h"
+#include "lin.h"
+#include "linmgr.h"
 
 #include <iostream>
 
@@ -27,6 +29,28 @@
 #define hSTBCtrl_GPIO_Port 		GPIOA
 #define hSignalLED_Pin 			GPIO_PIN_0
 #define hSignalLED_GPIO_Port 	GPIOB
+#define hLinSelA1_Pin 			GPIO_PIN_8
+#define hLinSelA1_GPIO_Port 	GPIOD
+#define hLinEn_Pin 				GPIO_PIN_9
+#define hLinEn_GPIO_Port 		GPIOD
+#define hSLPLin1_Pin 			GPIO_PIN_4
+#define hSLPLin1_GPIO_Port 		GPIOG
+#define hSLPLin2_Pin 			GPIO_PIN_5
+#define hSLPLin2_GPIO_Port 		GPIOG
+#define hSLPLin3_Pin 			GPIO_PIN_6
+#define hSLPLin3_GPIO_Port 		GPIOG
+#define hSLPLin4_Pin 			GPIO_PIN_7
+#define hSLPLin4_GPIO_Port 		GPIOG
+#define hLinSelA0_Pin 			GPIO_PIN_7
+#define hLinSelA0_GPIO_Port 	GPIOD
+#define hHssEn1_Pin 			GPIO_PIN_14
+#define hHssEn1_GPIO_Port 		GPIOF
+#define hHssEn2_Pin 			GPIO_PIN_15
+#define hHssEn2_GPIO_Port 		GPIOF
+#define hHss3En_Pin 			GPIO_PIN_0
+#define hHss3En_GPIO_Port 		GPIOE
+#define hHssEn4_Pin 			GPIO_PIN_1
+#define hHssEn4_GPIO_Port 		GPIOE
 
 
 namespace mainunit::driver
@@ -41,8 +65,10 @@ namespace mainunit::driver
 
 	CI2C i2c(&hi2c3);
 	CBme680Drv bme680(i2c);
+	CLSM303AgrAccDrv acc(i2c);
+	CLSM303AgrMagDrv mag(i2c);
 
-		// Relay hardware configuration
+	// Relay hardware configuration
 	GPIO k1status(hK1Status_Pin, hK1Status_GPIO_Port);
 	GPIO k2status(hK2Status_Pin, hK2Status_GPIO_Port);
 	GPIO k3status(hK3Status_Pin, hK3Status_GPIO_Port);
@@ -55,11 +81,25 @@ namespace mainunit::driver
 
 
 	// Controlbus hardware configuration
-
 	GPIO stbctrl(hSTBCtrl_Pin, hSTBCtrl_GPIO_Port);
 	CircularBuffer<uint8_t> uart1buffer(1024);
 	Uart uart1(&huart1, &uart1buffer, signalled);
 	CControlbus control(uart1, stbctrl);
+
+	// Lin bus configuration
+	GPIO mpenable(hLinEn_Pin, hLinEn_GPIO_Port);
+	GPIO mpa0(hLinSelA0_Pin, hLinSelA0_GPIO_Port);
+	GPIO mpa1(hLinSelA1_Pin, hLinSelA1_GPIO_Port);
+	CLinMultiplexer multiplexer(mpenable, mpa0, mpa1);
+	GPIO slplin1(hSLPLin1_Pin, hSLPLin1_GPIO_Port);
+	GPIO slplin2(hSLPLin2_Pin, hSLPLin2_GPIO_Port);
+	GPIO slplin3(hSLPLin3_Pin, hSLPLin3_GPIO_Port);
+	GPIO slplin4(hSLPLin4_Pin, hSLPLin4_GPIO_Port);
+	CLinTransceiver transceiver(slplin1, slplin2, slplin3, slplin4);
+	CircularBuffer<uint8_t> uart2buffer(128);
+	CLin lin(&huart2, &uart2buffer);
+	CLinManager linmgr(multiplexer, transceiver, lin);
+	CHellaIBS2 ibs(linmgr);
 
    CHal::CHal()
         : Controlbus(control)
@@ -74,7 +114,7 @@ namespace mainunit::driver
         , UnitInputGetBirelayK2(k2status)
         , UnitInputGetBirelayK3(k3status)
         , UnitInputGetBirelayK4(k4status)
-   	  , ExtRelay(extrelay)
+   	    , ExtRelay(extrelay)
         , UnitOutputSetResetExtRelay1(ExtRelay)
         , UnitOutputSetResetExtRelay2(ExtRelay)
         , UnitOutputSetResetExtRelay3(ExtRelay)
@@ -91,20 +131,21 @@ namespace mainunit::driver
         , UnitInputGetExtRelay6(ExtRelay)
         , UnitInputGetExtRelay7(ExtRelay)
         , UnitInputGetExtRelay8(ExtRelay)
-   	  , Bme680(bme680)
+   	  	, Bme680(bme680)
         , UnitInputGetBme680Pressure(Bme680)
         , UnitInputGetBme680Temperature(Bme680)
         , UnitInputGetBme680Humidity(Bme680)
-        //, Lsm303(lsm303)
-        , UnitInputGetLsm303Magnetic(/* TODO Lsm303*/)
-        , UnitInputGetLsm303Acceleration(/* Lsm303*/)
-        //, Ibs(ibs)
-        , UnitInputGetIbsTemperature(/* TODO Ibs*/)
-        , UnitInputGetIbsVoltage(/* TODO Ibs*/)
-        , UnitInputGetIbsCurrent(/* TODO Ibs*/)
-        , UnitInputGetIbsCapacity(/* TODO Ibs*/)
-        , UnitInputGetIbsCharge(/* TODO Ibs*/)
-        , UnitInputGetIbsHealth(/* TODO Ibs*/)
+   	    , Mag(mag)
+   	    , Acc(acc)
+        , UnitInputGetLsm303Magnetic(Mag)
+        , UnitInputGetLsm303Acceleration(Acc)
+        , Ibs(ibs)
+        , UnitInputGetIbsTemperature(Ibs)
+        , UnitInputGetIbsVoltage(Ibs)
+        , UnitInputGetIbsCurrent(Ibs)
+        , UnitInputGetIbsCapacity(Ibs)
+        , UnitInputGetIbsCharge(Ibs)
+        , UnitInputGetIbsHealth(Ibs)
         , UnitOutputSetResetHss1(/* TODO BiRelay*/)
         , UnitOutputSetResetHss2(/* TODO BiRelay*/)
         , UnitOutputSetResetHss3(/* TODO BiRelay*/)
@@ -113,9 +154,6 @@ namespace mainunit::driver
         , UnitInputGetHss2(/* TODO k2status*/)
         , UnitInputGetHss3(/* TODO k3status*/)
         , UnitInputGetHss4(/* TODO k4status*/)
-
-
-
    {
 	   HAL_Init();
 	   __HAL_RCC_SYSCFG_CLK_ENABLE();
@@ -123,6 +161,7 @@ namespace mainunit::driver
 	   SystemClock_Config();
 	   MX_GPIO_Init();
 	   MX_USART1_UART_Init();
+	   MX_USART2_UART_Init();
 	   MX_SPI3_Init();
 	   MX_I2C3_Init();
 
@@ -131,6 +170,16 @@ namespace mainunit::driver
 	   if(Bme680.init()) {
 		   Bme680.read();
 	   }
+
+	   if(Acc.init()) {
+		   Acc.read();
+	   }
+
+	   if(Mag.init()) {
+		   Mag.read();
+	   }
+
+	   linmgr.setOn(true);
    }
 
    void CHal::SystemClock_Config()
@@ -202,56 +251,89 @@ namespace mainunit::driver
 
    void CHal::MX_GPIO_Init(void)
    {
-   	GPIO_InitTypeDef GPIO_InitStruct = {0};
+	   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
-   	  /* GPIO Ports Clock Enable */
-   	  __HAL_RCC_GPIOH_CLK_ENABLE();
-   	  __HAL_RCC_GPIOC_CLK_ENABLE();
-   	  __HAL_RCC_GPIOA_CLK_ENABLE();
-   	  __HAL_RCC_GPIOG_CLK_ENABLE();
-   	  __HAL_RCC_GPIOE_CLK_ENABLE();
-   	  __HAL_RCC_GPIOB_CLK_ENABLE();
-   	  HAL_PWREx_EnableVddIO2();
-   	  __HAL_RCC_GPIOD_CLK_ENABLE();
+	   	/* GPIO Ports Clock Enable */
+	   	__HAL_RCC_GPIOH_CLK_ENABLE();
+	   	__HAL_RCC_GPIOC_CLK_ENABLE();
+	   	__HAL_RCC_GPIOA_CLK_ENABLE();
+	   	__HAL_RCC_GPIOB_CLK_ENABLE();
+	   	__HAL_RCC_GPIOF_CLK_ENABLE();
+	   	__HAL_RCC_GPIOG_CLK_ENABLE();
+	   	__HAL_RCC_GPIOE_CLK_ENABLE();
+	   	__HAL_RCC_GPIOD_CLK_ENABLE();
+	   	HAL_PWREx_EnableVddIO2();
 
-   	  /*Configure GPIO pin Output Level */
-   	  HAL_GPIO_WritePin(hSignalLED_GPIO_Port, hSignalLED_Pin, GPIO_PIN_SET);
+	   	/*Configure GPIO pin Output Level */
+	   	HAL_GPIO_WritePin(hSignalLED_GPIO_Port, hSignalLED_Pin, GPIO_PIN_RESET);
 
-   	  /*Configure GPIO pin Output Level */
-   	  HAL_GPIO_WritePin(hRel1Reset_GPIO_Port, hRel1Reset_Pin, GPIO_PIN_SET);
+	   	/*Configure GPIO pin Output Level */
+	   	HAL_GPIO_WritePin(GPIOF, hHssEn1_Pin|hHssEn2_Pin, GPIO_PIN_RESET);
 
-   	  /*Configure GPIO pin Output Level */
-      HAL_GPIO_WritePin(hSTBCtrl_GPIO_Port, hSTBCtrl_Pin, GPIO_PIN_SET);
+	   	/*Configure GPIO pin Output Level */
+	   	HAL_GPIO_WritePin(GPIOD, hLinSelA1_Pin|hLinEn_Pin|hLinSelA0_Pin, GPIO_PIN_RESET);
 
-   	  /*Configure GPIO pin Output Level */
-   	  HAL_GPIO_WritePin(hRel2Reset_GPIO_Port, hRel2Reset_Pin, GPIO_PIN_SET);
+	   	/*Configure GPIO pin Output Level */
+	   	HAL_GPIO_WritePin(GPIOG, hSLPLin1_Pin|hRel1Reset_Pin, GPIO_PIN_SET);
 
-   	/*Configure GPIO pin : hSignalLED_Pin */
-	GPIO_InitStruct.Pin = hSignalLED_Pin;
-	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-	GPIO_InitStruct.Pull = GPIO_NOPULL;
-	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-	HAL_GPIO_Init(hSignalLED_GPIO_Port, &GPIO_InitStruct);
+	   	/*Configure GPIO pin Output Level */
+	   	HAL_GPIO_WritePin(GPIOG, hSLPLin2_Pin|hSLPLin3_Pin|hSLPLin4_Pin|hRel2Reset_Pin, GPIO_PIN_RESET);
 
-   	  /*Configure GPIO pins : hK1Status_Pin hK2Status_Pin hK3Status_Pin hK4Status_Pin */
-   	  GPIO_InitStruct.Pin = hK1Status_Pin|hK2Status_Pin|hK3Status_Pin|hK4Status_Pin;
-   	  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-   	  GPIO_InitStruct.Pull = GPIO_NOPULL;
-   	  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+	   	/*Configure GPIO pin Output Level */
+	   	HAL_GPIO_WritePin(hSTBCtrl_GPIO_Port, hSTBCtrl_Pin, GPIO_PIN_RESET);
 
-   	  /*Configure GPIO pins : hRel1Reset_Pin hRel2Reset_Pin */
-   	  GPIO_InitStruct.Pin = hRel1Reset_Pin|hRel2Reset_Pin;
-   	  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-   	  GPIO_InitStruct.Pull = GPIO_NOPULL;
-   	  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   	  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+	   	/*Configure GPIO pin Output Level */
+	   	HAL_GPIO_WritePin(GPIOE, hHss3En_Pin|hHssEn4_Pin, GPIO_PIN_RESET);
 
-   	  /*Configure GPIO pin : hSTBCtrl_Pin */
-   	  GPIO_InitStruct.Pin = hSTBCtrl_Pin;
-   	  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-   	  GPIO_InitStruct.Pull = GPIO_NOPULL;
-   	  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   	  HAL_GPIO_Init(hSTBCtrl_GPIO_Port, &GPIO_InitStruct);
+	   	/*Configure GPIO pin : hSignalLED_Pin */
+	   	GPIO_InitStruct.Pin = hSignalLED_Pin;
+	   	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	   	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	   	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	   	HAL_GPIO_Init(hSignalLED_GPIO_Port, &GPIO_InitStruct);
+
+	   	/*Configure GPIO pins : hHssEn1_Pin hHssEn2_Pin */
+	   	GPIO_InitStruct.Pin = hHssEn1_Pin|hHssEn2_Pin;
+	   	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	   	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	   	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	   	HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+
+	   	/*Configure GPIO pins : hK1Status_Pin hK2Status_Pin hK3Status_Pin hK4Status_Pin */
+	   	GPIO_InitStruct.Pin = hK1Status_Pin|hK2Status_Pin|hK3Status_Pin|hK4Status_Pin;
+	   	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+	   	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	   	HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+
+	   	/*Configure GPIO pins : hLinSelA1_Pin hLinEn_Pin hLinSelA0_Pin */
+	   	GPIO_InitStruct.Pin = hLinSelA1_Pin|hLinEn_Pin|hLinSelA0_Pin;
+	   	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	   	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	   	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	   	HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+	   	/*Configure GPIO pins : hSLPLin1_Pin hSLPLin2_Pin hSLPLin3_Pin hSLPLin4_Pin
+	   						   hRel1Reset_Pin hRel2Reset_Pin */
+	   	GPIO_InitStruct.Pin = hSLPLin1_Pin|hSLPLin2_Pin|hSLPLin3_Pin|hSLPLin4_Pin
+	   						  |hRel1Reset_Pin|hRel2Reset_Pin;
+	   	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	   	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	   	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	   	HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+
+	   	/*Configure GPIO pin : hSTBCtrl_Pin */
+	   	GPIO_InitStruct.Pin = hSTBCtrl_Pin;
+	   	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	   	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	   	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	   	HAL_GPIO_Init(hSTBCtrl_GPIO_Port, &GPIO_InitStruct);
+
+	   	/*Configure GPIO pins : hHss3En_Pin hHssEn4_Pin */
+	   	GPIO_InitStruct.Pin = hHss3En_Pin|hHssEn4_Pin;
+	   	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	   	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	   	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	   	HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
    }
 
 	void CHal::MX_USART1_UART_Init()
@@ -269,16 +351,14 @@ namespace mainunit::driver
 		if (HAL_UART_Init(&huart1) != HAL_OK)
 		{
 			//Error_Handler();
-			return;
+			//return;
 		}
 	}
 
 	void CHal::MX_USART2_UART_Init(void)
 	{
-		GPIO_InitTypeDef GPIO_InitStruct = {0};
-
 		huart2.Instance = USART2;
-		huart2.Init.BaudRate = 115200;
+		huart2.Init.BaudRate = 19200;
 		huart2.Init.WordLength = UART_WORDLENGTH_8B;
 		huart2.Init.StopBits = UART_STOPBITS_1;
 		huart2.Init.Parity = UART_PARITY_NONE;
@@ -287,7 +367,8 @@ namespace mainunit::driver
 		huart2.Init.OverSampling = UART_OVERSAMPLING_16;
 		huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
 		huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-		if (HAL_UART_Init(&huart2) != HAL_OK)
+		//if (HAL_UART_Init(&huart2) != HAL_OK)
+		if (HAL_LIN_Init(&huart2, UART_LINBREAKDETECTLENGTH_11B) != HAL_OK)
 		{
 			//Error_Handler();
 		}

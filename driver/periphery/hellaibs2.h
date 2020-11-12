@@ -6,7 +6,7 @@
 #define INC_HELLAIBS2_HPP_
 
 #include "hellaibs.h"
-#include "linmgr.h"
+#include "../board/linmgr.h"
 
 namespace mainunit::driver
 {

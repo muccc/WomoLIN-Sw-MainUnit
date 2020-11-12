@@ -20,9 +20,5 @@ add_library(${LIB_NAME}
 	lintransceiver.cpp
 	linmultiplexer.cpp
 	linmgr.cpp
-	hellaibs.cpp
-	hellaibs1.cpp
-	hellaibs2.cpp
-	ibs.cpp
     hss.cpp
 )

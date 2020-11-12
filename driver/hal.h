@@ -20,6 +20,9 @@
 #include "ibs.h"
 #include "hss.h"
 #include "bme680drv.h"
+#include "lsm303agracc.h"
+#include "lsm303agrmag.h"
+#include "hellaibs2.h"
 
 namespace mainunit::driver
 {
@@ -131,12 +134,13 @@ namespace mainunit::driver
         CUnitInputGetBme680Temperature       UnitInputGetBme680Temperature;
         CUnitInputGetBme680Humidity          UnitInputGetBme680Humidity;
 
-        // TODO CLsm303Drv &Lsm303;
+        CLSM303AgrMagDrv &Mag;
+        CLSM303AgrAccDrv &Acc;
 
         CUnitInputGetLsm303Magnetic          UnitInputGetLsm303Magnetic; 
         CUnitInputGetLsm303Acceleration      UnitInputGetLsm303Acceleration; 
 
-        // TODO CIbsDrv &Ibs;
+        CHellaIBS2 &Ibs;
  
         CUnitInputGetIbsTemperature          UnitInputGetIbsTemperature; 
         CUnitInputGetIbsVoltage              UnitInputGetIbsVoltage; 
