@@ -54,6 +54,8 @@ void CLinTransceiver::set(LinTransceiver transceiver)
 		m_slplin3.setLow();
 		m_slplin4.setLow();
 		break;
+	case LinTransceiver::TRANSCEIVER_CNT: return;
+	default: return;
 	}
 }
 
