@@ -23,6 +23,7 @@
 #include "lsm303agracc.h"
 #include "lsm303agrmag.h"
 #include "hellaibs2.h"
+#include "hssdrv.h"
 
 namespace mainunit::driver
 {
@@ -150,6 +151,9 @@ namespace mainunit::driver
         CUnitInputGetIbsHealth               UnitInputGetIbsHealth; 
 
         // Hss
+
+        CHSSDrv &Hss;
+
         CUnitOutputSetResetHss1         UnitOutputSetResetHss1;
         CUnitOutputSetResetHss2         UnitOutputSetResetHss2;
         CUnitOutputSetResetHss3         UnitOutputSetResetHss3;

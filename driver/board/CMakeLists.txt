@@ -20,5 +20,6 @@ add_library(${LIB_NAME}
 	lintransceiver.cpp
 	linmultiplexer.cpp
 	linmgr.cpp
+	hssdrv.cpp
     hss.cpp
 )

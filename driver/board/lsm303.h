@@ -22,7 +22,7 @@ namespace mainunit::driver
       void Get( std::string & attGetInput , CAdditionals & attAdditionals ) override final;
 
 	private:
-      CLSM303AgrMagDrv &m_mag
+      CLSM303AgrMagDrv &m_mag;
 
 	};
 
@@ -35,7 +35,7 @@ namespace mainunit::driver
       void Get( std::string & attGetInput , CAdditionals & attAdditionals ) override final;
 
 	private:
-      CLSM303AgrAccDrv &m_acc
+      CLSM303AgrAccDrv &m_acc;
 
 	};
 

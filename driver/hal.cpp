@@ -47,8 +47,8 @@
 #define hHssEn1_GPIO_Port 		GPIOF
 #define hHssEn2_Pin 			GPIO_PIN_15
 #define hHssEn2_GPIO_Port 		GPIOF
-#define hHss3En_Pin 			GPIO_PIN_0
-#define hHss3En_GPIO_Port 		GPIOE
+#define hHssEn3_Pin 			GPIO_PIN_0
+#define hHssEn3_GPIO_Port 		GPIOE
 #define hHssEn4_Pin 			GPIO_PIN_1
 #define hHssEn4_GPIO_Port 		GPIOE
 
@@ -101,6 +101,13 @@ namespace mainunit::driver
 	CLinManager linmgr(multiplexer, transceiver, lin);
 	CHellaIBS2 ibs(linmgr);
 
+	// HSS
+	GPIO hss1(hHssEn1_Pin, hHssEn1_GPIO_Port);
+	GPIO hss2(hHssEn2_Pin, hHssEn2_GPIO_Port);
+	GPIO hss3(hHssEn3_Pin, hHssEn3_GPIO_Port);
+	GPIO hss4(hHssEn4_Pin, hHssEn4_GPIO_Port);
+	CHSSDrv hss(hss1, hss2, hss3, hss4);
+
    CHal::CHal()
         : Controlbus(control)
         , UnitInputGetHwBoardVersion()
@@ -146,14 +153,15 @@ namespace mainunit::driver
         , UnitInputGetIbsCapacity(Ibs)
         , UnitInputGetIbsCharge(Ibs)
         , UnitInputGetIbsHealth(Ibs)
-        , UnitOutputSetResetHss1(/* TODO BiRelay*/)
-        , UnitOutputSetResetHss2(/* TODO BiRelay*/)
-        , UnitOutputSetResetHss3(/* TODO BiRelay*/)
-        , UnitOutputSetResetHss4(/* TODO BiRelay*/)
-        , UnitInputGetHss1(/* TODO k1status*/)
-        , UnitInputGetHss2(/* TODO k2status*/)
-        , UnitInputGetHss3(/* TODO k3status*/)
-        , UnitInputGetHss4(/* TODO k4status*/)
+   	    , Hss(hss)
+        , UnitOutputSetResetHss1(Hss)
+        , UnitOutputSetResetHss2(Hss)
+        , UnitOutputSetResetHss3(Hss)
+        , UnitOutputSetResetHss4(Hss)
+        , UnitInputGetHss1(Hss)
+        , UnitInputGetHss2(Hss)
+        , UnitInputGetHss3(Hss)
+        , UnitInputGetHss4(Hss)
    {
 	   HAL_Init();
 	   __HAL_RCC_SYSCFG_CLK_ENABLE();
@@ -283,7 +291,7 @@ namespace mainunit::driver
 	   	HAL_GPIO_WritePin(hSTBCtrl_GPIO_Port, hSTBCtrl_Pin, GPIO_PIN_RESET);
 
 	   	/*Configure GPIO pin Output Level */
-	   	HAL_GPIO_WritePin(GPIOE, hHss3En_Pin|hHssEn4_Pin, GPIO_PIN_RESET);
+	   	HAL_GPIO_WritePin(GPIOE, hHssEn3_Pin|hHssEn4_Pin, GPIO_PIN_RESET);
 
 	   	/*Configure GPIO pin : hSignalLED_Pin */
 	   	GPIO_InitStruct.Pin = hSignalLED_Pin;
@@ -329,7 +337,7 @@ namespace mainunit::driver
 	   	HAL_GPIO_Init(hSTBCtrl_GPIO_Port, &GPIO_InitStruct);
 
 	   	/*Configure GPIO pins : hHss3En_Pin hHssEn4_Pin */
-	   	GPIO_InitStruct.Pin = hHss3En_Pin|hHssEn4_Pin;
+	   	GPIO_InitStruct.Pin = hHssEn3_Pin|hHssEn4_Pin;
 	   	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	   	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	   	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
