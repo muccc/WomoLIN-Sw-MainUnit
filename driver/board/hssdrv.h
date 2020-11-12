@@ -1,9 +1,6 @@
-/*
- * powerswitch.hpp
- *
- *  Created on: 01.11.2020
- *      Author: tseeck
- */
+/* SPDX-License-Identifier: GPLv3-or-later */
+/* Copyright (c) 2020 Project WomoLIN */
+/* Author Tilo Seeck <tiloseeck@web.de> */
 
 #ifndef INC_HSSDRV_HPP_
 #define INC_HSSDRV_HPP_
