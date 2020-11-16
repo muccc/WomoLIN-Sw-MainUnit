@@ -38,14 +38,7 @@ bool CLSM303AgrMagDrv::init()
 	data.push_back(0x01);
 	if(!writeRegister(LSM303AGRMAG_CFG_REG_C_M, data))
 		return false;
-#if 0
-	// clear offset register to get raw data.
-	data.clear();
-	for(int i = 0; i < 6; i++)
-		data.push_back(0x00);
-	if(!writeRegister(LSM303AGRMAG_OFFSET_X_REG_L_M, data))
-		return false;
-#endif
+
 	if(getStatus() == 0)
 		return false;
 

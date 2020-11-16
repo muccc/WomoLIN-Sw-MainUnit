@@ -12,7 +12,17 @@ namespace mainunit::driver
 
    void CUnitInputGetLsm303Magnetic::Get( std::string & attGetInput , [[maybe_unused]] CAdditionals & attAdditionals )
    {
-      attGetInput = "TODO";
+	   m_mag.read();
+
+	   attGetInput = "xraw:" + std::to_string(m_mag.getXRaw()) + ";";
+	   attGetInput += "yraw:" + std::to_string(m_mag.getYRaw()) + ";";
+	   attGetInput += "zraw:" + std::to_string(m_mag.getZRaw()) + ";";
+
+	   attGetInput += "x:" + std::to_string(m_mag.getX()) + ";";
+	   attGetInput += "y:" + std::to_string(m_mag.getY()) + ";";
+	   attGetInput += "z:" + std::to_string(m_mag.getZ()) + ";";
+
+	   attGetInput += "deg:" + m_mag.getDegree() + ";";
    }
 
    CUnitInputGetLsm303Acceleration::CUnitInputGetLsm303Acceleration(const CLSM303AgrAccDrv &acc) : m_acc(const_cast<CLSM303AgrAccDrv&>(acc)) {}
