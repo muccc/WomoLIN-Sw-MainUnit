@@ -48,8 +48,9 @@
 
 #define IRQ_SYSTICK	0
 #define IRQ_UART1	1
+#define IRQ_UART2	2
 
-#define IRQ_MAX 	2
+#define IRQ_MAX 	3
 
  typedef void (*irqcallback)(void*);
 
@@ -101,9 +102,6 @@ void SysTick_Handler(void);
 void USART1_IRQHandler(void);
 void USART2_IRQHandler(void);
 #endif
-/* USER CODE BEGIN EFP */
-
-/* USER CODE END EFP */
 
 #ifdef __cplusplus
 }

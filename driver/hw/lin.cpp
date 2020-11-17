@@ -11,7 +11,7 @@ namespace mainunit::driver
 
 CLin::CLin(UART_HandleTypeDef *huart, CircularBuffer<uint8_t> *buffer) : m_phuart(huart), m_pbuffer(buffer), m_lastsendsize(0)
 {
-
+	InterruptHandler::registerCallback(IRQ_UART2, CLin::irquarthandler, this);
 }
 
 bool CLin::read(std::vector<uint8_t> &data)
@@ -67,6 +67,20 @@ uint8_t CLin::addParity(uint8_t linID)
   uint8_t p0 = LIN_ISSET_BIT(linID, 0)^LIN_ISSET_BIT(linID, 1)^LIN_ISSET_BIT(linID, 2)^LIN_ISSET_BIT(linID, 4);
   uint8_t p1 = ~(LIN_ISSET_BIT(linID, 1)^LIN_ISSET_BIT(linID, 3)^LIN_ISSET_BIT(linID, 4)^LIN_ISSET_BIT(linID, 5));   // evtl. Klammer rum ???
   return ((p0 | (p1 << 1)) << 6);
+}
+
+void CLin::irqhandler()
+{
+    uint8_t byte = m_phuart->Instance->RDR;
+
+    m_pbuffer->put(byte);
+	HAL_UART_IRQHandler(m_phuart);
+}
+
+void CLin::irquarthandler(void *param)
+{
+	CLin *puart = (CLin *)param;
+	puart->irqhandler();
 }
 
 }

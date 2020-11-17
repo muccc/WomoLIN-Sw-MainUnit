@@ -288,7 +288,7 @@ namespace mainunit::driver
 	   	HAL_GPIO_WritePin(GPIOG, hSLPLin2_Pin|hSLPLin3_Pin|hSLPLin4_Pin|hRel2Reset_Pin, GPIO_PIN_RESET);
 
 	   	/*Configure GPIO pin Output Level */
-	   	HAL_GPIO_WritePin(hSTBCtrl_GPIO_Port, hSTBCtrl_Pin, GPIO_PIN_RESET);
+	   	HAL_GPIO_WritePin(hSTBCtrl_GPIO_Port, hSTBCtrl_Pin, GPIO_PIN_SET);
 
 	   	/*Configure GPIO pin Output Level */
 	   	HAL_GPIO_WritePin(GPIOE, hHssEn3_Pin|hHssEn4_Pin, GPIO_PIN_RESET);

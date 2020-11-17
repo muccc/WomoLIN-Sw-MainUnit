@@ -10,6 +10,7 @@
  */
 #include "stm32l476xx.h"
 #include "stm32l4xx_hal.h"
+#include "stm32l4xx_it.h"
 
 #include "circularbuffer.h"
 #include <vector>
@@ -29,6 +30,10 @@ public:
 
 	CLin() = delete;
 	CLin(const CLin &) = delete;
+
+private:
+	static void irquarthandler(void *param);
+	void irqhandler();
 
 private:
 	UART_HandleTypeDef *m_phuart;
