@@ -77,7 +77,7 @@ std::string CBme680Drv::getTemperature()
 
 std::string CBme680Drv::getPressure()
 {
-	std::string ret = std::to_string(m_data.pressure / 1000) + "." + std::to_string(m_data.pressure % 1000);
+	std::string ret = std::to_string(m_data.pressure);
 	return ret;
 }
 
