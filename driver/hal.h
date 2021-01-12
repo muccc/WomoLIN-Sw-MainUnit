@@ -170,6 +170,7 @@ namespace mainunit::driver
         void MX_GPIO_Init();
         void MX_USART1_UART_Init();
         void MX_USART2_UART_Init();
+        void MX_LPUART1_UART_Init();
         void MX_SPI3_Init();
         void MX_I2C3_Init();
 

@@ -29,6 +29,8 @@
 #define hSTBCtrl_GPIO_Port 		GPIOA
 #define hSignalLED_Pin 			GPIO_PIN_0
 #define hSignalLED_GPIO_Port 	GPIOB
+#define hRs485Re_Pin 			GPIO_PIN_15
+#define hRs485Re_GPIO_Port 		GPIOB
 #define hLinSelA1_Pin 			GPIO_PIN_8
 #define hLinSelA1_GPIO_Port 	GPIOD
 #define hLinEn_Pin 				GPIO_PIN_9
@@ -43,6 +45,12 @@
 #define hSLPLin4_GPIO_Port 		GPIOG
 #define hLinSelA0_Pin 			GPIO_PIN_7
 #define hLinSelA0_GPIO_Port 	GPIOD
+#define hRs485SelA0_Pin 		GPIO_PIN_13
+#define hRs485SelA0_GPIO_Port 	GPIOD
+#define hRs485SelA1_Pin 		GPIO_PIN_14
+#define hRs485SelA1_GPIO_Port 	GPIOD
+#define hRs485SelEn_Pin 		GPIO_PIN_15
+#define hRs485SelEn_GPIO_Port 	GPIOD
 #define hHssEn1_Pin 			GPIO_PIN_14
 #define hHssEn1_GPIO_Port 		GPIOF
 #define hHssEn2_Pin 			GPIO_PIN_15
@@ -57,6 +65,7 @@ namespace mainunit::driver
 {
 	UART_HandleTypeDef huart1;
 	UART_HandleTypeDef huart2;
+	UART_HandleTypeDef hlpuart1;
 	SPI_HandleTypeDef hspi3;
 	I2C_HandleTypeDef hi2c3;
 
@@ -170,6 +179,7 @@ namespace mainunit::driver
 	   MX_GPIO_Init();
 	   MX_USART1_UART_Init();
 	   MX_USART2_UART_Init();
+	   MX_LPUART1_UART_Init();
 	   MX_SPI3_Init();
 	   MX_I2C3_Init();
 
@@ -259,6 +269,94 @@ namespace mainunit::driver
 
    void CHal::MX_GPIO_Init(void)
    {
+#if 1
+		GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+		/* GPIO Ports Clock Enable */
+		__HAL_RCC_GPIOH_CLK_ENABLE();
+		__HAL_RCC_GPIOC_CLK_ENABLE();
+		__HAL_RCC_GPIOA_CLK_ENABLE();
+		__HAL_RCC_GPIOB_CLK_ENABLE();
+		__HAL_RCC_GPIOF_CLK_ENABLE();
+		__HAL_RCC_GPIOG_CLK_ENABLE();
+		__HAL_RCC_GPIOE_CLK_ENABLE();
+		__HAL_RCC_GPIOD_CLK_ENABLE();
+		HAL_PWREx_EnableVddIO2();
+
+		/*Configure GPIO pin Output Level */
+		HAL_GPIO_WritePin(GPIOB, hSignalLED_Pin|hRs485Re_Pin, GPIO_PIN_RESET);
+
+		/*Configure GPIO pin Output Level */
+		HAL_GPIO_WritePin(GPIOF, hHssEn1_Pin|hHssEn2_Pin, GPIO_PIN_RESET);
+
+		/*Configure GPIO pin Output Level */
+		HAL_GPIO_WritePin(GPIOD, hLinSelA1_Pin|hLinEn_Pin|hRs485SelA0_Pin|hRs485SelA1_Pin
+							 |hRs485SelEn_Pin|hLinSelA0_Pin, GPIO_PIN_RESET);
+
+		/*Configure GPIO pin Output Level */
+		HAL_GPIO_WritePin(GPIOG, hSLPLin1_Pin|hRel1Reset_Pin, GPIO_PIN_SET);
+
+		/*Configure GPIO pin Output Level */
+		HAL_GPIO_WritePin(GPIOG, hSLPLin2_Pin|hSLPLin3_Pin|hSLPLin4_Pin|hRel2Reset_Pin, GPIO_PIN_RESET);
+
+		/*Configure GPIO pin Output Level */
+		HAL_GPIO_WritePin(hSTBCtrl_GPIO_Port, hSTBCtrl_Pin, GPIO_PIN_SET);
+
+		/*Configure GPIO pin Output Level */
+		HAL_GPIO_WritePin(GPIOE, hHssEn3_Pin|hHssEn4_Pin, GPIO_PIN_RESET);
+
+		/*Configure GPIO pins : hSignalLED_Pin hRs485Re_Pin */
+		GPIO_InitStruct.Pin = hSignalLED_Pin|hRs485Re_Pin;
+		GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+		GPIO_InitStruct.Pull = GPIO_NOPULL;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+		/*Configure GPIO pins : hHssEn1_Pin hHssEn2_Pin */
+		GPIO_InitStruct.Pin = hHssEn1_Pin|hHssEn2_Pin;
+		GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+		GPIO_InitStruct.Pull = GPIO_NOPULL;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+
+		/*Configure GPIO pins : hK1Status_Pin hK2Status_Pin hK3Status_Pin hK4Status_Pin */
+		GPIO_InitStruct.Pin = hK1Status_Pin|hK2Status_Pin|hK3Status_Pin|hK4Status_Pin;
+		GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+		GPIO_InitStruct.Pull = GPIO_NOPULL;
+		HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+
+		/*Configure GPIO pins : hLinSelA1_Pin hLinEn_Pin hRs485SelA0_Pin hRs485SelA1_Pin
+							  hRs485SelEn_Pin hLinSelA0_Pin */
+		GPIO_InitStruct.Pin = hLinSelA1_Pin|hLinEn_Pin|hRs485SelA0_Pin|hRs485SelA1_Pin
+							 |hRs485SelEn_Pin|hLinSelA0_Pin;
+		GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+		GPIO_InitStruct.Pull = GPIO_NOPULL;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+		/*Configure GPIO pins : hSLPLin1_Pin hSLPLin2_Pin hSLPLin3_Pin hSLPLin4_Pin
+							  hRel1Reset_Pin hRel2Reset_Pin */
+		GPIO_InitStruct.Pin = hSLPLin1_Pin|hSLPLin2_Pin|hSLPLin3_Pin|hSLPLin4_Pin
+							 |hRel1Reset_Pin|hRel2Reset_Pin;
+		GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+		GPIO_InitStruct.Pull = GPIO_NOPULL;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+
+		/*Configure GPIO pin : hSTBCtrl_Pin */
+		GPIO_InitStruct.Pin = hSTBCtrl_Pin;
+		GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+		GPIO_InitStruct.Pull = GPIO_NOPULL;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_Init(hSTBCtrl_GPIO_Port, &GPIO_InitStruct);
+
+		/*Configure GPIO pins : hHssEn3_Pin hHssEn4_Pin */
+		GPIO_InitStruct.Pin = hHssEn3_Pin|hHssEn4_Pin;
+		GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+		GPIO_InitStruct.Pull = GPIO_NOPULL;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+#else
 	   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
 	   	/* GPIO Ports Clock Enable */
@@ -342,6 +440,7 @@ namespace mainunit::driver
 	   	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	   	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	   	HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+#endif
    }
 
 	void CHal::MX_USART1_UART_Init()
@@ -382,16 +481,25 @@ namespace mainunit::driver
 		}
 	}
 
+	void CHal::MX_LPUART1_UART_Init(void)
+	{
+		hlpuart1.Instance = LPUART1;
+		hlpuart1.Init.BaudRate = 115200;
+		hlpuart1.Init.WordLength = UART_WORDLENGTH_8B;
+		hlpuart1.Init.StopBits = UART_STOPBITS_1;
+		hlpuart1.Init.Parity = UART_PARITY_NONE;
+		hlpuart1.Init.Mode = UART_MODE_TX_RX;
+		hlpuart1.Init.HwFlowCtl = UART_HWCONTROL_RTS;
+		hlpuart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+		hlpuart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+		if (HAL_UART_Init(&hlpuart1) != HAL_OK)
+		{
+			//Error_Handler();
+		}
+	}
+
 	void CHal::MX_SPI3_Init()
 	{
-
-		/* USER CODE BEGIN SPI3_Init 0 */
-
-		/* USER CODE END SPI3_Init 0 */
-
-		/* USER CODE BEGIN SPI3_Init 1 */
-
-		/* USER CODE END SPI3_Init 1 */
 		/* SPI3 parameter configuration*/
 		hspi3.Instance = SPI3;
 		hspi3.Init.Mode = SPI_MODE_MASTER;
@@ -411,9 +519,6 @@ namespace mainunit::driver
 		{
 		//Error_Handler();
 		}
-		/* USER CODE BEGIN SPI3_Init 2 */
-
-		/* USER CODE END SPI3_Init 2 */
 
 	}
 
